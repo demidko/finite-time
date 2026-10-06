@@ -12,15 +12,16 @@
 Your working window is real, finite, and already passing. Finite Time brings
 that boundary into every choice: what to open, what to finish, and when to
 bring the work back. The real quota and the agent's accounted steps form a
-shared clock. Codex reads its live provider meter when available; otherwise the
+shared clock. The agent reads its live meter itself, in Claude Code and in Codex; otherwise the
 owner supplies the displayed number. Each pulse brings the remainder into focus.
 
-**Fit the work. Come back.**
+**Fit the work. Back by 85.** One phrase steers the whole method: the agent reads the clock,
+lands every unit of work in a committed state, and returns at or before the percent you named.
 
 The method originated with [Daniil Demidko](https://github.com/demidko) in work
 with Fable. For **Fable 5.1, Astra, and other agents
-that follow the Agent Skills format**. It requires no model-specific API or
-background service.
+that follow the Agent Skills format**. It ships one standard-library reader script and
+needs no background service.
 
 ## The working record
 
@@ -65,17 +66,22 @@ instructions (`AGENTS.md`, `CLAUDE.md`, or the equivalent). This makes the
 time picture part of each task's opening across hosts.
 
 ```text
-Bring each new task under the installed finite-time skill. Recover the current
-time picture and carry it forward while usable. In Codex, read the live quota
-through app-server when available. When that source is unavailable, ask for
-the nearest quota's percentage in the owner's terms: left for Codex/ChatGPT,
-used for Claude by default. Reason and communicate directly in that native
-notation: subtract spending from left or add it to used. Invite a task allowance. Choose
-the allowance if omitted or already delegated. Request new pulses when they
-can change a decision. Let TIME-LENS.md learn our rhythm.
+Before any task, follow the finite-time skill: read the clock with its usage.py, agree on the
+mark in one line, work in atoms, land, return. Let TIME-LENS.md learn our rhythm.
 ```
 
-Then assign work normally, or invoke it explicitly:
+Then say what you want and when you want it back:
+
+```text
+Move the auth tests to the new fixture. Back by 85.
+```
+
+The agent reads the clock itself, prices the work, works in atoms, and returns at or before 85%
+of your window with four lines: what landed, what did not, the percent it landed at, and the next
+step as a choice. Give no mark and it proposes one in a single line; "ok" is enough. Correct the
+clock whenever you like ("you're at 62", "make it 80 instead"); your number always wins.
+
+In Codex the same phrase reads in left terms, or invoke the skill explicitly:
 
 ```text
 $finite-time Refactor the parser. 29% left; spend up to 2 percentage points.
@@ -85,15 +91,15 @@ In Claude Code, use `/finite-time`, for example with `62% used; spend up to
 8 percentage points`. Other hosts can load
 [SKILL.md](skills/finite-time/SKILL.md) directly with `TIME-LENS.md` beside it.
 
-When the agent needs a quota pulse, Codex first reads its authenticated
-app-server meter using `account/rateLimits/read`. This supplies the current
-remaining percentage and reset metadata without a model turn. The skill includes
-the read procedure and learns access availability in its personal lens.
+When the agent needs a quota pulse it runs `usage.py`. In Claude Code the script reads the
+harness's own OAuth login for the 5-hour and 7-day windows; in Codex it reads the authenticated
+app-server meter through `account/rateLimits/read`. Neither spends a model turn, and no token is
+printed. The first act of a session is to read the percent; the last act is to read it again.
 
-When direct access is unavailable, it asks:
+When no reader works, it asks once, in one line:
 
-> How much of your nearest quota window is left, and how many percentage points
-> may this task spend? You can give just left; I'll plan the allowance.
+> I can't read the weekly window from here. What percent are we at, and back by what?
+> One number is the reading and I'll set the mark from it; two numbers are the reading and the mark.
 
 That is the Codex/ChatGPT wording. In Claude, the question uses **used**. The
 agent follows your preference or actual display when it differs from these
@@ -116,10 +122,19 @@ accounts for the steps between pulses. A new reading replaces its extrapolation.
 The owner continues to set task allowances and correct pace and priority. Both
 the real reading and those corrections shape the next action and the lens.
 
+## Reading the clock
+
+| Harness | Limit that counts | How the agent reads it |
+| --- | --- | --- |
+| Claude Code | rolling 5-hour window, 7-day window behind it | `usage.py` reads the harness's own login; first and last act of a session |
+| Codex CLI | weekly limit | `usage.py` asks `codex app-server` for `account/rateLimits/read` |
+| Anything else | whatever the owner's display shows | asks once, in one line, together with the mark |
+
 ## The loop
 
 | You supply | The agent does |
 | --- | --- |
+| `Back by 85` | Lands in a committed state and returns at or before 85% used, the return priced in. |
 | Codex task with an available live meter | Reads the actual quota and reset itself, without asking you to copy the number. |
 | Codex: `29% left; spend two points` | Returns with at least 27% left, including closure. |
 | Claude: `62% used; spend eight points` | Returns before 70% used, including closure. |
@@ -178,11 +193,12 @@ The installed skill is deliberately flat:
 finite-time/
 ├── SKILL.md       The shared protocol and its immersive time framing
 ├── TIME-LENS.md   The owner's evolving calibration and rhythm
+├── usage.py       Reads the clock: Claude Code's windows or Codex's live quota
 └── LICENSE
 ```
 
-There are no runtime scripts or dependencies. Human documentation, evaluation
-cases, and release tooling stay in this repository.
+The only runtime script is `usage.py`, standard library only. Human documentation,
+evaluation cases, and release tooling stay in this repository.
 
 ## Work inside the window
 
@@ -198,5 +214,5 @@ and the next finished unit refine the lens.
 - [Inspect examples](docs/examples.md)
 - [Contribute a field result](CONTRIBUTING.md)
 
-Created by Daniil Demidko. Concept developed with Fable; skill edition prepared
-with Astra. Released under the [MIT license](LICENSE).
+Created by Daniil Demidko. Concept developed with Fable; two independent skill editions
+prepared with Astra and with Fable, merged after a blind six-lens comparison. Released under the [MIT license](LICENSE).

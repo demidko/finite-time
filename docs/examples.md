@@ -85,19 +85,14 @@ The owner supplies the number as displayed; the agent keeps the response in
 that same direction. If a Claude owner explicitly prefers left, the agent uses
 left there too.
 
-## Reserve released explicitly
+## A mark inside the reserve
 
 **Owner:** 89% used. Return by 98%.
 
-With the default ten-point reserve still in force, the effective boundary is
-90%. The agent starts closure and explains that only one gross point is
-available before the protected reserve.
-
-**Owner:** You may use my reserve for this task. Return by 98%.
-
-The boundary is now 98%. The agent recalculates from the current reading and
-closes within that boundary. It does not spend the last points merely to reach
-98% if the task finishes earlier.
+The reserve is the owner's to give, and the number wins: the mark is 98. The agent prices the
+return itself as the last step, keeps that many calls short of 98, and where the script runs it
+re-reads the clock before every atom instead of trusting its count. It does not spend the last
+points merely to reach 98 if the task finishes earlier.
 
 ## A lesson that changes the installed skill
 

@@ -19,13 +19,14 @@ def main():
         "SKILL.md",
         "LICENSE",
         "TIME-LENS.md",
+        "usage.py",
     ]
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
         for relative in sorted(package_files):
             info = zipfile.ZipInfo("finite-time/" + relative,
                                    date_time=(released.year, released.month, released.day, 0, 0, 0))
             info.create_system = 3
-            info.external_attr = 0o100644 << 16
+            info.external_attr = (0o100755 if relative.endswith(".py") else 0o100644) << 16
             info.compress_type = zipfile.ZIP_DEFLATED
             bundle.writestr(info, (SKILL / relative).read_bytes())
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()

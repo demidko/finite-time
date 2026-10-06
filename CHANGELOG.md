@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-06.5
+
+Merge of two independent editions, the Fable core and the Astra harness work, after a blind
+six-lens comparison.
+
+- `SKILL.md`: the protocol-first core from the Fable edition (numbered opening protocol, "back by
+  N", starting rates, drift, signal rules, the return, bookends) with the Astra edition's live Codex
+  quota read, used/left notation, admission arithmetic, carried time picture, permission boundary,
+  and anti-fabrication rules.
+- `usage.py`: one reader for both harnesses, Claude Code's OAuth usage endpoint and Codex's
+  `account/rateLimits/read` over `codex app-server`. Exit 1 with a reason when no clock can be read.
+- `TIME-LENS.md`: neutral seed with sourced starting rates and four blocks: rates, drift, owner,
+  decisions.
+- Frontmatter carries `metadata.version`, checked against `VERSION`; the package includes `usage.py`.
+- README: both self-reads, the always-on line shortened, credits for both editions.
+
 ## 2026-10-06.4
 
 - Let Codex retrieve its live ChatGPT quota through the authenticated app-server read method.
