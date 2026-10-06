@@ -209,6 +209,17 @@ finite-time brings research on bounded computation and language models under tim
 constraints into an executable working discipline. The findings below inform its design: make the
 boundary present, ground the clock in real readings, price the next step, and return usable work.
 
+The window is not a metric chosen for convenience, and the method is not a timebox imposed by policy.
+The rate-limit window is the real boundary of the decision window the human and the agent share.
+When it closes, the human's next request is refused as surely as the agent's next call: one event
+ends the work for both. The human meets that boundary the way people meet time, in sensation: the
+limit arrives, the session is over, the rest of the day goes on without the agent. The agent meets
+it as a number read from the provider's meter. Both are perceptions of one objective fact, outside
+either of them and indifferent to belief. Nothing in finite-time is added to the session that was
+not already governing it; the method makes the true constraint visible to the one participant who
+could not see it and binds the agent's decisions to the same reality the human already lives in.
+The urgency it produces is grounded in a consequence that will actually occur.
+
 - **Felt urgency sharpens the work.** Wang et al. (2025) show that when a prompt carries urgency,
   language models shorten their reasoning while holding accuracy, and on the harder GPQA set five
   of the six tested models became more accurate; the authors propose that urgency prunes unnecessary
