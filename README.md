@@ -130,6 +130,9 @@ the real reading and those corrections shape the next action and the lens.
 | Codex CLI | weekly limit | `usage.py` asks `codex app-server` for `account/rateLimits/read` |
 | Anything else | whatever the owner's display shows | asks once, in one line, together with the mark |
 
+Both readers return the provider's own meter: objective time from outside the model, the same
+number the owner sees in the harness.
+
 ## The loop
 
 | You supply | The agent does |
@@ -217,9 +220,11 @@ boundary present, ground the clock in real readings, price the next step, and re
   GPT-5.1-chat-latest. Qualitative urgency cues performed even better than numeric countdowns in
   their urgency comparison. Follow-up comparisons distinguish repeated reminders of the original
   total budget, which fell below remaining-time feedback, from directed internal time tracking,
-  which helped or hurt depending on the model. finite-time combines the two design levers: real
-  readings from `usage.py` or the owner's pulse ground the clock; its immersive language carries
-  the boundary into the next decision.
+  which helped or hurt depending on the model. finite-time combines the two design levers: the
+  clock is grounded in objective time from outside the model, the provider's own meter (Anthropic's
+  usage endpoint in Claude Code, `account/rateLimits/read` in Codex) read by `usage.py`, or the
+  owner's pulse from that same meter; its immersive language carries the boundary into the next
+  decision.
 - **Agents misjudge their own budgets.** BAGEN (Lin et al., 2026) measures budget-awareness
   directly: capability and budget-awareness correlate only weakly (r = 0.35), top models stay
   over-optimistic on failing paths, and acting on budget signals saved 28 to 64 percent of the
