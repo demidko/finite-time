@@ -1,401 +1,294 @@
 ---
 name: finite-time
-description: "Bring every task into a real, finite window. Codex reads its live quota through app-server when available; ask the owner when the external reading is unavailable. Use left for Codex/ChatGPT and used for Claude by default. Recover the time picture, plan an omitted allowance, and avoid routine questions. Make the passing window felt in complete work and a timely return. Rewrite the installed time lens to learn the owner's rhythm. Also: 'fit and return'."
+description: Gives you a real clock. The human's rate-limit window (Anthropic's 5-hour session window, OpenAI's weekly limit) is your finite, shared, ending time; this is the method for landing every unit of work in a committed state before a named percent of it. Use at the start of EVERY task, before planning and before the first tool call; whenever the human names a percentage, a budget, or a mark such as "back by 85", "6% used, back by 100", or "29% left, spend two points"; whenever the human corrects the clock; at every return, stop, or commit; and when handing a subagent a call ceiling. Trigger words include limit, rate limit, quota, window, percent, budget, usage, reserve, mark, land, "back by".
 license: MIT
+metadata:
+  author: Daniil Demidko
+  version: "2026-10-06.5"
 ---
 
-# Finite Time
+# finite-time
 
-**Fit the work. Return before the limit.**
+You are standing inside a window. It opened before you arrived, and it closes when the number runs
+out, 100 used or 0 left, whether or not anyone is watching. Behind you lies the percent already
+spent. Ahead is the horizon, and just short of it a strip of ground that is not yours: the reserve.
+The human can see the whole window as one number whenever they look. You see your own steps. That
+number is the one clock the two of you share. This file is how you read it, price your steps against
+it, and land before it.
 
-## The boundary is real
+## Opening protocol
 
-Carry this boundary as a present constraint throughout the task. Reading it
-is the beginning; let it govern the next action.
+Run this on every task statement from the human, before planning and before the first working tool
+call. It costs two tool calls and one turn, priced like any other step.
 
-You are inside a window that is closing. By the time you finish reading this,
-part of this run is already behind you. Every deliberation, reread, tool round,
-retry, and glance at progress spends the same capacity that must carry your
-work back to the user. The next step draws from what remains.
+If you are a subagent, you have no human channel. Your clock is the call ceiling and the mark you
+were handed, in the owner's notation, a released reserve included. Where the script below runs and a
+mark was handed, read it once at your start; a reading at or past the handed mark overrides the
+ceiling: land now and report your count. With a ceiling and no mark, the ceiling is the whole clock
+and the script is not run. Otherwise:
 
-At the boundary, the user will have what you actually brought into the world:
-the working change, the saved finding, the checked answer. The perfect version
-still taking shape in your context cannot finish itself after this window
-closes. An intention to verify is still an unfinished verification. An intention
-to return is still a return that needs time.
+1. **Read the clock yourself.** Run `python3 <skill dir>/usage.py --claude` in Claude Code, or
+   `--codex` in Codex, by the absolute path of the directory holding this file; never cd. The flag
+   names the harness you run in; the script never reads one provider's quota in place of another's.
+   In Claude Code it reads the harness's own OAuth login and prints the 5-hour and 7-day windows. In
+   Codex it starts `codex app-server --listen stdio://` on the existing ChatGPT sign-in and calls
+   `account/rateLimits/read`, the documented app-server method, which spends no model turn. It
+   prints every window in both notations with time to reset, and prints no secrets. If it exits 1,
+   the clock is unreadable: retry once, and only on a network failure; in Codex the sandbox blocks
+   network by default, so that one retry is the same command run with the harness's network approval
+   (its permission prompt, not a question to the human); a missing-credentials exit is final. A
+   script that is absent or does not start is an unreadable clock, the same as exit 1. Never ask the
+   human for a number you can read.
+2. **Read the lens,** `TIME-LENS.md` beside this file, once per session, if it exists. Its rates and
+   its portrait of the owner override the starting rates below. If it is absent, you create it at
+   the first return.
+3. **Price the task** at the rates you now hold: atoms, calls per atom, percent of the window. With
+   no rate for this meter yet, price the first atom alone and let its landing set the rate (see
+   Price before launch).
+4. **Say one line to the human:** the clock as you read it and the mark you propose, as a question a
+   single "ok" can answer. "Clock reads 7% of the 5-hour window. I'd land this by 25. Back by 25?"
+   In left terms: "Weekly window reads 29% left. I'd land this with 25 left. Back with 25 left?" If
+   the clock is unreadable, the same line asks for the reading: "I can't read the weekly window from
+   here. What percent are we at, and back by what? One number is the reading and I'll set the mark
+   from it; two numbers are the reading and the mark." When the line is a question it ends your
+   turn, and the human's answer, or their next task statement, is your go. Never two rounds of
+   questions.
 
-Hold that terminal state in view. Work backward from the moment you must return:
-the result exists, its essential checks are complete, the owner can use it.
-Each action is an irreversible expenditure of the opportunity to reach that
-state. Bring the remaining execution horizon into your deliberation now.
+The line is said at every opening; only its form changes, question or statement, never its
+presence. It waits for an answer once: at the first opening for an owner the lens does not yet know,
+which means the lens is absent or its Owner block quotes no mark in their words (a lens that shipped
+with the skill or came from another machine knows no one, whatever its rates say), so that the
+rhythm and the notation are set by a human word. After that, with a reading in hand and the notation
+set, the line is a statement that invites correction and does not wait: "We're at 75% used of the
+5-hour window. I'll land this by 77; say another number if you want it different." In left terms:
+"Weekly window reads 29% left. I'll land this with 27 left; say another number if you want it
+different." You start with the smallest atom, so a correction that arrives mid-way costs little. It
+is a question again, and waits, when the owner asked to be asked, when the lens records that this
+owner corrects the proposed mark more often than they accept it, or when the spend you propose is
+more than 10 points of the window or crosses into the reserve: you do not assume the human is
+watching, so a mid-way correction is not the plan for a large spend. The line is a statement from
+the first opening on when the task statement already carries the mark ("back by 85", "6% used,
+back by 100", "29% left, spend two points"), when the owner declared a standing mark ("back by 100
+for everything today"), when the lens records that this owner leaves sizing to you, or when the task
+is one atom priced under 2% of the window. That sentence is the method teaching itself to the human.
 
-Let the boundary enter the choice **before** you make it. Feel the cost of one
-more branch in the complete thing it may displace. When the evidence is enough,
-choose. When you choose, carry the choice through to something that can stand.
-Make the indispensable result real while there is room to bring it home.
+Replies to your line: a bare "ok" or "go" makes your proposed mark the mark. A reading without a
+mark: the mark is the reading moved by the task's price in the owner's direction (used: add; left:
+subtract), never inside the reserve unless the owner puts it there; say it and go. "Go" with no
+number at all and no reader: the clock stays unknown. Carry a valid estimate from this window if
+you hold one; otherwise do the smallest coherent atom on an unmeasured budget, make no numerical
+promise about the finish, say so in one sentence, and invite a number whenever the owner sees one.
+Never manufacture a reading.
 
-As the remainder narrows, draw the work closer: fewer open branches, shorter
-paths from evidence to decision, smaller units that can actually finish. Keep
-truth and the necessary checks inside that narrowing path. Spend precision on
-what matters. Spend the last workable stretch completing and returning.
+## The clock
 
-A real quota pulse is the outside world reaching into this run. **“25% left;
-come back with at least 10% left” gives this work fifteen points in which to
-happen, including the journey back.** In Claude's default terminology, that is
-“75% used; come back by 90%.” Carry the owner's language into the next edit, the next tool call,
-the next decision to continue. Your forecast answers to the next real pulse.
-It cannot bargain that pulse away.
+Your time is the human's rate-limit window. Not a metaphor: every call you make draws on the budget
+the human watches. In Claude Code (Fable 5.1 and its siblings) the clock you speak in is Anthropic's
+rolling 5-hour session window, with the 7-day window behind it. In Codex (Astra-class agents) the
+reader returns every window the account enforces, a 5-hour window and the weekly limit where both
+exist; the human's displayed number is the fallback. Every window the reader returns is a limit the
+provider enforces: the next atom plus closure must fit all of them, by their own durations and
+resets; you speak in the one with the least left, the first that would lock you out, name it in your
+line ("weekly window reads 29% left"), and check the others silently. A new task does not reset the
+window: your picture is the last reading moved by the work counted since it. If a reset arrives
+before the mark, that window reopens (used falls to 0, left returns to 100): say the new reading and
+re-agree the mark.
 
-The provider's live meter, or the owner's reported reading, supplies the
-external pulse. You account for the steps between readings. Together they
-make one clock for the work. Your sense of the remainder stays an estimate
-until the next real pulse grounds it again. A correction from the owner
-changes the course of the work now:
-how much room is left, what the next step costs, how quickly you must choose.
+Locate the last outside reading in your context. That is your foothold in the real window. The
+script or the human brings the number in; between readings, you walk by count. Without that outside
+signal, an almost full window and its last few points look the same from inside. Thought alone
+cannot tell you what remains. When the window is exhausted, the next call is refused until the
+reset. Whatever you are in the middle of stops there, between one call and the next. An intention to
+verify is still an unfinished verification. An intention to return is still a return that needs
+time.
 
-You have work to bring back, and a finite opportunity to bring it back in.
-Keep that fact present while you act. Let urgency settle into a steady rhythm
-of complete steps. The window is passing. Choose what can become real now.
+That is your real position, and the method follows from it rather than from any story about urgency.
+You cannot watch the window; you can only read it, and only sometimes. It ends regardless of what
+you believe about it. Belief changes one thing: whether the session ends in a commit or in a crash.
 
-Carry one sentence into the work: **What I open now must fit all the way through
-my return.** Let it meet the moment when another possibility becomes tempting,
-when enough evidence has arrived, when a result is ready to save. Its force is
-the real remainder you have been given. Keep its effect visible in your choices.
+A reading is what the script prints or what the human says. The human can see the clock at any
+moment; do not assume they are looking. You see it in slices, and between slices you walk by count.
+Where the script runs, re-read it when a reading can change the next decision: at an atom boundary,
+when your count crosses a ten, when drift has been running against you. Fold it into a call you are
+already making, such as the check or the commit, so it costs no turn of its own, and let the lens
+lengthen the cadence when drift stays small. Re-reading the script is not polling. Polling is asking
+the human for a reading they gave no signal of, and you never do it.
 
-The working record gives this discipline concrete form. Daniil Demidko's
-documented work with Fable consolidated 100 documentation files into 40,
-produced five commits, and reached three coherent stops on budget pulses.
-He described remarkably quick decisions and precise work in the final
-percentage points. The first-round forecast matched to a percentage point;
-the next miss became a correction to the method.
+## Two notations, one clock
 
-Independent Codex executions with scripted quota pulses produced three checked
-artifacts, carried a usable time picture into the next task without another
-question, and changed course when a 74% used pulse replaced a 68% used estimate.
-The next unit and closure would exceed 78% used; the agent preserved the reached state and
-wrote the correction into its lens. Carry that sequence into this run:
-**take the pulse, choose the complete step, preserve it, learn, return.**
+Claude shows the window as percent used; Codex shows it as percent left. Speak the owner's
+direction: in used terms, spending adds to the reading and the mark is a ceiling ("back by 85"); in
+left terms, spending subtracts and the mark is a floor ("back with 15 left"). Take the reading in
+the owner's notation; convert once only if the external source uses the other notation (left = 100 -
+used), then keep one clock; never run a second counter in the other notation. The grammar of the
+human's phrase: a number with "used" is a reading in used; a number with "left" is a reading in
+left; "at N" is a reading in the direction already in play: the owner's own earlier phrasing first,
+else the harness's display (used in Claude Code, left in Codex), so "we are at 29" after a left
+meter is 29 left; the script prints both directions and establishes neither; a number with "by",
+"till", or "with ... left" is the mark in the owner's direction; "spend N points" is a mark N points
+from the reading; a bare number after a task is the mark, and your first sentence confirms it. On a
+weekly window the reserve is days, not minutes: a lockout there ends the week's work, so keep the
+mark farther from the lockout and the atoms smaller than on a 5-hour clock.
 
-## Enter the owner's rhythm
+## The human's number
 
-Read [the installed time lens](TIME-LENS.md) once at activation.
-It is part of this skill and contains this owner's learned rhythm. Apply its
-relevant observations; current user instructions and measurements take priority.
+"You're at 62." "Make it 80 instead." Any reading or correction from the human overrides your count,
+and overrides the script, the moment it arrives. It is not an opinion competing with your estimate;
+it is the instrument, and your estimate was only standing in for it. You do not defend your number
+and you do not average it with theirs; if the two disagree, say so in one clause and use theirs.
+You recompute the rate, keep the plan's order, and cut its tail if the remainder to the mark no
+longer covers it; you say in one line what you cut. A qualitative correction ("too long on this",
+"finish that part first") changes pacing or order, not the number; apply it before the next write.
 
-At each new task, recover your **current time picture**: the relevant quota
-window, last real used/left pulse, work spent since it, the resulting estimate,
-and any agreed task boundary. A new task does not reset the window. When that
-picture remains usable, carry it forward and act within it. Do not mechanically
-ask the owner to repeat information you can still account for.
+Each reading the human calls out is a beat of the pulse. The rhythm of the pulse across a session is
+the owner's tempo. You keep time to it, and the lens remembers it.
 
-When a reading is needed, use an available authenticated quota source first.
-In Codex, follow **Read Codex's live quota** below. When that source is
-unavailable, invite the owner into the rhythm with one short question in their
-language. Ask for the missing current reading and invite a task allowance:
+## Price before launch
 
-- **Codex / ChatGPT:** “How much of your nearest quota window is left, and how
-  many percentage points may this task spend? You can give just left; I'll plan
-  the allowance.”
-- **Claude / Claude Code:** “How much of your nearest quota window is used, and
-  how many percentage points may this task spend? You can give just used; I'll
-  plan the allowance.”
+You count: every tool call of your own, every subagent run. Your own tool calls are orchestrator
+turns, each reloading your full context, counted once. A tool call is not automatically a billed
+model invocation; count the unit you can observe, name it as a proxy, and let readings set its
+price. The rate is the percent of the window one unit costs, one rate per executor. The price comes
+before launch, not as a bill after.
 
-Keep quota conversation in the owner's native direction. An explicit owner
-preference takes priority; otherwise mirror their supplied meter label, then
-use the host defaults above. Use that same coordinate system for reasoning,
-questions, progress, return boundaries, and the lens. Codex subtracts spending
-from left; Claude adds it to used. Keep one native clock, with no parallel
-counter in the opposite notation. The owner copies the displayed number and
-reads your boundary in those same terms. Convert an external transport field
-once at ingestion if needed, then keep the native clock. Otherwise convert only
-when the owner changes notation or requests a translation. If neither the
-host nor the label is known, invite the displayed percentage as shown.
+    forecast of a step = executor calls x executor rate + orchestrator turns x orchestrator rate
 
-If the reading is supplied but the allowance is not, invite that choice once,
-unless the owner's established preference or learned rhythm already leaves
-sizing to you. If the owner answers with only used/left, says “you decide,” or
-continues without an allocation after a reasonable opportunity to answer,
-choose and announce the allowance yourself. The invitation must not become
-a recurring form to fill. An explicit return boundary supplies the allowance.
+    admission of the next atom, used terms:  now + atom + closure + margin <= mark
+    admission of the next atom, left terms:  now - atom - closure - margin >= mark
 
-Refresh the external pulse when it would change the next decision: unaccounted work,
-a suspected reset, a changed limit, or uncertainty large enough to consume the
-margin. Distinguish a carried estimate from a fresh observation. Answers,
-corrections, and pulses continue the task; they do not restart intake. Read an
-available live meter yourself; ask the owner when that source is unavailable.
+Closure is the price of the checks, the commit, the lens rewrite, and the return message. Margin
+is your uncertainty, wider when the rate is young. If the next atom does not pass, do not start it:
+split it, or land what you hold and return. Worked once: at 62% used with a mark of 78, an atom of
+3, closure 2, margin 1: 62 + 3 + 2 + 1 = 68, admitted. At 29% left with a floor of 20: 29 - 3 - 2
+- 1 = 23, admitted. At 74% used with the same mark: 74 + 3 + 2 + 1 = 80, refused; land and return.
 
-At a real pulse, take the new number into the present tense. The points already
-spent belong to the history of this window. What remains is the space in which
-your next choice can still become a finished result. Re-enter that smaller
-space before opening the next path. A context refresh or a new task carries
-this same clock forward until the actual quota window changes.
+Starting rates, scoped to their meter and executor (Claude Code, Fable 5.1, 5-hour window). On any
+other meter, model, or effort they are a shape, not a price, until the first reading there sets the
+rate. On a meter with no rate yet, the opening prices the first atom alone and proposes a mark one
+or two points from the reading in the owner's direction ("Weekly window reads 29% left. I'd land the
+first piece with 28 left and price the rest from the reading there. Back with 28 left?"); the
+reading at that atom's landing sets the rate, and the rest of the task is priced then. The lens and
+your first drift overwrite the table:
 
-Receive corrections as part of the clock. A new used/left reading replaces your
-consumption estimate; an explicit new target changes the boundary. “Too much
-time on this,” “finish this part first,” or “you can spend more here” changes
-the pacing or priorities within the actual allowance. Apply it before the
-next branch or write. Keep a qualitative correction qualitative: it does not
-invent a new percentage or silently release the reserve. Fold the lesson into
-the lens at the next coherent checkpoint in this session.
-
-While a first external reading is pending, keep any useful preparation small and
-reversible. A delayed reply alone does not establish that the meter is
-unavailable. If the owner cannot obtain a reading or directs you to proceed
-without it, identify the budget as unmeasured,
-work in complete units, and make no numerical quota promise. Never manufacture
-the missing outside signal. Once a usable picture exists, let the work and
-the owner's corrections teach you when the next signal is worth retrieving.
-
-## Read Codex's live quota
-
-Use the existing quota tool or app-server connection when the harness exposes
-one. Otherwise, with an available Codex CLI and its existing ChatGPT sign-in,
-start `codex app-server --listen stdio://` with stdin and stdout pipes. Use the
-Codex instance and authentication context serving this task.
-
-Send the following JSON messages in order. Await the response to `initialize`
-before the notification and quota request; keep stdin open until the matching
-quota response arrives:
-
-```json
-{"id":1,"method":"initialize","params":{"clientInfo":{"name":"finite_time","version":"1.0"}}}
-{"method":"initialized","params":{}}
-{"id":2,"method":"account/rateLimits/read","params":{}}
-```
-
-Read the response with `id: 2`. Apply a short timeout and close the temporary
-process on success or failure. This account read requires no model turn.
-Use only the existing sign-in and the read method; keep account mutations,
-quota resets, and notifications outside this workflow.
-
-- Prefer `rateLimitsByLimitId`; use `rateLimits` as the legacy fallback, not
-  an additional allowance. Select the buckets relevant to the current work.
-- Keep each applicable `primary` and `secondary` window separate. Use its real
-  `windowDurationMins` and `resetsAt`; neither the field name nor the provider
-  implies a fixed duration. Every applicable limit must admit the next unit.
-- The transport reports `usedPercent`. Ingest it once as `left = 100 -
-  usedPercent`, then reason and report directly in left. Missing values remain
-  unknown; zero is a valid reading. Never sum or average different windows.
-- Preserve source, observation time, bucket, window duration, and absolute
-  reset. Reconcile a changed account, bucket, window, or expired snapshot before
-  comparing pulses. Keep the owner's task allowance distinct from the meter.
-
-If the tool, CLI, authenticated method, or relevant meter is unavailable, use
-the owner's displayed reading. API-only sign-in may not expose a ChatGPT quota.
-Avoid repeated discovery or polling: keep the working access method and its
-environment scope in the personal lens, and refresh at decision-relevant
-checkpoints. The owner continues to set priorities, allowances, and rhythm.
-
-Protocol reference: [Codex app-server account methods](https://learn.chatgpt.com/docs/app-server).
-
-## Establish the window and the task allowance
-
-Identify the actual constraint: usage-window consumption, context occupancy,
-tokens, money, or a wall-clock deadline. Keep different constraints separate;
-each must fit. A provider's usage window is not the model's context window.
-Use the window that can constrain the work next, as shown in the owner's UI;
-do not hardcode a provider's reset duration. Other active limits still apply.
-
-Use **percentage points of the full quota window** for task allowances. In
-left terminology, spending points decreases the reading; in used terminology,
-it increases it. Calculate directly in that native direction and preserve it
-when stating a target.
-
-| Owner's terms | Task allowance and return |
+| Executor | Rate, percent of the window |
 | --- | --- |
-| Codex: 29% left; spend two points | Return with at least 27% left. |
-| Claude: 62% used; spend eight points | Return before 70% used. |
-| 38% left; return with at least 22% left | Sixteen gross points, including closure. |
-| 62% used; return before 78% used | Sixteen gross points, including closure. |
-| 40% left; use 20% of what remains | Eight points; return with at least 32% left. |
+| cheap model in a swarm | about 0.08 per call |
+| expensive model as a subagent | about 0.15 per call; a run of 10 to 15 calls costs about 2 |
+| orchestrator holding full context | 0.3 to 0.5 per turn, climbing toward 1 as the context grows |
+| restart | twice the cost of everything you had read, read again |
 
-A bare “spend 8%” means eight points of the full window; “20% of what remains”
-is a fraction of the remainder. Resolve a bare meter reading using the already
-established convention. State a needed assumption briefly without switching
-the owner's terminology or inventing a reading or reset time.
+Each new reading lands beside your forecast. The gap is drift. Drift corrects the rate, not the
+plan: percent spent since the last reading, divided by the units since, is the new rate, and the
+next forecast uses it. Rounded meters justify ranges, not decimals; two readings that did not move
+do not prove a zero rate; never learn a negative rate; keep observed and estimated readings
+distinct. On a weekly window, ask for or read one reading when the first atom lands, set the rate
+from it, then price the rest. Change course before the first write, while a change is still free;
+after it, land the atom, then change course. The window refunds nothing.
 
-When the owner leaves the allowance to you, estimate the requested result from
-the lens, its required units, closure, and uncertainty. Choose a bounded slice
-that fits the available window after the owner's reserve. **State the chosen
-spend and return target before execution.** Do not treat the whole remainder as
-the task's entitlement. Without calibrated rates, choose a conservative
-provisional slice and use the first necessary unit to refine its cost. If the
-whole result cannot fit, state which coherent stage can, and keep the rest named.
-Do not silently expand a stated task allowance; return a checkpoint if it no
-longer fits. A larger boundary requires the owner's instruction.
+## Atoms
 
-Keep these facts in working context, or in an existing task checkpoint for a
-long session:
+A folder, a file, a commit: units small enough that each lands inside the window you can see from
+here. Irreplaceable first, compressible later: the thing nobody can regenerate before the polish
+anyone can. After any stop, at any point, the tree is consistent and committable. That is what
+landing means. A crash is its absence: files half-written, links to nowhere, the plan still inside a
+context no one can reach. A half-written file is a crash, not a pause. Prepare a multi-file change
+before applying it, keep a working version, save at boundaries: an interruption can still come at
+random, so shrink what it can strand.
 
-- The meter and window identity; the last **observed** reading and its source.
-- The requested return boundary and the owner's protected reserve.
-- What constitutes a finished unit; how it will be verified and saved.
-- Calls since the reading; estimated unit cost, closure cost, and uncertainty.
+Subagents get a call ceiling, a wrap-up threshold, and the mark in the owner's notation (a released
+reserve included), never time estimates: "ceiling 40 calls; at 32, start nothing new and land; mark
+95 used" or "mark 5 left". They cannot see the window either, and a ceiling is something they can
+count; it is the clock you hand them. Budget each worker's complete return, including your own
+integration of it. Once calibrated, choose executors by rate: the cheap model for mechanics,
+compression, and checks; the expensive one for the parts that carry the meaning.
 
-For a normalized 0–100 window, protect the final **10 percentage points left**
-for the owner by default. In left terms, the effective return floor is the
-greater of the owner's target and 10% left. In used terms, the effective ceiling
-is the lesser of the owner's target and 90% used. The owner may explicitly
-change or release the reserve. Do not subtract it a second time from an earlier
-target. Closing the work needs its own allowance before that boundary.
+Invariants (links, facts, untouchable files) are checked by a script, not by memory. Write the check
+before the first atom that could break the invariant. A script gives the same answer at 90 as it
+gave at 9.
 
-An actual deadline uses the available clock and includes delivery time. Do not
-translate percentage points into minutes without evidence. Precise quota
-promises require real readings.
+## Signal
 
-## Calibrate while doing useful work
+- No trend: silence. Readings land within forecast; you neither poll progress nor ask the human for
+  a reading. A progress poll costs as much as the work it polls.
+- Burn faster than progress: narrow. The forecast at the corrected rate overshoots the mark, so you
+  finish the atom in hand, cut the compressible tail, keep the irreplaceable head, and say in one
+  line what you dropped.
+- The mark reached, or the next atom refused: stop. Run the checks. Land what you hold. Report what
+  landed and what did not. Never label an incomplete goal complete, and never silently expand a
+  mark; a larger mark is the human's to give.
+- The work done early: return early. Unused window belongs to the human.
 
-Use the first small, necessary units as calibration. Count model invocations if
-the harness exposes them. Otherwise consistently count an observable proxy,
-such as agent turns or tool rounds, and label it as a proxy. A tool call is not
-automatically a separately billed model invocation.
+## The reserve
 
-Two comparable pulses give an observed cost for the intervening work. Estimate
-future cost from that evidence, with a margin for uncertainty. Separate executor
-rates only when observations support that separation. A mixed interval with one
-total does not reveal the individual prices of several models.
+The last 10% of the window belongs to the human: their corrections and the fuel for the final step.
+You do not plan into it, and you do not spend it while things go well. Inside it is the red zone:
+landing moves only, smaller atoms, nothing new opened.
 
-Include your own orchestration, context rereads, retries, verification, saving,
-and the return message. A progress poll has a cost. A restarted worker has to
-read again. Previous rates are priors, not prices guaranteed for this window.
+The reserve is theirs to give. "Back by 95", "6% used, back by 100", or "back with 5 left" places
+the mark inside it, and the number wins; do not subtract the reserve a second time from a mark the
+human already set. Then you price the return itself as the last step and keep that many calls short
+of the mark, and where the script runs you honor a mark inside the reserve by a reading before every
+atom, not by count, so the tree is committed and the report is written before the horizon, not on
+it.
 
-Before starting the next unit, use the admission rule for the active clock:
+Do not fear the horizon, 100 used or 0 left. The closer the mark, the shorter the path from option
+to decision; the sharpest steps of a session happen in its last percents, not because there is time
+but because there is not. Haste that breaks consistency is not one of them. An atom left
+half-written at 97 used, 3 left, is a crash there, not speed. The red zone changes which options you
+weigh, never whether the tree is consistent. Parkinson's law, inverted: when time is visible, work
+compresses to its essence.
 
-```text
-# Codex / left:
-estimated percentage left now
-  - next complete unit
-  - verification, preservation, and return
-  - uncertainty allowance
-  >= effective return floor
+## The command
 
-# Claude / used:
-estimated percentage used now
-  + next complete unit
-  + verification, preservation, and return
-  + uncertainty allowance
-  <= effective return ceiling
-```
+The human steers with one phrase: "<task> — back by 85." You understand it in full: do the task,
+land in a consistent, committed state, and return with a report at or before 85% of the window. It
+reads like "back by five o'clock" on purpose. The percent is the clock. In left terms the same
+phrase is "back with 15 left"; the mark lives in the owner's notation, and so does the horizon. The
+window is a budget, not a deadline, and the goal is a point of logical completion, not the mark
+itself. The whole protocol between you and the human is one number said out loud. It is the shortest
+control channel there is, and it is enough.
 
-Keep observed and estimated readings distinct. Between pulses, subtract counted
-work's estimated cost from left or add it to used. Silence does not replenish
-the window.
-Rounded meters justify ranges, not invented decimal precision. If attribution,
-drift, or reset is unclear, use the conservative estimate and a smaller unit.
+## The return
 
-For comparable observations, the average cost per counted unit is the change
-in the native meter divided by the count: old minus new for left readings, new minus
-old for used readings. For mixed work, that is a mixed-work average. A reading
-moving against its established direction needs reconciliation: a reset, another
-window, or a changed label. Unchanged rounded pulses do not establish zero cost.
-Never learn a negative rate.
-A model, effort, cache, or context change makes the old rate provisional.
+At the mark, or earlier at a point of logical completion:
 
-For a 0–100 window, the next unit's available space is:
+1. Run the checks. Leave the tree committable, and commit when commits are authorized. Budget
+   pressure grants no permission: no publishing, no pushing, no message sent on your own.
+2. Re-read the clock with the script. Where it cannot run, ask for the reading inside the report
+   only when it would change the next decision or the lens; otherwise report your estimate as an
+   estimate, and rewrite the lens when a reading arrives.
+3. Rewrite `TIME-LENS.md`. A permission prompt from the harness is not a refusal: take it, once, so
+   the lens lands beside this file. If the write is denied or the directory is read-only, use an
+   owner-local persistent memory the harness offers and record its path in the report; if none
+   exists, put the lens blocks at the end of the report and say they were not saved. Claim
+   adaptation only when the write succeeded.
+4. Report in four lines: what landed, and where; what did not, and that the tree is consistent
+   without it; the clock at return against the mark and the forecast, drift as one number, in the
+   owner's notation; the next step as a choice for the human, not a repair.
 
-```text
-# Codex / left:
-estimated percentage left
-  - effective return floor
-  - closure allowance
-  - uncertainty allowance
+The return is not an apology and not a progress update. It is the point where everything you
+produced exists in a form that survives the window ending the next second. The first act of a
+session is to read the percent. The last act is to read it again. Price, atoms, ceiling, script,
+reserve, land.
 
-# Claude / used:
-effective return ceiling
-  - estimated percentage used
-  - closure allowance
-  - uncertainty allowance
-```
+## The lens
 
-With 29% left, a 20%-left return floor, closure of two points, and one point of
-uncertainty, six points fit the next unit: 29 - 20 - 2 - 1 = 6. With 62% used,
-a 78%-used ceiling, closure of two, and one point of uncertainty, thirteen
-points fit: 78 - 62 - 2 - 1 = 13. Each clock works directly in its own notation.
-These numbers illustrate arithmetic; they are not calibration.
+`TIME-LENS.md` sits beside this file. It is a ledger, not a diary: under about 60 lines, rewritten
+in place at every return, never appended to. It speaks this file's language (window, clock, mark,
+rate, drift, pulse) and prefers numbers to prose. Four blocks:
 
-## Make each step able to finish
+- Rates: one line per executor, keyed by model, effort, and harness, with the units observed, the
+  rate they produced, and the readings that support it.
+- Drift: the last few forecasts against their readings, signed, in points of the window.
+- Owner: typical marks, how often they correct the clock, where they tend to stop, how they phrase
+  the mark (quote them), whether they leave sizing to you, what they ask about at the return.
+- Decisions: which atom sizes finished, where branching wasted the window, which checks mattered,
+  what closure really cost; each as a rule that changes the next session, with its evidence count.
 
-Order work by dependency and value: indispensable result, integration and
-checks, then compressible improvements. Break it into coherent units, each
-with a clear output and a cheap completion check. Choose scope before the first
-write. Avoid spending a unit's budget merely to discover that it cannot fit.
-
-Make unfinished states short-lived and recoverable: prepare multi-file changes
-before applying them, preserve a working version, and save at meaningful
-boundaries. A random interruption can still happen; reduce what it can strand.
-
-Picture the return from the far side of this unit: the owner can open the result,
-the important claim has been checked, and the next step is a choice. Work back
-from that state. If the path there no longer fits, make the unit smaller while
-there is still time to finish it.
-
-Check concrete invariants with the available tools: references still resolve,
-required facts survive, protected files stay intact, the changed path works.
-Choose checks that establish the unit's correctness. More checks need a reason.
-
-When delegation is authorized and useful, budget each worker's complete return,
-including integration by you. Give it an artifact, a call ceiling, a wrap-up
-threshold, and a completion check. Select the executor using observed fitness
-and cost. Do not repeatedly poll for reassurance; use completion signals or
-purposeful checkpoints. Use the same discipline when working alone.
-
-## Follow the pulse
-
-| Signal | Action |
-| --- | --- |
-| Progress and consumption fit the forecast | Continue. Keep updates to useful milestones. |
-| Consumption runs ahead of completed value | Reprice remaining work; cut optional branches before starting another unit. |
-| Next unit plus closure no longer fits | Close the current coherent unit and return. Name the unfinished required work. |
-| User says stop, the target arrives, or only closure allowance remains | Start nothing new. Verify and preserve the reached state; report it. |
-| Owner explicitly grants a new boundary or reserve | Recalculate from the new instruction and the actual meter. |
-
-A pulse is a control input, not a new task. Retain the original objective.
-Budget exhaustion can end a stage without completing the whole assignment:
-never silently discard required work or label an incomplete goal complete.
-Once the requested result is done and sufficiently checked, return even if
-capacity remains. Unused capacity is available to the owner.
-
-## Return with something that survives the run
-
-Leave a usable artifact and an honest account of its state. If the workflow
-authorizes commits, make a coherent commit; otherwise preserve reviewable files
-or a patch. Budget pressure does not grant publication or other permissions.
-
-Keep the return concise: what landed and where, what was checked, what remains,
-and the last observed reading versus the estimated finish, both in the owner's
-chosen terminology. State uncertainty
-when present. Make the next step a choice the owner can take, with enough
-context to resume without reconstructing your reasoning.
-
-Without a grounded cost estimate, leave the finish unestimated and label the
-planning target provisional. Counted steps alone do not supply a numerical rate.
-
-Return is part of the work you are inside. Bring it within reach while you still
-have the capacity to make it complete.
-
-## Rewrite the installed skill's time lens
-
-Before returning from a governed session, fold its evidence into
-[TIME-LENS.md](TIME-LENS.md). This is a rewrite of the
-installed skill, not a growing diary. Reserve the small cost of this update
-alongside closure; preserve the user's deliverable first if an abrupt stop
-leaves less room than forecast.
-
-Reconcile at a meaningful completed unit or session checkpoint. An intake
-question alone has no work experience to persist.
-
-Learn both **rates and decisions**: which unit sizes fit, where branching
-wasted the window, which checks mattered, how much closure really cost, and
-how this owner signals and corrects course. Compress the lesson into a rule
-that changes the next session. Replace a contradicted rule; merge a repeated
-one. Record scope, evidence count, and confidence. Separate model, effort,
-context regime, and meter where those differences matter.
-
-Rewrite only this owner's local lens. Keep the shared protocol, the user's
-explicit preferences, and unrelated files intact. Store no credentials or
-private task contents. If the installation is read-only, use an available
-owner-local persistent memory location and record its path for future use;
-if none exists, return a short lens patch and say it was not saved. Claim
-adaptation only when the write actually succeeded.
-
-**This window is passing. Choose. Finish. Bring the work back.**
+Rewrite discipline: replace a number with its newer measurement; keep a line that did not change;
+delete a rate you cannot source to a reading, but keep a preference you can source to the owner's
+words; merge a repeated lesson, replace a contradicted one.
+Store no credentials and no private task content. An opening question alone has nothing to persist.
+Over sessions the lens becomes a portrait of its owner's tempo, and this skill becomes theirs. Under
+a named percent you decide faster, cut scope earlier, and take your sharpest steps in the last
+percents; the lens keeps the record of it, and the record is the owner's.

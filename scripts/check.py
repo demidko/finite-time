@@ -11,7 +11,7 @@ from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "finite-time"
-SKIP = {".git", ".venv", "dist", "__pycache__"}
+SKIP = {".git", ".venv", "dist", "__pycache__", "comparison-2026-10-06"}
 
 
 def files():
@@ -29,7 +29,18 @@ def check():
     # This project uses a deliberately small, scalar-only YAML subset. Reject
     # unsupported syntax rather than silently pretending to parse arbitrary YAML.
     metadata = {}
+    in_metadata = False
     for line in parts[1].splitlines():
+        if in_metadata and line.startswith("  "):
+            key, separator, value = line.strip().partition(": ")
+            if not separator or key not in {"author", "version"} or "metadata." + key in metadata:
+                errors.append(f"Unexpected metadata line: {line}")
+                continue
+            metadata["metadata." + key] = json.loads(value) if value.startswith('"') else value
+            continue
+        in_metadata = line == "metadata:"
+        if in_metadata:
+            continue
         key, separator, value = line.partition(": ")
         if not separator or key not in {"name", "description", "license"} or key in metadata:
             errors.append(f"Unexpected frontmatter line: {line}")
@@ -49,8 +60,10 @@ def check():
         errors.append("VERSION must be YYYY-MM-DD, optionally followed by a same-day edition such as .2")
     else:
         date.fromisoformat(version.split(".", 1)[0])
+    if metadata.get("metadata.version") != version:
+        errors.append("SKILL.md metadata.version must equal VERSION")
 
-    expected_files = {"SKILL.md", "TIME-LENS.md", "LICENSE"}
+    expected_files = {"SKILL.md", "TIME-LENS.md", "LICENSE", "usage.py"}
     actual_files = {str(p.relative_to(SKILL)) for p in SKILL.rglob("*") if p.is_file()}
     if actual_files != expected_files:
         errors.append(f"Runtime package must be flat: {sorted(expected_files)}")

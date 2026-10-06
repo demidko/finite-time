@@ -1,63 +1,40 @@
-# Time Lens
+# Time lens
 
-This file carries the rhythm learned in work with your owner. Read it on
-activation and rewrite it from actual sessions. Each real pulse sharpens the
-clock; each completed step teaches the next one how much room it needs.
+The owner's rhythm, learned from work. Read on activation, rewritten in place at every return.
+Under 60 lines. Numbers over prose. Rates need a reading behind them; preferences need the owner's
+words.
 
-## Owner and window
+## Rates (percent of the window per unit)
 
-- Owner: establish from the active conversation.
-- Signal convention: **left** for Codex/ChatGPT and **used** for Claude/Claude
-  Code by default. An explicit owner preference takes priority; otherwise mirror
-  the displayed label. Reason and communicate in that same direction: subtract
-  spending from left or add it to used. Adapt an external transport field once
-  at ingestion if needed; otherwise convert only for a notation change or an
-  explicit translation request.
-- Quota source: in Codex, read the live app-server meter when available. Record
-  the working method and environment here. Use the owner's display as fallback;
-  keep source and observation time with each reading.
-- Reserve: final 10 points of a 0–100 window; an earlier return target takes
-  precedence. The owner can explicitly change or release the reserve.
-- Cadence and preferred return format: follow the owner's signals and condense
-  their established preferences here.
-- Task allowance: invite once when absent, until the owner's rhythm establishes
-  who sizes the work. Choose and announce a bounded slice when delegated or
-  omitted. A usable current time picture carries across task boundaries.
+| Executor (model, effort, harness) | Unit | Rate | Evidence |
+| --- | --- | --- | --- |
+| cheap model in a swarm | call | 0.08 | Claude Code, 5-hour window, 2026-10-05 |
+| expensive model as a subagent (Fable 5.1, max effort, Claude Code) | call | 0.15 to 0.20; about 2 per run of 10 to 15 calls | 11 runs, 2026-10-06 |
+| orchestrator holding full context (100k+ tokens) | turn | 0.5, climbing toward 1 as the context grows | 2026-10-06, between readings |
+| restart | reading | twice the cost of everything read | unchanged |
 
-## Local calibration
+Price agents in calls, not in agents. Prefer xhigh effort for subagents: the quality difference
+from max is small, the speed and price difference is not.
 
-Establish the first local rates from comparable external pulses and counted
-work. Until those readings arrive, keep allocations provisional. Carry each
-observed range forward with its scope and the readings that support it.
+## Drift (forecast against reading, points of the window)
 
-When evidence exists, summarize only useful distinctions:
+| Date | Step | Forecast | Reading | Drift | Correction |
+| --- | --- | --- | --- | --- | --- |
 
-| Meter / window kind | Executor / effort / context | Counted unit | Observed cost range | Evidence / confidence |
-| --- | --- | --- | --- | --- |
+## Owner
 
-Keep single-executor observations separate from mixed intervals. Reset windows
-start new observations; old rates remain provisional priors.
+- Name, harness, model, effort: unknown until the first session.
+- Notation: used (Claude) or left (Codex), as the owner's display shows it.
+- Typical marks, standing marks, whether they leave sizing to you: unknown.
+- How they phrase the mark (quote them): unknown.
+- Where they tend to stop, how often they correct the clock: unknown.
+- What they ask about at the return: unknown.
 
-## Decision rules
+## Decisions
 
-- Unknown cost: begin with the smallest necessary unit that can be completed
-  and checked. Obtain the missing external reading; calibrate through work.
-- Retrieve a pulse when uncertainty can change the next decision. Accounted
-  activity advances the estimate; a new task alone does not require another pulse.
-- The provider's or owner's real reading grounds the estimate. Owner corrections adjust
-  pacing and priorities immediately; reconcile the lesson at the next checkpoint.
-- Keep closure affordable: include integration, checks, preservation, this lens,
-  and the return message before starting another unit.
-- Reuse a successful decision until new evidence warrants changing it.
-
-Rewrite these starting rules as compact, grounded lessons about this owner.
-Capture decision quality and rhythm as well as numerical cost. Give each
-observation its measured scope; let repeated pulses refine its weight. Preserve
-explicit preferences until the owner changes them. Keep task-specific lessons
-scoped to the work that produced them.
-
-## Last reconciliation
-
-At a completed unit or session checkpoint, retain a short dated summary of the
-pulse, forecast error, and resulting change. Let the next reconciliation replace
-it with the current state of the clock.
+- Unknown cost: begin with the smallest atom that can be completed and checked; let the first
+  reading price the rest.
+- Keep closure affordable: checks, commit, this lens, and the return message are priced before the
+  next atom is admitted.
+- A reading is retrieved when it can change the next decision, not on a schedule and never from
+  the human without a signal.
