@@ -11,8 +11,9 @@
 
 Your working window is real, finite, and already passing. Finite Time brings
 that boundary into every choice: what to open, what to finish, and when to
-bring the work back. The owner's visible quota and the agent's accounted steps
-form a shared clock. Each new pulse brings the remaining opportunity into focus.
+bring the work back. The real quota and the agent's accounted steps form a
+shared clock. Codex reads its live provider meter when available; otherwise the
+owner supplies the displayed number. Each pulse brings the remainder into focus.
 
 **Fit the work. Come back.**
 
@@ -65,7 +66,8 @@ time picture part of each task's opening across hosts.
 
 ```text
 Bring each new task under the installed finite-time skill. Recover the current
-time picture and carry it forward while usable. When it is missing, ask for
+time picture and carry it forward while usable. In Codex, read the live quota
+through app-server when available. When that source is unavailable, ask for
 the nearest quota's percentage in the owner's terms: left for Codex/ChatGPT,
 used for Claude by default. Reason and communicate directly in that native
 notation: subtract spending from left or add it to used. Invite a task allowance. Choose
@@ -83,7 +85,12 @@ In Claude Code, use `/finite-time`, for example with `62% used; spend up to
 8 percentage points`. Other hosts can load
 [SKILL.md](skills/finite-time/SKILL.md) directly with `TIME-LENS.md` beside it.
 
-When the agent has no usable picture of the current window, it asks:
+When the agent needs a quota pulse, Codex first reads its authenticated
+app-server meter using `account/rateLimits/read`. This supplies the current
+remaining percentage and reset metadata without a model turn. The skill includes
+the read procedure and learns access availability in its personal lens.
+
+When direct access is unavailable, it asks:
 
 > How much of your nearest quota window is left, and how many percentage points
 > may this task spend? You can give just left; I'll plan the allowance.
@@ -92,8 +99,9 @@ That is the Codex/ChatGPT wording. In Claude, the question uses **used**. The
 agent follows your preference or actual display when it differs from these
 defaults. It calculates and returns a boundary directly in the same terms:
 **29% left, two points for the task → return with at least 27% left.**
-Codex subtracts spending from left; Claude adds it to used. A conversion is
-needed only when you change notation or request one.
+Codex subtracts spending from left; Claude adds it to used. The meter adapter
+translates a differently named transport field once at ingestion. Task reasoning
+stays native; further conversion is needed only for a notation change or request.
 
 A usable picture carries forward across tasks: the last real pulse plus
 accounted work and an honest estimate. The agent asks for a refresh when it
@@ -103,15 +111,16 @@ allowance. As the lens learns your rhythm, that exchange becomes lighter.
 The first real reading establishes the numerical boundary. While it is pending,
 the agent keeps preparation small and complete.
 
-The owner sees the real quota; the agent accounts for the steps between pulses.
-A new reading replaces its extrapolation. Corrections to pace and priority
-change the next action and feed back into the lens. This human feedback closes
-the loop.
+The provider's meter or the owner's display supplies the real quota; the agent
+accounts for the steps between pulses. A new reading replaces its extrapolation.
+The owner continues to set task allowances and correct pace and priority. Both
+the real reading and those corrections shape the next action and the lens.
 
 ## The loop
 
 | You supply | The agent does |
 | --- | --- |
+| Codex task with an available live meter | Reads the actual quota and reset itself, without asking you to copy the number. |
 | Codex: `29% left; spend two points` | Returns with at least 27% left, including closure. |
 | Claude: `62% used; spend eight points` | Returns before 70% used, including closure. |
 | `Return with at least 22% left` | Keeps 22% left as the return floor. |

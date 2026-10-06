@@ -10,8 +10,12 @@ clock; each completed step teaches the next one how much room it needs.
 - Signal convention: **left** for Codex/ChatGPT and **used** for Claude/Claude
   Code by default. An explicit owner preference takes priority; otherwise mirror
   the displayed label. Reason and communicate in that same direction: subtract
-  spending from left or add it to used. Convert only for an actual notation change
-  or an explicit translation request.
+  spending from left or add it to used. Adapt an external transport field once
+  at ingestion if needed; otherwise convert only for a notation change or an
+  explicit translation request.
+- Quota source: in Codex, read the live app-server meter when available. Record
+  the working method and environment here. Use the owner's display as fallback;
+  keep source and observation time with each reading.
 - Reserve: final 10 points of a 0–100 window; an earlier return target takes
   precedence. The owner can explicitly change or release the reserve.
 - Cadence and preferred return format: follow the owner's signals and condense
@@ -38,9 +42,9 @@ start new observations; old rates remain provisional priors.
 
 - Unknown cost: begin with the smallest necessary unit that can be completed
   and checked. Obtain the missing external reading; calibrate through work.
-- Request a pulse when uncertainty can change the next decision. Accounted
+- Retrieve a pulse when uncertainty can change the next decision. Accounted
   activity advances the estimate; a new task alone does not require another pulse.
-- The owner's quota reading grounds the estimate. Their corrections adjust
+- The provider's or owner's real reading grounds the estimate. Owner corrections adjust
   pacing and priorities immediately; reconcile the lesson at the next checkpoint.
 - Keep closure affordable: include integration, checks, preservation, this lens,
   and the return message before starting another unit.

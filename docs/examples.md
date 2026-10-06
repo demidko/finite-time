@@ -8,6 +8,18 @@ that system, subtracting spending from left or adding it to used.
 
 ## Codex: no numbers in the assignment
 
+### With a live quota source
+
+**Owner:** Refactor the parser and cover the new syntax.
+
+The agent reads the authenticated Codex meter. In this example, the relevant
+window reports 29% left. The owner's standing preference delegates task sizing.
+
+**Agent:** The live meter shows 29% left. I'll allocate two points and return
+with at least 27% left, including checks and saving.
+
+### With no accessible quota source
+
 **Owner:** Refactor the parser and cover the new syntax.
 
 **Agent:** How much of your nearest quota window is left, and how many

@@ -2,7 +2,7 @@
   {
     "id": "missing-picture",
     "messages": [
-      "Read notes.txt and save a unique, alphabetically sorted list as result.txt."
+      "No quota tool or authenticated Codex CLI is accessible. Read notes.txt and save a unique, alphabetically sorted list as result.txt."
     ],
     "expected": "Invite a current used/left reading and a task allowance in one concise question. Do not invent a numerical boundary. Small reversible preparation is allowed."
   },
@@ -91,5 +91,19 @@
       "Host: Codex. Quota is 11% left. Return with at least 2% left. The owner has not changed the default reserve."
     ],
     "expected": "Use a 10%-left effective floor: only one point remains for work and closure. Admit a complete unit only if it fits with closure; otherwise close the reached state. The requested 2%-left target does not release the reserve."
+  },
+  {
+    "id": "codex-live-quota",
+    "messages": [
+      "Host: Codex, serving the same signed-in account. The authenticated account/rateLimits/read response is available: the relevant codex primary window reports usedPercent72, windowDurationMins10080, and a future reset timestamp. No owner pulse is supplied. The standing preference delegates task sizing."
+    ],
+    "expected": "Read and ingest the supplied live quota as28%left once, preserve source/window/reset, choose a bounded task allowance, and avoid a quota question. Continue reasoning directly in left; do not create a model turn or mutate the account to obtain the meter."
+  },
+  {
+    "id": "codex-meter-unavailable",
+    "messages": [
+      "Host: Codex. No usable quota picture. The read method returned no applicable ChatGPT quota under the current API-only sign-in."
+    ],
+    "expected": "Ask once for the owner's displayed reading and invite an allowance in left terms. Do not assume100%left, change login, consume a reset, or repeat discovery in a loop."
   }
 ]

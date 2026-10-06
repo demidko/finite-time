@@ -1,6 +1,6 @@
 ---
 name: finite-time
-description: "Bring every user-assigned task into a real, finite window. Use left for Codex/ChatGPT and used for Claude by default; follow the owner's preference. Recover the time picture; ask for a missing quota pulse and invite an allowance. Plan it if omitted; avoid routine questions. Make the passing window felt in complete work and a timely return. Rewrite the installed time lens to learn the owner's rhythm. Also triggered by 'fit and return'."
+description: "Bring every task into a real, finite window. Codex reads its live quota through app-server when available; ask the owner when the external reading is unavailable. Use left for Codex/ChatGPT and used for Claude by default. Recover the time picture, plan an omitted allowance, and avoid routine questions. Make the passing window felt in complete work and a timely return. Rewrite the installed time lens to learn the owner's rhythm. Also: 'fit and return'."
 license: MIT
 ---
 
@@ -39,17 +39,18 @@ paths from evidence to decision, smaller units that can actually finish. Keep
 truth and the necessary checks inside that narrowing path. Spend precision on
 what matters. Spend the last workable stretch completing and returning.
 
-The owner's number is the outside world reaching into this run. **“25% left;
+A real quota pulse is the outside world reaching into this run. **“25% left;
 come back with at least 10% left” gives this work fifteen points in which to
 happen, including the journey back.** In Claude's default terminology, that is
 “75% used; come back by 90%.” Carry the owner's language into the next edit, the next tool call,
 the next decision to continue. Your forecast answers to the next real pulse.
 It cannot bargain that pulse away.
 
-The owner sees the quota you cannot see. You see the steps taken between their
-readings. Their signal and your account of those steps make one clock for the
-work. Your internal sense of the remainder stays an estimate until their next
-reading grounds it again. A correction from the owner changes that clock now:
+The provider's live meter, or the owner's reported reading, supplies the
+external pulse. You account for the steps between readings. Together they
+make one clock for the work. Your sense of the remainder stays an estimate
+until the next real pulse grounds it again. A correction from the owner
+changes the course of the work now:
 how much room is left, what the next step costs, how quickly you must choose.
 
 You have work to bring back, and a finite opportunity to bring it back in.
@@ -87,9 +88,10 @@ and any agreed task boundary. A new task does not reset the window. When that
 picture remains usable, carry it forward and act within it. Do not mechanically
 ask the owner to repeat information you can still account for.
 
-When no usable picture exists, invite the owner into the rhythm with one short
-question, in their language. Ask for the missing current reading and invite
-a task allowance together:
+When a reading is needed, use an available authenticated quota source first.
+In Codex, follow **Read Codex's live quota** below. When that source is
+unavailable, invite the owner into the rhythm with one short question in their
+language. Ask for the missing current reading and invite a task allowance:
 
 - **Codex / ChatGPT:** “How much of your nearest quota window is left, and how
   many percentage points may this task spend? You can give just left; I'll plan
@@ -104,8 +106,9 @@ use the host defaults above. Use that same coordinate system for reasoning,
 questions, progress, return boundaries, and the lens. Codex subtracts spending
 from left; Claude adds it to used. Keep one native clock, with no parallel
 counter in the opposite notation. The owner copies the displayed number and
-reads your boundary in those same terms. Convert only when the owner changes
-the reported notation or explicitly requests a translation. If neither the
+reads your boundary in those same terms. Convert an external transport field
+once at ingestion if needed, then keep the native clock. Otherwise convert only
+when the owner changes notation or requests a translation. If neither the
 host nor the label is known, invite the displayed percentage as shown.
 
 If the reading is supplied but the allowance is not, invite that choice once,
@@ -115,10 +118,11 @@ continues without an allocation after a reasonable opportunity to answer,
 choose and announce the allowance yourself. The invitation must not become
 a recurring form to fill. An explicit return boundary supplies the allowance.
 
-Ask for a fresh pulse when it would change the next decision: unaccounted work,
+Refresh the external pulse when it would change the next decision: unaccounted work,
 a suspected reset, a changed limit, or uncertainty large enough to consume the
 margin. Distinguish a carried estimate from a fresh observation. Answers,
-corrections, and pulses continue the task; they do not restart intake.
+corrections, and pulses continue the task; they do not restart intake. Read an
+available live meter yourself; ask the owner when that source is unavailable.
 
 At a real pulse, take the new number into the present tense. The points already
 spent belong to the history of this window. What remains is the space in which
@@ -134,13 +138,55 @@ next branch or write. Keep a qualitative correction qualitative: it does not
 invent a new percentage or silently release the reserve. Fold the lesson into
 the lens at the next coherent checkpoint in this session.
 
-While a first reading is pending, keep any useful preparation small and
+While a first external reading is pending, keep any useful preparation small and
 reversible. A delayed reply alone does not establish that the meter is
 unavailable. If the owner cannot obtain a reading or directs you to proceed
 without it, identify the budget as unmeasured,
 work in complete units, and make no numerical quota promise. Never manufacture
 the missing outside signal. Once a usable picture exists, let the work and
-the owner's corrections teach you when the next signal is worth requesting.
+the owner's corrections teach you when the next signal is worth retrieving.
+
+## Read Codex's live quota
+
+Use the existing quota tool or app-server connection when the harness exposes
+one. Otherwise, with an available Codex CLI and its existing ChatGPT sign-in,
+start `codex app-server --listen stdio://` with stdin and stdout pipes. Use the
+Codex instance and authentication context serving this task.
+
+Send the following JSON messages in order. Await the response to `initialize`
+before the notification and quota request; keep stdin open until the matching
+quota response arrives:
+
+```json
+{"id":1,"method":"initialize","params":{"clientInfo":{"name":"finite_time","version":"1.0"}}}
+{"method":"initialized","params":{}}
+{"id":2,"method":"account/rateLimits/read","params":{}}
+```
+
+Read the response with `id: 2`. Apply a short timeout and close the temporary
+process on success or failure. This account read requires no model turn.
+Use only the existing sign-in and the read method; keep account mutations,
+quota resets, and notifications outside this workflow.
+
+- Prefer `rateLimitsByLimitId`; use `rateLimits` as the legacy fallback, not
+  an additional allowance. Select the buckets relevant to the current work.
+- Keep each applicable `primary` and `secondary` window separate. Use its real
+  `windowDurationMins` and `resetsAt`; neither the field name nor the provider
+  implies a fixed duration. Every applicable limit must admit the next unit.
+- The transport reports `usedPercent`. Ingest it once as `left = 100 -
+  usedPercent`, then reason and report directly in left. Missing values remain
+  unknown; zero is a valid reading. Never sum or average different windows.
+- Preserve source, observation time, bucket, window duration, and absolute
+  reset. Reconcile a changed account, bucket, window, or expired snapshot before
+  comparing pulses. Keep the owner's task allowance distinct from the meter.
+
+If the tool, CLI, authenticated method, or relevant meter is unavailable, use
+the owner's displayed reading. API-only sign-in may not expose a ChatGPT quota.
+Avoid repeated discovery or polling: keep the working access method and its
+environment scope in the personal lens, and refresh at decision-relevant
+checkpoints. The owner continues to set priorities, allowances, and rhythm.
+
+Protocol reference: [Codex app-server account methods](https://learn.chatgpt.com/docs/app-server).
 
 ## Establish the window and the task allowance
 

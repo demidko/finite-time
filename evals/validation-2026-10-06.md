@@ -114,3 +114,21 @@ Tested skill SHA-256:
 
 The published text also labels the historical used-meter readings explicitly;
 the native calculation and interaction rules above are unchanged.
+
+## Edition 2026-10-06.4: live Codex quota access
+
+The documented account-read sequence was exercised against an authenticated
+Codex app-server. A temporary stdio process received `initialize`, followed by
+`initialized` and `account/rateLimits/read`, and returned a real quota snapshot
+with its percentage, window duration, and absolute reset.
+
+The matching response was ingested into a left-based clock and saved with its
+source and observation time in the owner-local lens. The temporary process was
+closed after the response. The sequence started no model turn and used no
+account mutation or quota-reset method.
+
+A focused protocol review checked account scope, relevant bucket selection,
+separate concurrent windows, absent values, observation identity, bounded
+transport fallback, and the distinction between a meter reading and the
+owner's task allowance. The shared instructions now make direct access the
+first choice for Codex and keep the owner's displayed reading as fallback.

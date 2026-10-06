@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06.4
+
+- Let Codex retrieve its live ChatGPT quota through the authenticated app-server read method.
+- Preserve source, bucket, window, and reset metadata; keep native left reasoning after ingestion.
+- Use the owner's displayed reading when direct access is unavailable and retain human control of task budgets and pacing.
+- Keep the runtime flat with no additional files or dependencies.
+
 ## 2026-10-06.3
 
 - Use left for Codex/ChatGPT and used for Claude by default, with the owner's preference taking priority.

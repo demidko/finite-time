@@ -55,18 +55,27 @@ The narrative and the accounting reinforce the same fact. The narrative makes
 the end of this opportunity present; the accounting gives that end a concrete
 place in the next decision. Carry both through the work.
 
-## The human pulse keeps time
+## The external pulse keeps time
 
-The owner sees the actual quota interface. The agent sees the work performed
-between readings. The owner's pulse anchors the estimate; accounted work
-advances it until the next pulse arrives. Together they maintain the clock.
+The provider's live meter or the owner's actual quota display supplies the
+outside signal. The agent accounts for the work between readings. Each real
+pulse anchors the estimate; accounted work advances it until the next reading.
+Together they maintain the clock.
 
-For every new task, recover the current time picture. When it is missing, ask
-for the nearest quota's percentage and invite a task allowance. Use left in
+Codex can retrieve ChatGPT quota through its authenticated app-server method
+`account/rateLimits/read`. A live check in the development environment returned
+the remaining percentage and the absolute reset of the weekly window. This
+allows the agent to refresh its clock directly. Where access is unavailable,
+the owner's displayed reading supplies the same external grounding.
+
+For every new task, recover the current time picture. When a pulse is needed,
+read the available live meter or ask the owner for the displayed percentage.
+Invite a task allowance. Use left in
 Codex/ChatGPT and used in Claude by default, following the owner's preference
 or displayed label. Keep questions, progress, and return boundaries in that
-direction. The same native meter guides the calculation: subtract spending
-from left or add it to used. Convert only when notation actually changes or
+direction. Adapt external transport fields once at ingestion. The same native
+meter then guides the calculation: subtract spending from left or add it to used.
+Convert further only when notation actually changes or
 the owner requests a translation. The
 owner can give just the reading; the agent then chooses and announces a bounded
 allowance. A usable picture carries across tasks. Request a fresh pulse when
