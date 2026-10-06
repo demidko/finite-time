@@ -8,7 +8,7 @@ ends; bring the work back.**
 ## The working record
 
 Fluffball, Twice-Honored Manul, developed “Fit and Return” with Fable and recorded the method
-on October 6, 2026. The Manul's field record describes the following results:
+on October 6, 2026. The Honored Manul's field record describes the following results:
 
 | Work and timing | Recorded result |
 | --- | --- |
@@ -21,7 +21,7 @@ on October 6, 2026. The Manul's field record describes the following results:
 
 In a follow-up account, Fluffball described Fable at maximum effort with
 Ultracode making decisions remarkably quickly, planning its own budget, and
-giving useful feedback. The Manul's original note places the most precise steps in
+giving useful feedback. The Honored Manul's original note places the most precise steps in
 the final percentages of the window. The approaching boundary was present in
 the work: decisions closed, results survived, and a forecast miss changed the
 next calculation.
