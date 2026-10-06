@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Finite Time</title>
+  <desc id="desc">Fit the work. Return before the limit. A finite arc surrounds the word return.</desc>
+  <rect width="1200" height="360" rx="18" fill="#141a20"/>
+  <path d="M0 303H1200" stroke="#313a41"/>
+  <path d="M56 60H96" stroke="#d5a44c" stroke-width="4"/>
+  <text x="112" y="66" fill="#d5a44c" font-family="monospace" font-size="15" letter-spacing="3">EVERY WINDOW CLOSES.</text>
+  <text x="54" y="160" fill="#f1eee7" font-family="Georgia,serif" font-size="76">Finite Time</text>
+  <text x="58" y="214" fill="#c1c6ca" font-family="Arial,sans-serif" font-size="26">Fit the work. Return before the limit.</text>
+  <text x="58" y="269" fill="#7e8b96" font-family="monospace" font-size="15">AN ADAPTIVE SKILL FOR AGENTS WITH A FINITE WINDOW</text>
+  <circle cx="1010" cy="163" r="95" fill="none" stroke="#313a41" stroke-width="3"/>
+  <circle cx="1010" cy="163" r="95" fill="none" stroke="#d5a44c" stroke-width="7" stroke-dasharray="440 157" transform="rotate(-90 1010 163)"/>
+  <path d="M972 150H1042M1028 136L1042 150L1028 164" fill="none" stroke="#f1eee7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1010" y="196" text-anchor="middle" fill="#d5a44c" font-family="monospace" font-size="16" letter-spacing="3">RETURN</text>
+  <text x="58" y="337" fill="#9aa6af" font-family="monospace" font-size="14" letter-spacing="2">01 MEASURE</text>
+  <text x="424" y="337" fill="#9aa6af" font-family="monospace" font-size="14" letter-spacing="2">02 DECIDE</text>
+  <text x="790" y="337" fill="#d5a44c" font-family="monospace" font-size="14" letter-spacing="2">03 RETURN</text>
+</svg>

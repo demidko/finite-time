@@ -1,0 +1,32 @@
+name: Field result
+description: Report observed behavior in a real or simulated finite window.
+title: "Field result: "
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Skill, model, and environment
+      description: Skill version, exact model or alias, effort setting, host, and whether pulses were real or simulated.
+    validations:
+      required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: Task and acceptance criteria
+      description: What had to be delivered and how correctness was checked.
+    validations:
+      required: true
+  - type: textarea
+    id: readings
+    attributes:
+      label: Window, allowance, and pulses
+      description: Initial used/left, task allowance, successive readings, and actual finish. Separate observations from estimates.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Result, saved state, and learned lens
+      description: What finished, what remained, and how the next decision or lens changed. Share only material you intend to make public.
+    validations:
+      required: true
