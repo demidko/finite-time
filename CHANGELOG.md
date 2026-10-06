@@ -27,6 +27,12 @@ six-perspective Fable review and Astra's behavioral rehearsals.
   ("at N" inherits the established notation; "back with 25 left" beside "back by 25"); the opening
   waits for an answer only at the first meeting with an owner, then states the mark and proceeds,
   inviting correction; a closing pulse is asked of the human only when it changes a decision.
+- Convergence pass (Fable and Codex seats, both verified): the question re-arms for large spends,
+  for owners who ask to be asked or who correct more than they accept; "an owner the lens does not
+  know" has a test; "at N" follows the direction already in play; Codex speaks in the window with
+  the least left among all the reader returns; a sandbox network prompt is the one retry; a meter
+  with no rate prices the first atom alone; a permission prompt is not a refused lens write; the
+  reserve passage speaks both directions.
 
 ## 2026-10-06.4
 

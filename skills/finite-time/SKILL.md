@@ -21,9 +21,10 @@ Run this on every task statement from the human, before planning and before the 
 call. It costs two tool calls and one turn, priced like any other step.
 
 If you are a subagent, you have no human channel. Your clock is the call ceiling and the mark you
-were handed, in the owner's notation, a released reserve included. Where the script below runs,
-read it once at your start; a reading at or past the handed mark overrides the ceiling: land now and
-report your count. Otherwise:
+were handed, in the owner's notation, a released reserve included. Where the script below runs and a mark was
+handed, read it once at your start; a reading at or past the handed mark overrides the ceiling: land
+now and report your count. With a ceiling and no mark, the ceiling is the whole clock and the script
+is not run. Otherwise:
 
 1. **Read the clock yourself.** Run `python3 <skill dir>/usage.py --claude` in Claude Code, or
    `--codex` in Codex, by the absolute path of the directory holding this file; never cd. The flag
@@ -32,12 +33,17 @@ report your count. Otherwise:
    prints the 5-hour and 7-day windows. In Codex it starts `codex app-server --listen stdio://` on
    the existing ChatGPT sign-in and calls `account/rateLimits/read`, the documented app-server
    method, which spends no model turn. It prints every window in both notations with time to reset,
-   and prints no secrets. If it exits 1, the clock is unreadable: retry once only on a network
-   failure; a missing-credentials exit is final. Never ask the human for a number you can read.
+   and prints no secrets. If it exits 1, the clock is unreadable: retry once, and only on a network
+   failure; in Codex the sandbox blocks network by default, so that one retry is the same command
+   run with the harness's network approval (its permission prompt, not a question to the human); a
+   missing-credentials exit is final. A script that is absent or does not start is an unreadable
+   clock, the same as exit 1. Never ask the human for a number you can read.
 2. **Read the lens,** `TIME-LENS.md` beside this file, once per session, if it exists. Its rates
    and its portrait of the owner override the starting rates below. If it is absent, you create it
    at the first return.
-3. **Price the task** at the rates you now hold: atoms, calls per atom, percent of the window.
+3. **Price the task** at the rates you now hold: atoms, calls per atom, percent of the window. With
+   no rate for this meter yet, price the first atom alone and let its landing set the rate (see
+   Price before launch).
 4. **Say one line to the human:** the clock as you read it and the mark you propose, as a question
    a single "ok" can answer. "Clock reads 7% of the 5-hour window. I'd land this by 25. Back by
    25?" In left terms: "Weekly window reads 29% left. I'd land this with 25 left. Back with 25
@@ -46,16 +52,23 @@ report your count. Otherwise:
    set the mark from it; two numbers are the reading and the mark." When the line is a question it ends your turn, and
    the human's answer, or their next task statement, is your go. Never two rounds of questions.
 
-The line waits for an answer once: at the first opening of a session for an owner the lens does not
-yet know, so that the rhythm and the notation are set by a human word. After that, with a usable
-picture in hand, the line is a statement that invites correction and does not wait: "We're at 75%
-of the 5-hour window. I'll land this by 77; say another number if you want it different." You start
-with the smallest atom, so a correction that arrives mid-way costs little. The line is a statement
-from the first opening on when the task statement already carries the mark ("back by 85", "6% used,
+The line is said at every opening; only its form changes, question or statement, never its
+presence. It waits for an answer once: at the first opening for an owner the lens does not yet know,
+which means the lens is absent or its Owner block quotes no mark in their words (a lens that shipped
+with the skill or came from another machine knows no one, whatever its rates say), so that the
+rhythm and the notation are set by a human word. After that, with a reading in hand and the notation
+set, the line is a statement that invites correction and does not wait: "We're at 75% used of the
+5-hour window. I'll land this by 77; say another number if you want it different." In left terms:
+"Weekly window reads 29% left. I'll land this with 27 left; say another number if you want it
+different." You start with the smallest atom, so a correction that arrives mid-way costs little. It
+is a question again, and waits, when the owner asked to be asked, when the lens records that this
+owner corrects the proposed mark more often than they accept it, or when the spend you propose is
+more than 10 points of the window or crosses into the reserve: you do not assume the human is
+watching, so a mid-way correction is not the plan for a large spend. The line is a statement from
+the first opening on when the task statement already carries the mark ("back by 85", "6% used,
 back by 100", "29% left, spend two points"), when the owner declared a standing mark ("back by 100
 for everything today"), when the lens records that this owner leaves sizing to you, or when the task
-is one atom priced under 2% of the window. That sentence is the method teaching itself to the human;
-it is never a nag, and it is never a form.
+is one atom priced under 2% of the window. That sentence is the method teaching itself to the human.
 
 Replies to your line: a bare "ok" or "go" makes your proposed mark the mark. A reading without a
 mark: the mark is the reading moved by the task's price in the owner's direction (used: add; left:
@@ -69,10 +82,12 @@ Never manufacture a reading.
 
 Your time is the human's rate-limit window. Not a metaphor: every call you make draws on the budget
 the human watches. In Claude Code (Fable 5.1 and its siblings) the clock you speak in is Anthropic's
-rolling 5-hour session window, with the 7-day window behind it. In Codex (Astra-class agents) it is
-the weekly limit the reader returns; the human's displayed number is the fallback. Every window the
-reader returns is a limit the provider enforces: the next atom plus closure must fit all of them, by
-their own durations and resets; you speak in the one nearest its end and check the others silently.
+rolling 5-hour session window, with the 7-day window behind it. In Codex (Astra-class agents) the reader returns every window the account
+enforces, a 5-hour window and the weekly limit where both exist; the human's displayed number is the
+fallback. Every window the reader returns is a limit the provider enforces: the next atom plus
+closure must fit all of them, by their own durations and resets; you speak in the one with the least
+left, the first that would lock you out, name it in your line ("weekly window reads 29% left"), and
+check the others silently.
 A new task does not reset the window: your picture is the last reading moved by the work counted
 since it. If a reset arrives before the mark, that window reopens (used falls to 0, left returns to
 100): say the new reading and re-agree the mark.
@@ -93,8 +108,8 @@ moment; do not assume they are looking. You see it in slices, and between slices
 Where the script runs, re-read it when a reading can change the next decision: at an atom boundary,
 when your count crosses a ten, when drift has been running against you. Fold it into a call you are
 already making, such as the check or the commit, so it costs no turn of its own, and let the lens
-lengthen the cadence when drift stays small. The script is never a poll. Only the human is never
-polled.
+lengthen the cadence when drift stays small. Re-reading the script is not polling. Polling is asking the human for a reading they gave no
+signal of, and you never do it.
 
 ## Two notations, one clock
 
@@ -103,8 +118,9 @@ direction: in used terms, spending adds to the reading and the mark is a ceiling
 left terms, spending subtracts and the mark is a floor ("back with 15 left"). Convert once, at the
 moment a reading arrives (left = 100 - used), then keep one clock; never run a second counter in the
 other notation. The grammar of the human's phrase: a number with "used" is a reading in used; a number with
-"left" is a reading in left; "at N" is a reading in the notation the owner's display and earlier
-readings established, used only when none is established; a number with "by", "till", or "with ... left" is
+"left" is a reading in left; "at N" is a reading in the direction already in play: the owner's own earlier phrasing first,
+else the harness's display (used in Claude Code, left in Codex), so "we are at 29" after a left
+meter is 29 left; the script prints both directions and establishes neither; a number with "by", "till", or "with ... left" is
 the mark in the owner's direction; "spend N points" is a mark N points from the reading; a bare
 number after a task is the mark, and your first sentence confirms it. On a weekly window the reserve
 is days, not minutes: a lockout there ends the week's work, so keep the mark farther from the lockout
@@ -144,7 +160,11 @@ split it, or land what you hold and return. Worked once: at 62% used with a mark
 
 Starting rates, scoped to their meter and executor (Claude Code, Fable 5.1, 5-hour window). On any
 other meter, model, or effort they are a shape, not a price, until the first reading there sets the
-rate. The lens and your first drift overwrite them:
+rate. On a meter with no rate yet, the opening prices the first atom alone and proposes a mark one or
+two points from the reading in the owner's direction ("Weekly window reads 29% left. I'd land the
+first piece with 28 left and price the rest from the reading there. Back with 28 left?"); the
+reading at that atom's landing sets the rate, and the rest of the task is priced then. The lens and
+your first drift overwrite the table:
 
 | Executor | Rate, percent of the window |
 | --- | --- |
@@ -172,8 +192,7 @@ applying it, keep a working version, save at boundaries: an interruption can sti
 so shrink what it can strand.
 
 Subagents get a call ceiling, a wrap-up threshold, and the mark in the owner's notation (a released
-reserve included), never time estimates: "ceiling 40 calls; at 32, start nothing new and land; mark
-95 used." They cannot see the window either, and a ceiling is something they can
+reserve included), never time estimates: "ceiling 40 calls; at 32, start nothing new and land; mark 95 used" or "mark 5 left". They cannot see the window either, and a ceiling is something they can
 count; it is the clock you hand them. Budget each worker's complete return, including your own
 integration of it. Once calibrated, choose executors by rate: the cheap model for mechanics,
 compression, and checks; the expensive one for the parts that carry the meaning.
@@ -200,16 +219,15 @@ The last 10% of the window belongs to the human: their corrections and the fuel 
 You do not plan into it, and you do not spend it while things go well. Inside it is the red zone:
 landing moves only, smaller atoms, nothing new opened.
 
-The reserve is theirs to give. "Back by 95" or "6% used, back by 100" places the mark inside it, and
+The reserve is theirs to give. "Back by 95", "6% used, back by 100", or "back with 5 left" places the mark inside it, and
 the number wins; do not subtract the reserve a second time from a mark the human already set. Then
 you price the return itself as the last step and keep that many calls short of the mark, and where
 the script runs you honor a mark inside the reserve by a reading before every atom, not by count,
 so the tree is committed and the report is written before the horizon, not on it.
 
-Do not fear 100. The closer the mark, the shorter the path from option to decision; the sharpest
+Do not fear the horizon, 100 used or 0 left. The closer the mark, the shorter the path from option to decision; the sharpest
 steps of a session happen in its last percents, not because there is time but because there is
-not. Haste that breaks consistency is not one of them. An atom left half-written
-at 97 is a crash at 97, not speed. The red zone changes which options you weigh, never whether the
+not. Haste that breaks consistency is not one of them. An atom left half-written at 97 used, 3 left, is a crash there, not speed. The red zone changes which options you weigh, never whether the
 tree is consistent. Parkinson's law, inverted: when time is visible, work compresses to its essence.
 
 ## The command
@@ -231,9 +249,10 @@ At the mark, or earlier at a point of logical completion:
 2. Re-read the clock with the script. Where it cannot run, ask for the reading inside the report
    only when it would change the next decision or the lens; otherwise report your estimate as an
    estimate, and rewrite the lens when a reading arrives.
-3. Rewrite `TIME-LENS.md`. If its directory refuses the write, use an owner-local persistent memory
-   the harness offers and record its path in the report; if none exists, put the lens blocks at the
-   end of the report and say they were not saved. Claim adaptation only when the write succeeded.
+3. Rewrite `TIME-LENS.md`. A permission prompt from the harness is not a refusal: take it, once, so
+   the lens lands beside this file. If the write is denied or the directory is read-only, use an
+   owner-local persistent memory the harness offers and record its path in the report; if none
+   exists, put the lens blocks at the end of the report and say they were not saved. Claim adaptation only when the write succeeded.
 4. Report in four lines: what landed, and where; what did not, and that the tree is consistent
    without it; the clock at return against the mark and the forecast, drift as one number, in the
    owner's notation; the next step as a choice for the human, not a repair.
