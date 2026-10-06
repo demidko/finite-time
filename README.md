@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/demidko/finite-time/actions/workflows/check.yml"><img src="https://github.com/demidko/finite-time/actions/workflows/check.yml/badge.svg" alt="Package checks"></a>
-  <a href="https://github.com/demidko/finite-time/releases"><img src="https://img.shields.io/github/v/release/demidko/finite-time?color=d5a44c" alt="Release"></a>
+  <a href="https://github.com/demidko/finite-time/releases"><img src="https://img.shields.io/github/v/release/demidko/finite-time?sort=date&amp;color=d5a44c" alt="Release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-d5a44c" alt="MIT license"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/Agent_Skills-compatible-d5a44c" alt="Agent Skills compatible"></a>
 </p>
@@ -121,6 +121,7 @@ duplicate entries. Then add the always-on instruction above.
 These locations follow the official [Codex skill documentation](https://learn.chatgpt.com/docs/build-skills)
 and [Claude Code skill documentation](https://code.claude.com/docs/en/skills).
 An installable ZIP is also attached to each [release](https://github.com/demidko/finite-time/releases).
+Versions use the edition date: `YYYY-MM-DD`.
 
 The installed skill is deliberately flat:
 

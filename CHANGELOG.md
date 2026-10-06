@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — 2026-10-06
+## 2026-10-06
 
 Initial experimental release of Finite Time, derived from Daniil Demidko's
 “Fit and Return” concept and follow-up clarifications.

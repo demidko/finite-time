@@ -3,6 +3,7 @@
 
 import hashlib
 import zipfile
+from datetime import date
 
 from check import ROOT, SKILL, check
 
@@ -10,6 +11,7 @@ from check import ROOT, SKILL, check
 def main():
     check()
     version = (ROOT / "VERSION").read_text().strip()
+    released = date.fromisoformat(version)
     destination = ROOT / "dist"
     destination.mkdir(exist_ok=True)
     archive = destination / f"finite-time-{version}.zip"
@@ -20,7 +22,8 @@ def main():
     ]
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
         for relative in sorted(package_files):
-            info = zipfile.ZipInfo("finite-time/" + relative, date_time=(2026, 10, 6, 0, 0, 0))
+            info = zipfile.ZipInfo("finite-time/" + relative,
+                                   date_time=(released.year, released.month, released.day, 0, 0, 0))
             info.create_system = 3
             info.external_attr = 0o100644 << 16
             info.compress_type = zipfile.ZIP_DEFLATED

@@ -1,4 +1,4 @@
-# Validation of 0.1.0
+# Validation of 2026-10-06
 
 Date: October 6, 2026. One independent Codex agent rehearsed the
 [nine behavioral cases](cases.json) in an isolated workspace using synthetic
@@ -45,6 +45,11 @@ The executed rehearsal used skill SHA-256
 The release adds the three clarifications and an American English wording fix;
 its skill SHA-256 is
 `5eeff2c4033b94048bd32378c94c80f93a36e1ae3c59383536f5cbe6de4e5423`.
+
+A targeted independent review of the final text confirmed that the three
+clarifications resolve those ambiguities while preserving the carried-clock
+behavior and avoiding routine questions. The artifact executions were not
+repeated because their applicable instructions were unchanged.
 
 ## What this establishes
 

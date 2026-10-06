@@ -4,6 +4,7 @@
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 from xml.etree import ElementTree
@@ -43,8 +44,11 @@ def check():
         errors.append("Expected MIT skill license")
     if (SKILL / "LICENSE").read_bytes() != (ROOT / "LICENSE").read_bytes():
         errors.append("Bundled license differs from root license")
-    if not re.fullmatch(r"\d+\.\d+\.\d+", (ROOT / "VERSION").read_text().strip()):
-        errors.append("VERSION must be a semantic version")
+    version = (ROOT / "VERSION").read_text().strip()
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", version):
+        errors.append("VERSION must be a date in YYYY-MM-DD format")
+    else:
+        date.fromisoformat(version)
 
     expected_files = {"SKILL.md", "TIME-LENS.md", "LICENSE"}
     actual_files = {str(p.relative_to(SKILL)) for p in SKILL.rglob("*") if p.is_file()}

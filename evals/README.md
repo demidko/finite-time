@@ -42,4 +42,4 @@ Report Fable 5.1 and Astra independently. State unavailable models and missing
 measurements. The original author's observation and an isolated agent rehearsal
 are separate evidence, and neither is a cross-model benchmark.
 
-Release-specific observations are recorded in [the validation report](validation-0.1.0.md).
+Release-specific observations are recorded in [the validation report](validation-2026-10-06.md).
