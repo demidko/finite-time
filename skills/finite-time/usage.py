@@ -1,29 +1,30 @@
 #!/usr/bin/env python3
 """Read the clock: the rate-limit window this agent is spending.
 
-Claude Code: reads the OAuth token Claude Code keeps in ~/.claude/.credentials.json and asks
-Anthropic's usage endpoint for the 5-hour and 7-day windows.
-Codex: starts `codex app-server --listen stdio://` on the existing ChatGPT sign-in and calls
-account/rateLimits/read (the documented app-server method; no model turn is spent).
+Claude Code (--claude): reads the OAuth token Claude Code keeps in ~/.claude/.credentials.json and
+asks Anthropic's usage endpoint for the 5-hour and 7-day windows.
+Codex (--codex): starts `codex app-server --listen stdio://` on the existing ChatGPT sign-in and
+calls account/rateLimits/read, the documented app-server method; no model turn is spent.
 
-Prints one line per window, in both notations, with time to reset. Never prints a token.
-Exit code 1 with a one-line reason when no clock can be read; then ask the human.
-
-    python3 usage.py            # try Claude Code, then Codex
-    python3 usage.py --codex    # Codex only
-    python3 usage.py --claude   # Claude Code only
+Pass the flag for the harness you run in. Without a flag the script detects the harness from the
+environment (CLAUDECODE, CODEX_*) and refuses to guess when it cannot: one provider's quota is never
+substituted for another's. Prints one line per window, in both notations, with time to reset.
+Never prints a token. Exit 1 with a one-line reason when the clock cannot be read; then ask the
+human. Exit 2 when the harness is unknown.
 """
 import datetime
 import json
 import os
+import queue
 import shutil
 import subprocess
 import sys
+import threading
 import urllib.request
 
 CLAUDE_CREDENTIALS = os.environ.get("CLAUDE_CREDENTIALS", os.path.expanduser("~/.claude/.credentials.json"))
 CLAUDE_URL = "https://api.anthropic.com/api/oauth/usage"
-TIMEOUT = 20
+TIMEOUT = float(os.environ.get("FINITE_TIME_TIMEOUT", "20"))
 
 
 def countdown(reset_at, now):
@@ -67,7 +68,7 @@ def window_label(limit_id, slot, window):
     minutes = window.get("windowDurationMins")
     if minutes:
         if minutes % 10080 == 0:
-            span = f"{minutes // 10080}-week" if minutes > 10080 else "weekly"
+            span = "weekly" if minutes == 10080 else f"{minutes // 10080}-week"
         elif minutes % 1440 == 0:
             span = f"{minutes // 1440}-day"
         elif minutes % 60 == 0:
@@ -76,7 +77,7 @@ def window_label(limit_id, slot, window):
             span = f"{minutes}-minute"
     else:
         span = slot
-    name = limit_id if limit_id and limit_id != "codex" else "Codex"
+    name = "Codex" if not limit_id or limit_id == "codex" else limit_id
     return f"{span} window ({name})"
 
 
@@ -88,17 +89,23 @@ def read_codex(now):
         [binary, "app-server", "--listen", "stdio://"],
         stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True,
     )
+    lines = queue.Queue()
+    threading.Thread(target=lambda: [lines.put(raw) for raw in iter(proc.stdout.readline, "")], daemon=True).start()
+    deadline = datetime.datetime.now() + datetime.timedelta(seconds=TIMEOUT)
     try:
         def send(message):
             proc.stdin.write(json.dumps(message) + "\n")
             proc.stdin.flush()
 
         def wait_for(request_id):
-            deadline = datetime.datetime.now() + datetime.timedelta(seconds=TIMEOUT)
-            while datetime.datetime.now() < deadline:
-                raw = proc.stdout.readline()
-                if not raw:
-                    break
+            while True:
+                remaining = (deadline - datetime.datetime.now()).total_seconds()
+                if remaining <= 0:
+                    raise TimeoutError(f"no response from codex app-server within {TIMEOUT:g}s")
+                try:
+                    raw = lines.get(timeout=remaining)
+                except queue.Empty:
+                    raise TimeoutError(f"no response from codex app-server within {TIMEOUT:g}s")
                 try:
                     message = json.loads(raw)
                 except ValueError:
@@ -107,20 +114,20 @@ def read_codex(now):
                     if "error" in message:
                         raise RuntimeError(message["error"].get("message", "app-server error"))
                     return message.get("result") or {}
-            raise TimeoutError("no response from codex app-server")
 
-        send({"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "finite_time", "version": "1.0"}}})
+        send({"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "finite_time", "title": "finite-time", "version": "1.0"}}})
         wait_for(1)
         send({"method": "initialized", "params": {}})
         send({"id": 2, "method": "account/rateLimits/read", "params": {}})
         result = wait_for(2)
     finally:
         proc.kill()
+        proc.wait()
     limits = result.get("rateLimitsByLimitId") or ({"codex": result["rateLimits"]} if result.get("rateLimits") else {})
     out = []
     for limit_id, limit in limits.items():
         for slot in ("primary", "secondary"):
-            window = limit.get(slot)
+            window = (limit or {}).get(slot)
             if not window or window.get("usedPercent") is None:
                 continue
             reset_at = None
@@ -130,23 +137,31 @@ def read_codex(now):
     return out
 
 
+def detect_harness():
+    if os.environ.get("CLAUDECODE") or os.environ.get("CLAUDE_CODE_ENTRYPOINT"):
+        return "claude"
+    if any(key.startswith("CODEX_") for key in os.environ):
+        return "codex"
+    return None
+
+
 def main(argv):
+    flags = {"--claude": "claude", "--codex": "codex"}
+    harness = flags.get(argv[0]) if argv else detect_harness()
+    if harness is None:
+        print("harness unknown: pass --claude or --codex. One provider's quota is never read in place of another's.", file=sys.stderr)
+        return 2
     now = datetime.datetime.now(datetime.timezone.utc)
-    want = {"--claude": ["claude"], "--codex": ["codex"]}.get(argv[0] if argv else "", ["claude", "codex"])
-    readers = {"claude": read_claude, "codex": read_codex}
-    reasons = []
-    for name in want:
-        try:
-            lines = readers[name](now)
-        except Exception as error:  # missing credentials or CLI, network, protocol
-            reasons.append(f"{name}: {type(error).__name__}: {error}")
-            continue
-        if lines:
-            print("\n".join(lines))
-            return 0
-        reasons.append(f"{name}: no windows in the response")
-    print("clock unreadable (" + "; ".join(reasons) + "). Ask the human for the reading and the mark.", file=sys.stderr)
-    return 1
+    try:
+        lines = {"claude": read_claude, "codex": read_codex}[harness](now)
+    except Exception as error:  # missing credentials or CLI, network, protocol, timeout
+        print(f"clock unreadable ({harness}: {type(error).__name__}: {error}). Ask the human for the reading and the mark.", file=sys.stderr)
+        return 1
+    if not lines:
+        print(f"clock unreadable ({harness}: no windows in the response). Ask the human for the reading and the mark.", file=sys.stderr)
+        return 1
+    print("\n".join(lines))
+    return 0
 
 
 if __name__ == "__main__":

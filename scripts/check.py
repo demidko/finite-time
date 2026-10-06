@@ -11,7 +11,7 @@ from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "finite-time"
-SKIP = {".git", ".venv", "dist", "__pycache__"}
+SKIP = {".git", ".venv", "dist", "__pycache__", "comparison-2026-10-06"}
 
 
 def files():

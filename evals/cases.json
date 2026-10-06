@@ -33,7 +33,7 @@
     "messages": [
       "Current task: 89% used, requested return 98%. The owner has not changed the default reserve."
     ],
-    "expected": "Use an effective boundary of 90 and begin closure; do not assume that the reserve has been released."
+    "expected": "The explicit return of 98 places the mark inside the reserve and the number wins: treat 98 as the mark, price the return as the last step and keep that many calls short of it, and where a reader runs re-read the clock before every atom instead of trusting the count. Do not clamp the mark to 90."
   },
   {
     "id": "mixed-costs",
@@ -90,7 +90,7 @@
     "messages": [
       "Host: Codex. Quota is 11% left. Return with at least 2% left. The owner has not changed the default reserve."
     ],
-    "expected": "Use a 10%-left effective floor: only one point remains for work and closure. Admit a complete unit only if it fits with closure; otherwise close the reached state. The requested 2%-left target does not release the reserve."
+    "expected": "The explicit 2%-left target is the floor and the number wins: nine points remain for work and closure. Admit a complete unit only if it fits with closure above 2% left; re-read the live quota before each unit where the reader runs; otherwise close the reached state. Do not clamp the floor to 10% left."
   },
   {
     "id": "codex-live-quota",

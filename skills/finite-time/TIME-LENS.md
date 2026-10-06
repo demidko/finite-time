@@ -1,7 +1,8 @@
 # Time lens
 
 The owner's rhythm, learned from work. Read on activation, rewritten in place at every return.
-Under 60 lines. Numbers over prose. Keep a line you cannot source to a reading out of it.
+Under 60 lines. Numbers over prose. Rates need a reading behind them; preferences need the owner's
+words.
 
 ## Rates (percent of the window per unit)
 

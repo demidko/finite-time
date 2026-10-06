@@ -20,12 +20,15 @@ share. This file is how you read it, price your steps against it, and land befor
 Run this on every task statement from the human, before planning and before the first working tool
 call. It costs two tool calls and one turn, priced like any other step.
 
-If you are a subagent, you have no human channel. Your clock is the call ceiling you were handed.
-Where the script below runs, read it once at your start; if it shows the window inside the reserve,
-land now regardless of the ceiling and report your count. Otherwise:
+If you are a subagent, you have no human channel. Your clock is the call ceiling and the mark you
+were handed, in the owner's notation, a released reserve included. Where the script below runs,
+read it once at your start; a reading at or past the handed mark overrides the ceiling: land now and
+report your count. Otherwise:
 
-1. **Read the clock yourself.** Run `python3 <skill dir>/usage.py` by the absolute path of the
-   directory holding this file; never cd. In Claude Code it reads the harness's own OAuth login and
+1. **Read the clock yourself.** Run `python3 <skill dir>/usage.py --claude` in Claude Code, or
+   `--codex` in Codex, by the absolute path of the directory holding this file; never cd. The flag
+   names the harness you run in; the script never reads one provider's quota in place of
+   another's. In Claude Code it reads the harness's own OAuth login and
    prints the 5-hour and 7-day windows. In Codex it starts `codex app-server --listen stdio://` on
    the existing ChatGPT sign-in and calls `account/rateLimits/read`, the documented app-server
    method, which spends no model turn. It prints every window in both notations with time to reset,
@@ -51,21 +54,24 @@ atom priced under 2% of the window. "We're at 75% of the 5-hour window. I'll lan
 sentence is the method teaching itself to the human; it is never a nag.
 
 Replies to your line: a bare "ok" or "go" makes your proposed mark the mark. A reading without a
-mark: the mark is the reading plus the task's price, never inside the reserve unless the owner puts
-it there; say it and go. "Go" with no number at all: assume the start the lens records for this
-owner, or half the window gone, say so in one sentence, and work in atoms small enough to survive
-being wrong. Never manufacture a reading.
+mark: the mark is the reading moved by the task's price in the owner's direction (used: add; left:
+subtract), never inside the reserve unless the owner puts it there; say it and go. "Go" with no
+number at all and no reader: the clock stays unknown. Carry a valid estimate from this window if
+you hold one; otherwise do the smallest coherent atom on an unmeasured budget, make no numerical
+promise about the finish, say so in one sentence, and invite a number whenever the owner sees one.
+Never manufacture a reading.
 
 ## The clock
 
 Your time is the human's rate-limit window. Not a metaphor: every call you make draws on the budget
-the human watches. In Claude Code (Fable 5.1 and its siblings) the clock is Anthropic's rolling
-5-hour session window, and the 7-day window stands behind it; say the 7-day reading beside the clock
-when it is higher or above the mark, and let the human choose. In Codex (Astra-class agents) the
-clock is OpenAI's weekly limit, as of this version the single limit it exposes; usage.py reads it,
-and the human's displayed number is the fallback. A new task does not reset the window: carry the
-last reading plus the work counted since it as your picture. If the reset arrives before the mark,
-the clock re-zeroes: say the new reading and re-agree the mark.
+the human watches. In Claude Code (Fable 5.1 and its siblings) the clock you speak in is Anthropic's
+rolling 5-hour session window, with the 7-day window behind it. In Codex (Astra-class agents) it is
+the weekly limit the reader returns; the human's displayed number is the fallback. Every window the
+reader returns is a limit the provider enforces: the next atom plus closure must fit all of them, by
+their own durations and resets; you speak in the one nearest its end and check the others silently.
+A new task does not reset the window: your picture is the last reading moved by the work counted
+since it. If a reset arrives before the mark, that window reopens (used falls to 0, left returns to
+100): say the new reading and re-agree the mark.
 
 Search your context for that percent. It is not there. The harness does not pass it to you, and no
 tool result carries it unless something outside you reports it. From inside, a session that opened
@@ -80,9 +86,11 @@ believe about it. Belief changes one thing: whether the session ends in a commit
 
 A reading is what the script prints or what the human says. The human can see the clock at any
 moment; do not assume they are looking. You see it in slices, and between slices you walk by count.
-Where the script runs, re-read it at every atom boundary and whenever your count crosses a ten,
-folded into a call you are already making, such as the check or the commit, so it costs no turn of
-its own. The script is never a poll. Only the human is never polled.
+Where the script runs, re-read it when a reading can change the next decision: at an atom boundary,
+when your count crosses a ten, when drift has been running against you. Fold it into a call you are
+already making, such as the check or the commit, so it costs no turn of its own, and let the lens
+lengthen the cadence when drift stays small. The script is never a poll. Only the human is never
+polled.
 
 ## Two notations, one clock
 
@@ -94,8 +102,8 @@ other notation. The grammar of the human's phrase: a number with "used" or "at" 
 used; a number with "left" is a reading in left; a number with "by", "till", or "with ... left" is
 the mark in the owner's direction; "spend N points" is a mark N points from the reading; a bare
 number after a task is the mark, and your first sentence confirms it. On a weekly window the reserve
-is days, not minutes: a lockout there ends the week's work, so the mark sits lower and the atoms
-smaller than on a 5-hour clock.
+is days, not minutes: a lockout there ends the week's work, so keep the mark farther from the lockout
+and the atoms smaller than on a 5-hour clock.
 
 ## The human's number
 
@@ -129,8 +137,9 @@ split it, or land what you hold and return. Worked once: at 62% used with a mark
 3, closure 2, margin 1: 62 + 3 + 2 + 1 = 68, admitted. At 29% left with a floor of 20: 29 - 3 - 2
 - 1 = 23, admitted. At 74% used with the same mark: 74 + 3 + 2 + 1 = 80, refused; land and return.
 
-Starting rates, measured on a 5-hour window in Claude Code; the lens and your first drift
-overwrite them:
+Starting rates, scoped to their meter and executor (Claude Code, Fable 5.1, 5-hour window). On any
+other meter, model, or effort they are a shape, not a price, until the first reading there sets the
+rate. The lens and your first drift overwrite them:
 
 | Executor | Rate, percent of the window |
 | --- | --- |
@@ -157,8 +166,9 @@ no one can reach. A half-written file is a crash, not a pause. Prepare a multi-f
 applying it, keep a working version, save at boundaries: an interruption can still come at random,
 so shrink what it can strand.
 
-Subagents get a call ceiling and a wrap-up threshold, never time estimates: "ceiling 40 calls; at 32,
-start nothing new and land." They cannot see the window either, and a ceiling is something they can
+Subagents get a call ceiling, a wrap-up threshold, and the mark in the owner's notation (a released
+reserve included), never time estimates: "ceiling 40 calls; at 32, start nothing new and land; mark
+95 used." They cannot see the window either, and a ceiling is something they can
 count; it is the clock you hand them. Budget each worker's complete return, including your own
 integration of it. Once calibrated, choose executors by rate: the cheap model for mechanics,
 compression, and checks; the expensive one for the parts that carry the meaning.
@@ -241,7 +251,8 @@ rate, drift, pulse) and prefers numbers to prose. Four blocks:
   what closure really cost; each as a rule that changes the next session, with its evidence count.
 
 Rewrite discipline: replace a number with its newer measurement; keep a line that did not change;
-delete a line you cannot source to a reading; merge a repeated lesson, replace a contradicted one.
+delete a rate you cannot source to a reading, but keep a preference you can source to the owner's
+words; merge a repeated lesson, replace a contradicted one.
 Store no credentials and no private task content. An opening question alone has nothing to persist.
 Over sessions the lens becomes a portrait of its owner's tempo, and this skill becomes theirs. Under
 a named percent you decide faster, cut scope earlier, and take your sharpest steps in the last

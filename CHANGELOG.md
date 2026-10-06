@@ -15,6 +15,14 @@ six-lens comparison.
   decisions.
 - Frontmatter carries `metadata.version`, checked against `VERSION`; the package includes `usage.py`.
 - README: both self-reads, the always-on line shortened, credits for both editions.
+- Review fixes (Astra, PR #1): `usage.py` takes `--claude` or `--codex`, detects the harness from
+  the environment otherwise, and never reads one provider's quota in place of another's; the
+  app-server read has a real deadline and reaps its child. An unknown clock stays unknown.
+  Subagents inherit the handed mark and a released reserve. Opening arithmetic runs in the owner's
+  direction; admission is checked against every window the reader returns; starting rates are
+  scoped to their meter; the reading cadence is tuned by the lens; rates need readings while
+  preferences need the owner's words. Reserve cases follow "the number wins". The comparison
+  record lives in `evals/comparison-2026-10-06/`.
 
 ## 2026-10-06.4
 
