@@ -36,9 +36,9 @@ of the window. The approaching end became useful pressure on the next choice.
 
 Independent Codex executions exercised the protocol across **nine scripted
 quota scenarios**. Three executions produced and verified their requested
-files. A subsequent task carried **62 observed + 3 estimated = 65%** forward
-without another intake question. When a new **74%** pulse replaced a **68%**
-estimate, the agent rejected work that would exceed the **78%** boundary,
+files. A subsequent task carried **62% used + 3 estimated points = 65% used**
+forward without another intake question. When a new **74% used** pulse replaced
+a **68% used** estimate, the agent rejected work that would exceed **78% used**,
 saved the reached checkpoint, and wrote the pacing correction into its lens.
 
 A follow-up pass began with the installation text and reproduced the carried

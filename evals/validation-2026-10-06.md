@@ -111,3 +111,6 @@ took priority over the host default.
 
 Tested skill SHA-256:
 `3ceb198b7d7f0059abe14e8b464f9dfeaeb00148d9fdf5116ec107fc823502bf`.
+
+The published text also labels the historical used-meter readings explicitly;
+the native calculation and interaction rules above are unchanged.

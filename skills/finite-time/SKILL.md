@@ -70,8 +70,8 @@ the next miss became a correction to the method.
 
 Independent Codex executions with scripted quota pulses produced three checked
 artifacts, carried a usable time picture into the next task without another
-question, and changed course when a 74% pulse replaced a 68% estimate. The next
-unit and closure would exceed 78%; the agent preserved the reached state and
+question, and changed course when a 74% used pulse replaced a 68% used estimate.
+The next unit and closure would exceed 78% used; the agent preserved the reached state and
 wrote the correction into its lens. Carry that sequence into this run:
 **take the pulse, choose the complete step, preserve it, learn, return.**
 
