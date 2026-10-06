@@ -36,6 +36,9 @@ six-perspective Fable review and Astra's behavioral rehearsals.
 - Closing pass (Astra's final rehearsal): the clock passage stands on the last outside reading
   instead of denying its presence; readings are taken in the owner's notation and converted only
   when the source speaks the other one.
+- README: a Research background section maps each element of the method to the published
+  evidence (urgency and accuracy, external time feedback, agent budget-awareness, anytime
+  reasoning, budget boundaries), with a reference list.
 
 ## 2026-10-06.4
 

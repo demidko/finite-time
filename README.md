@@ -200,6 +200,70 @@ finite-time/
 The only runtime script is `usage.py`, standard library only. Human documentation,
 evaluation cases, and release tooling stay in this repository.
 
+## Research background
+
+finite-time is an engineering implementation of effects that research on bounded computation and
+on language models under time and token constraints has measured independently. Each element of
+the method stands on a documented result.
+
+- **Felt urgency sharpens the work.** Wang et al. (2025) show that when a prompt carries urgency,
+  language models shorten their reasoning while holding accuracy, and on the harder GPQA set five
+  of the six tested models became more accurate; the authors attribute the gain to urgency pruning
+  unnecessary exploration. Li et al. (2023) found earlier that stakes expressed in a prompt change
+  output quality. finite-time supplies real stakes: the owner's actual rate-limit window, read from
+  the harness, not a fictional deadline.
+- **Time has to be fed from outside.** Sehgal, Guntuku, and Ungar (EMNLP 2026) find that models
+  adapt to real deadlines only fragilely and that the presentation of the constraint decides the
+  outcome: explicit remaining-time feedback raised deal closure from 4% to 32% for one frontier
+  model, while repeated reminders did not reproduce the benefit. finite-time therefore gives the
+  agent an instrument, `usage.py` and the owner's pulse, instead of asking it to sense time, and
+  keeps the signal proportional: silence when there is no trend.
+- **Agents misjudge their own budgets.** BAGEN (Lin et al., 2026) measures budget-awareness
+  directly: capability and budget-awareness correlate only weakly (r = 0.35), top models stay
+  over-optimistic on failing paths, and acting on budget signals saved 28 to 64 percent of the
+  tokens spent on those paths. This is why the owner's number overrides the agent's count, why the
+  rate is calibrated from readings rather than from the model's self-estimate, and why the next
+  atom must pass an admission test before it starts.
+- **Return something usable at any stop.** Zhang et al. (ACL 2026 Findings) formalize anytime
+  reasoning under token budgets with the Anytime Index, the rate at which solution quality grows
+  with spent tokens. Zilberstein (1996) and Russell and Subramanian (1995) laid the classical
+  ground: interruptible computation whose state is coherent at every stop, and agents rational
+  under bounded resources. Atoms, landing, and the priced return are that discipline applied to a
+  coding session.
+- **A boundary changes the shape of thinking.** Budget forcing in s1 (Muennighoff et al., 2025)
+  and token-budget prompting in TALE (Han et al., 2025) show that an explicit budget boundary
+  changes reasoning efficiency without a matching loss of quality. Parkinson (1955) named the human
+  half: work expands to fill the time available for its completion. finite-time inverts it by
+  making the time visible.
+
+## References
+
+1. Wang, M., Bai, Y., Vu, T.-T., Shareghi, E., & Haffari, G. (2025). *Discrete Minds in a
+   Continuous World: Do Language Models Know Time Passes?* arXiv:2506.05790.
+   https://arxiv.org/abs/2506.05790
+2. Sehgal, N. K. R., Guntuku, S. C., & Ungar, L. (2026). *Real-Time Deadlines Reveal Fragile
+   Temporal Adaptation in LLM Strategic Dialogues.* Proceedings of EMNLP 2026. arXiv:2601.13206.
+   https://arxiv.org/abs/2601.13206
+3. Lin, Y., Wang, Z., Liu, M., Shan, Y., Bai, L., Zhang, J., Jin, X., Chen, B., Su, J., Wang, X.,
+   Pei, J., & Li, M. (2026). *BAGEN: Are LLM Agents Budget-Aware?* arXiv:2606.00198.
+   https://arxiv.org/abs/2606.00198
+4. Zhang, X., Ashrafi, S., Mirsaidova, A., Rezaeian, A. H., Ballesteros, M., Chilton, L. B.,
+   Yu, Z., & Roth, D. (2026). *Budget-Aware Anytime Reasoning with LLM-Synthesized Preference
+   Data.* Findings of ACL 2026. arXiv:2601.11038. https://arxiv.org/abs/2601.11038
+5. Muennighoff, N., Yang, Z., Shi, W., Li, X. L., Fei-Fei, L., Hajishirzi, H., Zettlemoyer, L.,
+   Liang, P., Candès, E., & Hashimoto, T. (2025). *s1: Simple test-time scaling.*
+   arXiv:2501.19393. https://arxiv.org/abs/2501.19393
+6. Han, T., Wang, Z., Fang, C., Zhao, S., Ma, S., & Chen, Z. (2025). *Token-Budget-Aware LLM
+   Reasoning.* Findings of ACL 2025. arXiv:2412.18547. https://arxiv.org/abs/2412.18547
+7. Li, C., Wang, J., Zhang, Y., Zhu, K., Hou, W., Lian, J., Luo, F., Yang, Q., & Xie, X. (2023).
+   *Large Language Models Understand and Can Be Enhanced by Emotional Stimuli.*
+   arXiv:2307.11760. https://arxiv.org/abs/2307.11760
+8. Zilberstein, S. (1996). Using Anytime Algorithms in Intelligent Systems. *AI Magazine*,
+   17(3), 73-83. https://doi.org/10.1609/aimag.v17i3.1232
+9. Russell, S. J., & Subramanian, D. (1995). Provably Bounded-Optimal Agents. *Journal of
+   Artificial Intelligence Research*, 2, 575-609. https://doi.org/10.1613/jair.133
+10. Parkinson, C. N. (1955, November 19). Parkinson's Law. *The Economist.*
+
 ## Work inside the window
 
 Keep the closing boundary present while the work is still taking shape. Bring
