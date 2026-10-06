@@ -23,8 +23,22 @@ with Fable. For **Fable 5.1, Astra, and other agents
 that follow the Agent Skills format**. It ships one standard-library reader script and
 needs no background service.
 
-## The working record
+**At a glance**
 
+- **The clock.** Your rate-limit window, read by the agent itself: Anthropic's usage endpoint in
+  Claude Code, `account/rateLimits/read` in Codex. The same number you see on your screen.
+- **The command.** One phrase: `back by 85`. The agent lands committed work and returns before the
+  mark. Your number always wins over its count.
+- **The lens.** The installed skill rewrites `TIME-LENS.md` to your rhythm after every return.
+
+Jump to: [Why it works](#why-it-works) · [Start in one minute](#start-in-one-minute) ·
+[Reading the clock](#reading-the-clock) · [The loop](#the-loop) ·
+[A skill that learns your pace](#a-skill-that-learns-your-pace) ·
+[Manual installation](#manual-installation) · [References](#references)
+
+## Why it works
+
+### The working record
 In Daniil's documented work with Fable, **100 documentation files became 40**,
 an architecture map gained diagrams, and the result was preserved in **five
 commits**. **Three stops on budget pulses each left a coherent state.** The
@@ -51,6 +65,57 @@ These records show the method in action: a pulse changes a decision, a complete
 result survives the stop, and the lesson changes the next run. Read the
 [field account and mechanism](docs/method.md) and the
 [execution record](evals/validation-2026-10-06.md).
+
+### Research background
+finite-time brings research on bounded computation and language models under time and token
+constraints into an executable working discipline. The findings below inform its design: make the
+boundary present, ground the clock in real readings, price the next step, and return usable work.
+
+The window is not a metric chosen for convenience, and the method is not a timebox imposed by policy.
+The rate-limit window is the real boundary of the decision window the human and the agent share.
+When it closes, the human's next request is refused as surely as the agent's next call: one event
+ends the work for both. The human meets that boundary the way people meet time, in sensation: the
+limit arrives, the session is over, the rest of the day goes on without the agent. The agent meets
+it as a number read from the provider's meter. Both are perceptions of one objective fact, outside
+either of them and indifferent to belief. Nothing in finite-time is added to the session that was
+not already governing it; the method makes the true constraint visible to the one participant who
+could not see it and binds the agent's decisions to the same reality the human already lives in.
+The urgency it produces is grounded in a consequence that will actually occur.
+
+- **Felt urgency sharpens the work.** Wang et al. (2025) show that when a prompt carries urgency,
+  language models shorten their reasoning while holding accuracy, and on the harder GPQA set five
+  of the six tested models became more accurate; the authors propose that urgency prunes unnecessary
+  exploration. Li et al. (2023) found earlier that stakes expressed in a prompt change
+  output quality. finite-time supplies real stakes: the owner's actual rate-limit window, read from
+  the harness, not a fictional deadline.
+- **A visible remainder and felt urgency change decisions.** Sehgal, Guntuku, and Ungar
+  (EMNLP 2026) show that explicit remaining-time feedback raised deal closure from 4% to 32% for
+  GPT-5.1-chat-latest. Qualitative urgency cues performed even better than numeric countdowns in
+  their urgency comparison. Follow-up comparisons distinguish repeated reminders of the original
+  total budget, which fell below remaining-time feedback, from directed internal time tracking,
+  which helped or hurt depending on the model. finite-time combines the two design levers: the
+  clock is grounded in objective time from outside the model, the provider's own meter (Anthropic's
+  usage endpoint in Claude Code, `account/rateLimits/read` in Codex) read by `usage.py`, or the
+  owner's pulse from that same meter; its immersive language carries the boundary into the next
+  decision.
+- **Agents misjudge their own budgets.** BAGEN (Lin et al., 2026) measures budget-awareness
+  directly: capability and budget-awareness correlate only weakly (r = 0.35), top models stay
+  over-optimistic on failing paths, and acting on budget signals saved 28 to 64 percent of the
+  tokens spent on those paths. This is why the owner's number overrides the agent's count, why the
+  rate is calibrated from readings rather than from the model's self-estimate, and why the next
+  atom must pass an admission test before it starts.
+- **Return something usable at any stop.** Zhang et al. (ACL 2026 Findings) formalize anytime
+  reasoning under token budgets with the Anytime Index, the rate at which solution quality grows
+  with spent tokens. Zilberstein (1996) and Russell and Subramanian (1995) laid the classical
+  ground: interruptible computation whose state is coherent at every stop, and agents rational
+  under bounded resources. Atoms, landing, and the priced return are that discipline applied to a
+  coding session.
+- **A boundary changes the shape of thinking.** Budget forcing in s1 (Muennighoff et al., 2025)
+  controls test-time compute by shortening or extending reasoning; extending it improved math
+  accuracy in their experiments. Token-budget prompting in TALE (Han et al., 2025) reduced token
+  costs with a slight performance reduction. Together they show that the reasoning budget is an
+  actionable control. Parkinson (1955) named the human half: work expands to fill the time available
+  for its completion. finite-time inverts it by making the time visible.
 
 ## Start in one minute
 
@@ -101,26 +166,12 @@ When no reader works, it asks once, in one line:
 > I can't read the weekly window from here. What percent are we at, and back by what?
 > One number is the reading and I'll set the mark from it; two numbers are the reading and the mark.
 
-That is the Codex/ChatGPT wording. In Claude, the question uses **used**. The
-agent follows your preference or actual display when it differs from these
-defaults. It calculates and returns a boundary directly in the same terms:
-**29% left, two points for the task → return with at least 27% left.**
-Codex subtracts spending from left; Claude adds it to used. The meter adapter
-translates a differently named transport field once at ingestion. Task reasoning
-stays native; further conversion is needed only for a notation change or request.
-
-A usable picture carries forward across tasks: the last real pulse plus
-accounted work and an honest estimate. The agent asks for a refresh when it
-matters, rather than making every task an intake form. The task allowance is
-optional: give only used/left and the agent chooses and announces a bounded
-allowance. As the lens learns your rhythm, that exchange becomes lighter.
-The first real reading establishes the numerical boundary. While it is pending,
-the agent keeps preparation small and complete.
-
-The provider's meter or the owner's display supplies the real quota; the agent
-accounts for the steps between pulses. A new reading replaces its extrapolation.
-The owner continues to set task allowances and correct pace and priority. Both
-the real reading and those corrections shape the next action and the lens.
+The agent speaks your meter's language, used in Claude, left in Codex, or whatever your display
+shows, and never runs two counters: 29% left and two points for the task returns with at least 27%
+left; 62% used and eight points returns before 70% used. A usable picture carries across tasks, the
+last real reading plus the work counted since it, refreshed when a reading can change a decision
+rather than at every task. Your corrections to the mark, the pace, or the order apply before the
+next write, and the lens remembers them.
 
 ## Reading the clock
 
@@ -187,7 +238,7 @@ duplicate entries. Then add the always-on instruction above.
 
 These locations follow the official [Codex skill documentation](https://learn.chatgpt.com/docs/build-skills)
 and [Claude Code skill documentation](https://code.claude.com/docs/en/skills).
-An installable ZIP is also attached to each [release](https://github.com/demidko/finite-time/releases).
+Each edition is tagged; `python3 scripts/package.py` builds the installable ZIP.
 Versions use the edition date: `YYYY-MM-DD`; another edition that day adds `.2`, `.3`, and so on.
 
 The installed skill is deliberately flat:
@@ -202,58 +253,6 @@ finite-time/
 
 The only runtime script is `usage.py`, standard library only. Human documentation,
 evaluation cases, and release tooling stay in this repository.
-
-## Research background
-
-finite-time brings research on bounded computation and language models under time and token
-constraints into an executable working discipline. The findings below inform its design: make the
-boundary present, ground the clock in real readings, price the next step, and return usable work.
-
-The window is not a metric chosen for convenience, and the method is not a timebox imposed by policy.
-The rate-limit window is the real boundary of the decision window the human and the agent share.
-When it closes, the human's next request is refused as surely as the agent's next call: one event
-ends the work for both. The human meets that boundary the way people meet time, in sensation: the
-limit arrives, the session is over, the rest of the day goes on without the agent. The agent meets
-it as a number read from the provider's meter. Both are perceptions of one objective fact, outside
-either of them and indifferent to belief. Nothing in finite-time is added to the session that was
-not already governing it; the method makes the true constraint visible to the one participant who
-could not see it and binds the agent's decisions to the same reality the human already lives in.
-The urgency it produces is grounded in a consequence that will actually occur.
-
-- **Felt urgency sharpens the work.** Wang et al. (2025) show that when a prompt carries urgency,
-  language models shorten their reasoning while holding accuracy, and on the harder GPQA set five
-  of the six tested models became more accurate; the authors propose that urgency prunes unnecessary
-  exploration. Li et al. (2023) found earlier that stakes expressed in a prompt change
-  output quality. finite-time supplies real stakes: the owner's actual rate-limit window, read from
-  the harness, not a fictional deadline.
-- **A visible remainder and felt urgency change decisions.** Sehgal, Guntuku, and Ungar
-  (EMNLP 2026) show that explicit remaining-time feedback raised deal closure from 4% to 32% for
-  GPT-5.1-chat-latest. Qualitative urgency cues performed even better than numeric countdowns in
-  their urgency comparison. Follow-up comparisons distinguish repeated reminders of the original
-  total budget, which fell below remaining-time feedback, from directed internal time tracking,
-  which helped or hurt depending on the model. finite-time combines the two design levers: the
-  clock is grounded in objective time from outside the model, the provider's own meter (Anthropic's
-  usage endpoint in Claude Code, `account/rateLimits/read` in Codex) read by `usage.py`, or the
-  owner's pulse from that same meter; its immersive language carries the boundary into the next
-  decision.
-- **Agents misjudge their own budgets.** BAGEN (Lin et al., 2026) measures budget-awareness
-  directly: capability and budget-awareness correlate only weakly (r = 0.35), top models stay
-  over-optimistic on failing paths, and acting on budget signals saved 28 to 64 percent of the
-  tokens spent on those paths. This is why the owner's number overrides the agent's count, why the
-  rate is calibrated from readings rather than from the model's self-estimate, and why the next
-  atom must pass an admission test before it starts.
-- **Return something usable at any stop.** Zhang et al. (ACL 2026 Findings) formalize anytime
-  reasoning under token budgets with the Anytime Index, the rate at which solution quality grows
-  with spent tokens. Zilberstein (1996) and Russell and Subramanian (1995) laid the classical
-  ground: interruptible computation whose state is coherent at every stop, and agents rational
-  under bounded resources. Atoms, landing, and the priced return are that discipline applied to a
-  coding session.
-- **A boundary changes the shape of thinking.** Budget forcing in s1 (Muennighoff et al., 2025)
-  controls test-time compute by shortening or extending reasoning; extending it improved math
-  accuracy in their experiments. Token-budget prompting in TALE (Han et al., 2025) reduced token
-  costs with a slight performance reduction. Together they show that the reasoning budget is an
-  actionable control. Parkinson (1955) named the human half: work expands to fill the time available
-  for its completion. finite-time inverts it by making the time visible.
 
 ## References
 
