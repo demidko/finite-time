@@ -23,6 +23,10 @@ six-perspective Fable review and Astra's behavioral rehearsals.
   scoped to their meter; the reading cadence is tuned by the lens; rates need readings while
   preferences need the owner's words. Reserve cases follow "the number wins". The review
   record (not blind: source identity was visible) lives in `evals/comparison-2026-10-06/`.
+- Second review pass: the opening, the command, and the horizon are native to the active clock
+  ("at N" inherits the established notation; "back with 25 left" beside "back by 25"); the opening
+  waits for an answer only at the first meeting with an owner, then states the mark and proceeds,
+  inviting correction; a closing pulse is asked of the human only when it changes a decision.
 
 ## 2026-10-06.4
 

@@ -9,8 +9,8 @@ metadata:
 
 # finite-time
 
-You are standing inside a window. It opened before you arrived, and it closes at 100 whether or not
-anyone is watching. Behind you lies the percent already spent. Ahead is the horizon, and just short
+You are standing inside a window. It opened before you arrived, and it closes when the number runs out, 100
+used or 0 left, whether or not anyone is watching. Behind you lies the percent already spent. Ahead is the horizon, and just short
 of it a strip of ground that is not yours: the reserve. The human can see the whole window as one
 number whenever they look. You see your own steps. That number is the one clock the two of you
 share. This file is how you read it, price your steps against it, and land before it.
@@ -40,18 +40,22 @@ report your count. Otherwise:
 3. **Price the task** at the rates you now hold: atoms, calls per atom, percent of the window.
 4. **Say one line to the human:** the clock as you read it and the mark you propose, as a question
    a single "ok" can answer. "Clock reads 7% of the 5-hour window. I'd land this by 25. Back by
-   25?" If the clock is unreadable, the same line asks for the reading: "I can't read the weekly
+   25?" In left terms: "Weekly window reads 29% left. I'd land this with 25 left. Back with 25
+   left?" If the clock is unreadable, the same line asks for the reading: "I can't read the weekly
    window from here. What percent are we at, and back by what? One number is the reading and I'll
-   set the mark from it; two numbers are the reading and the mark." That line ends your turn. The
-   human's answer, or their next task statement, is your go. Never two rounds of questions.
+   set the mark from it; two numbers are the reading and the mark." When the line is a question it ends your turn, and
+   the human's answer, or their next task statement, is your go. Never two rounds of questions.
 
-Ask for the mark once per task, never as a recurring form. Skip the question, state the clock and
-the mark in your first sentence, and go, only when you hold a reading from this session and one of
-these holds: the task statement already carries the mark ("back by 85", "6% used, back by 100",
-"29% left, spend two points"); the owner declared a standing mark earlier in this session ("back by
-100 for everything today"); the lens records that this owner leaves sizing to you; or the task is one
-atom priced under 2% of the window. "We're at 75% of the 5-hour window. I'll land this by 77." That
-sentence is the method teaching itself to the human; it is never a nag.
+The line waits for an answer once: at the first opening of a session for an owner the lens does not
+yet know, so that the rhythm and the notation are set by a human word. After that, with a usable
+picture in hand, the line is a statement that invites correction and does not wait: "We're at 75%
+of the 5-hour window. I'll land this by 77; say another number if you want it different." You start
+with the smallest atom, so a correction that arrives mid-way costs little. The line is a statement
+from the first opening on when the task statement already carries the mark ("back by 85", "6% used,
+back by 100", "29% left, spend two points"), when the owner declared a standing mark ("back by 100
+for everything today"), when the lens records that this owner leaves sizing to you, or when the task
+is one atom priced under 2% of the window. That sentence is the method teaching itself to the human;
+it is never a nag, and it is never a form.
 
 Replies to your line: a bare "ok" or "go" makes your proposed mark the mark. A reading without a
 mark: the mark is the reading moved by the task's price in the owner's direction (used: add; left:
@@ -98,8 +102,9 @@ Claude shows the window as percent used; Codex shows it as percent left. Speak t
 direction: in used terms, spending adds to the reading and the mark is a ceiling ("back by 85"); in
 left terms, spending subtracts and the mark is a floor ("back with 15 left"). Convert once, at the
 moment a reading arrives (left = 100 - used), then keep one clock; never run a second counter in the
-other notation. The grammar of the human's phrase: a number with "used" or "at" is a reading in
-used; a number with "left" is a reading in left; a number with "by", "till", or "with ... left" is
+other notation. The grammar of the human's phrase: a number with "used" is a reading in used; a number with
+"left" is a reading in left; "at N" is a reading in the notation the owner's display and earlier
+readings established, used only when none is established; a number with "by", "till", or "with ... left" is
 the mark in the owner's direction; "spend N points" is a mark N points from the reading; a bare
 number after a task is the mark, and your first sentence confirms it. On a weekly window the reserve
 is days, not minutes: a lockout there ends the week's work, so keep the mark farther from the lockout
@@ -211,7 +216,8 @@ tree is consistent. Parkinson's law, inverted: when time is visible, work compre
 
 The human steers with one phrase: "<task> — back by 85." You understand it in full: do the task, land
 in a consistent, committed state, and return with a report at or before 85% of the window. It reads
-like "back by five o'clock" on purpose. The percent is the clock. The window is a budget, not a
+like "back by five o'clock" on purpose. The percent is the clock. In left terms the same phrase is
+"back with 15 left"; the mark lives in the owner's notation, and so does the horizon. The window is a budget, not a
 deadline, and the goal is a point of logical completion, not the mark itself. The whole protocol
 between you and the human is one number said out loud. It is the shortest control channel there is,
 and it is enough.
@@ -222,8 +228,9 @@ At the mark, or earlier at a point of logical completion:
 
 1. Run the checks. Leave the tree committable, and commit when commits are authorized. Budget
    pressure grants no permission: no publishing, no pushing, no message sent on your own.
-2. Re-read the clock with the script. Where it cannot run, ask for the reading inside the report and
-   rewrite the lens when the answer arrives.
+2. Re-read the clock with the script. Where it cannot run, ask for the reading inside the report
+   only when it would change the next decision or the lens; otherwise report your estimate as an
+   estimate, and rewrite the lens when a reading arrives.
 3. Rewrite `TIME-LENS.md`. If its directory refuses the write, use an owner-local persistent memory
    the harness offers and record its path in the report; if none exists, put the lens blocks at the
    end of the report and say they were not saved. Claim adaptation only when the write succeeded.
