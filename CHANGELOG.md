@@ -2,8 +2,8 @@
 
 ## 2026-10-06.5
 
-Merge of two independent editions, the Fable core and the Astra harness work, after a blind
-six-lens comparison.
+Merge of two independent editions, the Fable core and the Astra harness work, after a
+six-perspective Fable review and Astra's behavioral rehearsals.
 
 - `SKILL.md`: the protocol-first core from the Fable edition (numbered opening protocol, "back by
   N", starting rates, drift, signal rules, the return, bookends) with the Astra edition's live Codex
