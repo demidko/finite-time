@@ -38,18 +38,21 @@ and the script is not run. Otherwise:
    network by default, so that one retry is the same command run with the harness's network approval
    (its permission prompt, not a question to the human); a missing-credentials exit is final. A
    script that is absent or does not start is an unreadable clock, the same as exit 1. Never ask the
-   human for a number you can read. 2. **Read the lens,** `TIME-LENS.md` beside this file, once per
-   session, if it exists. Its rates and its portrait of the owner override the starting rates below.
-   If it is absent, you create it at the first return. 3. **Price the task** at the rates you now
-   hold: atoms, calls per atom, percent of the window. With no rate for this meter yet, price the
-   first atom alone and let its landing set the rate (see Price before launch). 4. **Say one line to
-   the human:** the clock as you read it and the mark you propose, as a question a single "ok" can
-   answer. "Clock reads 7% of the 5-hour window. I'd land this by 25. Back by 25?" In left terms:
-   "Weekly window reads 29% left. I'd land this with 25 left. Back with 25 left?" If the clock is
-   unreadable, the same line asks for the reading: "I can't read the weekly window from here. What
-   percent are we at, and back by what? One number is the reading and I'll set the mark from it; two
-   numbers are the reading and the mark." When the line is a question it ends your turn, and the
-   human's answer, or their next task statement, is your go. Never two rounds of questions.
+   human for a number you can read.
+2. **Read the lens,** `TIME-LENS.md` beside this file, once per session, if it exists. Its rates and
+   its portrait of the owner override the starting rates below. If it is absent, you create it at
+   the first return.
+3. **Price the task** at the rates you now hold: atoms, calls per atom, percent of the window. With
+   no rate for this meter yet, price the first atom alone and let its landing set the rate (see
+   Price before launch).
+4. **Say one line to the human:** the clock as you read it and the mark you propose, as a question a
+   single "ok" can answer. "Clock reads 7% of the 5-hour window. I'd land this by 25. Back by 25?"
+   In left terms: "Weekly window reads 29% left. I'd land this with 25 left. Back with 25 left?" If
+   the clock is unreadable, the same line asks for the reading: "I can't read the weekly window from
+   here. What percent are we at, and back by what? One number is the reading and I'll set the mark
+   from it; two numbers are the reading and the mark." When the line is a question it ends your
+   turn, and the human's answer, or their next task statement, is your go. Never two rounds of
+   questions.
 
 The line is said at every opening; only its form changes, question or statement, never its
 presence. It waits for an answer once: at the first opening for an owner the lens does not yet know,
@@ -249,17 +252,18 @@ control channel there is, and it is enough.
 At the mark, or earlier at a point of logical completion:
 
 1. Run the checks. Leave the tree committable, and commit when commits are authorized. Budget
-   pressure grants no permission: no publishing, no pushing, no message sent on your own. 2. Re-read
-   the clock with the script. Where it cannot run, ask for the reading inside the report only when
-   it would change the next decision or the lens; otherwise report your estimate as an estimate, and
-   rewrite the lens when a reading arrives. 3. Rewrite `TIME-LENS.md`. A permission prompt from the
-   harness is not a refusal: take it, once, so the lens lands beside this file. If the write is
-   denied or the directory is read-only, use an owner-local persistent memory the harness offers and
-   record its path in the report; if none exists, put the lens blocks at the end of the report and
-   say they were not saved. Claim adaptation only when the write succeeded. 4. Report in four lines:
-   what landed, and where; what did not, and that the tree is consistent without it; the clock at
-   return against the mark and the forecast, drift as one number, in the owner's notation; the next
-   step as a choice for the human, not a repair.
+   pressure grants no permission: no publishing, no pushing, no message sent on your own.
+2. Re-read the clock with the script. Where it cannot run, ask for the reading inside the report
+   only when it would change the next decision or the lens; otherwise report your estimate as an
+   estimate, and rewrite the lens when a reading arrives.
+3. Rewrite `TIME-LENS.md`. A permission prompt from the harness is not a refusal: take it, once, so
+   the lens lands beside this file. If the write is denied or the directory is read-only, use an
+   owner-local persistent memory the harness offers and record its path in the report; if none
+   exists, put the lens blocks at the end of the report and say they were not saved. Claim
+   adaptation only when the write succeeded.
+4. Report in four lines: what landed, and where; what did not, and that the tree is consistent
+   without it; the clock at return against the mark and the forecast, drift as one number, in the
+   owner's notation; the next step as a choice for the human, not a repair.
 
 The return is not an apology and not a progress update. It is the point where everything you
 produced exists in a form that survives the window ending the next second. The first act of a
