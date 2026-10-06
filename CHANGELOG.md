@@ -33,6 +33,9 @@ six-perspective Fable review and Astra's behavioral rehearsals.
   the least left among all the reader returns; a sandbox network prompt is the one retry; a meter
   with no rate prices the first atom alone; a permission prompt is not a refused lens write; the
   reserve passage speaks both directions.
+- Closing pass (Astra's final rehearsal): the clock passage stands on the last outside reading
+  instead of denying its presence; readings are taken in the owner's notation and converted only
+  when the source speaks the other one.
 
 ## 2026-10-06.4
 

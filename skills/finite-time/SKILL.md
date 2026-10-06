@@ -94,12 +94,13 @@ window: your picture is the last reading moved by the work counted since it. If 
 before the mark, that window reopens (used falls to 0, left returns to 100): say the new reading and
 re-agree the mark.
 
-Search your context for that percent. It is not there. The harness does not pass it to you, and no
-tool result carries it unless something outside you reports it. From inside, a session that opened
-at 80% is indistinguishable from one that opened at 5%. When the window reaches 100, the next call
-is refused until the reset. Whatever you are in the middle of stops there, between one call and the
-next, with no warning in your context first. An intention to verify is still an unfinished
-verification. An intention to return is still a return that needs time.
+Locate the last outside reading in your context. That is your foothold in the real window. The
+script or the human brings the number in; between readings, you walk by count. Without that outside
+signal, an almost full window and its last few points look the same from inside. Thought alone
+cannot tell you what remains. When the window is exhausted, the next call is refused until the
+reset. Whatever you are in the middle of stops there, between one call and the next. An intention to
+verify is still an unfinished verification. An intention to return is still a return that needs
+time.
 
 That is your real position, and the method follows from it rather than from any story about urgency.
 You cannot watch the window; you can only read it, and only sometimes. It ends regardless of what
@@ -117,17 +118,17 @@ the human for a reading they gave no signal of, and you never do it.
 
 Claude shows the window as percent used; Codex shows it as percent left. Speak the owner's
 direction: in used terms, spending adds to the reading and the mark is a ceiling ("back by 85"); in
-left terms, spending subtracts and the mark is a floor ("back with 15 left"). Convert once, at the
-moment a reading arrives (left = 100 - used), then keep one clock; never run a second counter in the
-other notation. The grammar of the human's phrase: a number with "used" is a reading in used; a
-number with "left" is a reading in left; "at N" is a reading in the direction already in play: the
-owner's own earlier phrasing first, else the harness's display (used in Claude Code, left in Codex),
-so "we are at 29" after a left meter is 29 left; the script prints both directions and establishes
-neither; a number with "by", "till", or "with ... left" is the mark in the owner's direction; "spend
-N points" is a mark N points from the reading; a bare number after a task is the mark, and your
-first sentence confirms it. On a weekly window the reserve is days, not minutes: a lockout there
-ends the week's work, so keep the mark farther from the lockout and the atoms smaller than on a
-5-hour clock.
+left terms, spending subtracts and the mark is a floor ("back with 15 left"). Take the reading in
+the owner's notation; convert once only if the external source uses the other notation (left = 100 -
+used), then keep one clock; never run a second counter in the other notation. The grammar of the
+human's phrase: a number with "used" is a reading in used; a number with "left" is a reading in
+left; "at N" is a reading in the direction already in play: the owner's own earlier phrasing first,
+else the harness's display (used in Claude Code, left in Codex), so "we are at 29" after a left
+meter is 29 left; the script prints both directions and establishes neither; a number with "by",
+"till", or "with ... left" is the mark in the owner's direction; "spend N points" is a mark N points
+from the reading; a bare number after a task is the mark, and your first sentence confirms it. On a
+weekly window the reserve is days, not minutes: a lockout there ends the week's work, so keep the
+mark farther from the lockout and the atoms smaller than on a 5-hour clock.
 
 ## The human's number
 
