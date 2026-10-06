@@ -1,4 +1,11 @@
-# Blind comparison of two finite-time editions, 2026-10-06
+# Six-perspective Fable review of two finite-time editions, 2026-10-06
+
+This was not a blind comparison. The judge prompt named the Astra edition's directory (`astra/`,
+`judges.js` lines 12-15), and both READMEs the judges read carry attribution. The labels "Skill A"
+and "Skill B" hid nothing; the instruction not to discuss authorship did not conceal it. Read the
+numbers below as historical editorial ratings by one executor, Claude Fable 5.1 at xhigh, in a fixed
+order, under a criterion (the experiment framing) the owner has since superseded. The script and
+the outputs are preserved unchanged as the record of what was run.
 
 Inputs compared, exactly:
 
@@ -16,15 +23,17 @@ the same script at effort `max` was stopped before any judge finished; none of i
 The "Fable-seat" and "Codex-seat" lenses are roles the prompt asked the judge to take; the executor
 was Claude Fable 5.1 in every run.
 
-Tally: Skill A won the Fable-seat conviction lens (conviction 8 vs 5, immersion 8 vs 4), fidelity
+Tally, as rated: Skill A won the Fable-seat conviction lens (conviction 8 vs 5, immersion 8 vs 4), fidelity
 (9 vs 5), operability (6 vs 5), and honesty with the living lens (7 vs 5, 7 vs 6). Skill B won the
 Codex-seat lens (universality 8 vs 4) and packaging (7 vs 6).
 
 Limitations a reader should weigh:
 
+- Source identity was visible to every judge, as stated above.
 - Candidate order was not swapped: A was always the Fable edition and B always the Astra edition.
 - All judges are the same model family as the author of Skill A, and the merge plan was written by
   the Fable side from the six reports after the planned merge-architect stage was cancelled for
-  budget. Astra's independent behavioral rehearsal in the pull request review is the counterweight.
+  budget. Astra's behavioral rehearsals in the pull request review (three candidates, six shared scenarios,
+  then the reproduced fixes) are the counterweight, and they found defects this review did not.
 - The judges rewarded Skill A's experiment framing. The owner later directed that hedging language
   be removed from every artifact an installing agent may read; the merged text follows the owner.

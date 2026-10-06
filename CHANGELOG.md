@@ -21,8 +21,8 @@ six-lens comparison.
   Subagents inherit the handed mark and a released reserve. Opening arithmetic runs in the owner's
   direction; admission is checked against every window the reader returns; starting rates are
   scoped to their meter; the reading cadence is tuned by the lens; rates need readings while
-  preferences need the owner's words. Reserve cases follow "the number wins". The comparison
-  record lives in `evals/comparison-2026-10-06/`.
+  preferences need the owner's words. Reserve cases follow "the number wins". The review
+  record (not blind: source identity was visible) lives in `evals/comparison-2026-10-06/`.
 
 ## 2026-10-06.4
 

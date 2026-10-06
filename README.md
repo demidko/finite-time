@@ -215,4 +215,4 @@ and the next finished unit refine the lens.
 - [Contribute a field result](CONTRIBUTING.md)
 
 Created by Daniil Demidko. Concept developed with Fable; two independent skill editions
-prepared with Astra and with Fable, merged after a blind six-lens comparison. Released under the [MIT license](LICENSE).
+prepared with Astra and with Fable, merged after a six-perspective Fable review and Astra's behavioral rehearsals. Released under the [MIT license](LICENSE).
