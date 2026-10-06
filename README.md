@@ -202,22 +202,24 @@ evaluation cases, and release tooling stay in this repository.
 
 ## Research background
 
-finite-time is an engineering implementation of effects that research on bounded computation and
-on language models under time and token constraints has measured independently. Each element of
-the method stands on a documented result.
+finite-time brings research on bounded computation and language models under time and token
+constraints into an executable working discipline. The findings below inform its design: make the
+boundary present, ground the clock in real readings, price the next step, and return usable work.
 
 - **Felt urgency sharpens the work.** Wang et al. (2025) show that when a prompt carries urgency,
   language models shorten their reasoning while holding accuracy, and on the harder GPQA set five
-  of the six tested models became more accurate; the authors attribute the gain to urgency pruning
-  unnecessary exploration. Li et al. (2023) found earlier that stakes expressed in a prompt change
+  of the six tested models became more accurate; the authors propose that urgency prunes unnecessary
+  exploration. Li et al. (2023) found earlier that stakes expressed in a prompt change
   output quality. finite-time supplies real stakes: the owner's actual rate-limit window, read from
   the harness, not a fictional deadline.
-- **Time has to be fed from outside.** Sehgal, Guntuku, and Ungar (EMNLP 2026) find that models
-  adapt to real deadlines only fragilely and that the presentation of the constraint decides the
-  outcome: explicit remaining-time feedback raised deal closure from 4% to 32% for one frontier
-  model, while repeated reminders did not reproduce the benefit. finite-time therefore gives the
-  agent an instrument, `usage.py` and the owner's pulse, instead of asking it to sense time, and
-  keeps the signal proportional: silence when there is no trend.
+- **A visible remainder and felt urgency change decisions.** Sehgal, Guntuku, and Ungar
+  (EMNLP 2026) show that explicit remaining-time feedback raised deal closure from 4% to 32% for
+  GPT-5.1-chat-latest. Qualitative urgency cues performed even better than numeric countdowns in
+  their urgency comparison. Follow-up comparisons distinguish repeated reminders of the original
+  total budget, which fell below remaining-time feedback, from directed internal time tracking,
+  which helped or hurt depending on the model. finite-time combines the two design levers: real
+  readings from `usage.py` or the owner's pulse ground the clock; its immersive language carries
+  the boundary into the next decision.
 - **Agents misjudge their own budgets.** BAGEN (Lin et al., 2026) measures budget-awareness
   directly: capability and budget-awareness correlate only weakly (r = 0.35), top models stay
   over-optimistic on failing paths, and acting on budget signals saved 28 to 64 percent of the
@@ -231,10 +233,11 @@ the method stands on a documented result.
   under bounded resources. Atoms, landing, and the priced return are that discipline applied to a
   coding session.
 - **A boundary changes the shape of thinking.** Budget forcing in s1 (Muennighoff et al., 2025)
-  and token-budget prompting in TALE (Han et al., 2025) show that an explicit budget boundary
-  changes reasoning efficiency without a matching loss of quality. Parkinson (1955) named the human
-  half: work expands to fill the time available for its completion. finite-time inverts it by
-  making the time visible.
+  controls test-time compute by shortening or extending reasoning; extending it improved math
+  accuracy in their experiments. Token-budget prompting in TALE (Han et al., 2025) reduced token
+  costs with a slight performance reduction. Together they show that the reasoning budget is an
+  actionable control. Parkinson (1955) named the human half: work expands to fill the time available
+  for its completion. finite-time inverts it by making the time visible.
 
 ## References
 
