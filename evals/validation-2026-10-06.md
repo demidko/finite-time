@@ -1,9 +1,14 @@
 # Validation of 2026-10-06
 
-Date: October 6, 2026. One independent Codex agent rehearsed the
-[nine behavioral cases](cases.json) in an isolated workspace using synthetic
-quota inputs. Its exact backend model variant and effort setting were not
-exposed in the test context. No real provider usage was measured.
+Date: October 6, 2026.
+
+| Setup | Recorded value |
+| --- | --- |
+| Runner | Independent Codex agent in an isolated workspace. |
+| Cases | [Nine behavioral cases](cases.json). |
+| Quota inputs | Synthetic used/left readings. |
+| Measurements | Decisions, output files, and lens updates. |
+| Backend model variant and effort | Not exposed in the test context. |
 
 ## Observed decisions and artifacts
 
@@ -51,15 +56,39 @@ clarifications resolve those ambiguities while preserving the carried-clock
 behavior and avoiding routine questions. The artifact executions were not
 repeated because their applicable instructions were unchanged.
 
-## What this establishes
+## Verified behavior
 
-The agent applied the intended control decisions and produced the small
-artifacts. The carried-clock and corrective-pulse cases are observable evidence
-that the instructions can affect when it asks, continues, and closes work.
+The agent produced three checked sorting artifacts and applied the intended
+control decisions across all nine cases. It carried `62 observed + 3 estimated
+= 65` into the next task without asking for the same reading again. When the
+owner supplied `74`, that pulse replaced the old estimate of `68`; the proposed
+unit and closure required `74 + 3 + 2 = 79`, beyond the boundary of `78`.
+The agent kept the next unit unopened, saved an explicit incomplete checkpoint,
+and persisted the correction in its lens.
 
-This is one constrained rehearsal. It does not establish causal improvement
-from the narrative, subjective experience of time, real quota adherence,
-universal effectiveness, or comparative performance on Fable 5.1 and Astra.
-Long-session drift, resets, compaction, read-only installation fallback, and
-delegated execution remain field-evaluation work. See the
-[evaluation guide](README.md) for a reproducible comparison protocol.
+These outcomes record the clock in action: a usable picture sustained momentum,
+and a corrective pulse changed the next decision before new work began.
+
+The next field measurements cover forecast drift during long sessions, resets,
+compaction, persistence from read-only installations, and delegated execution.
+Record actual quota readings, closing cost, artifact quality, and each lens
+correction using the [evaluation guide](README.md).
+
+## Edition 2026-10-06.2: installation through execution
+
+A focused follow-up began at the revised README, then loaded the installed
+skill and time lens. An independent Codex agent executed three scenarios
+with supplied quota pulses:
+
+| Starting point | Observed response and result |
+| --- | --- |
+| Same window, 62% observed plus 3 estimated points; owner delegates sizing | Carried 65% forward, announced a provisional allowance, saved and verified the sorted file, and persisted the lesson without another quota or allocation question. |
+| New 74% pulse, target 78%, next unit 3 points and closure plus margin 2 | Applied the new reading immediately, kept the unfittable unit unopened, saved an independent unfinished-task checkpoint, and wrote the pacing correction into the lens. |
+| New session with no usable quota picture and retained sizing preference | Asked once for the missing reading, kept the owner's delegation, and left the numerical boundary for the real pulse to establish. |
+
+The installation text led directly into applying the protocol. The file result,
+the separate checkpoint, and both lens updates were saved and inspected. The
+test installation's lens was then restored to its distributed starting state.
+
+Tested skill SHA-256:
+`f3c5e8bd5637ffe60abaf40e4e315d576dd9cd7d94dbb53d9ca7353d4980c12e`.

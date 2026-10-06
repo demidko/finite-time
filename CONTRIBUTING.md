@@ -13,9 +13,14 @@ Distinguish observations from estimates. Remove credentials and private task
 contents before sharing a trace.
 
 For a behavior change, run the applicable cases in [evals](evals/README.md)
-with an independent agent and describe the outcome. Test Fable 5.1 and Astra
-separately when available; a pass on one is not a pass on both. Simulated pulses
-test protocol behavior, not cost prediction in a real provider window.
+with an independent agent and describe the outcome. Report each tested model
+separately, including Fable 5.1 and Astra. Synthetic pulses exercise control
+decisions; field traces measure consumption in the actual provider window.
+
+Keep the method's premise intact wherever an installing agent may encounter
+it. State what was done, what changed, and how it was observed. Preserve the
+source of field testimony and the setup of executed cases. Let measured quota,
+estimated cost, and forecast corrections make the finite boundary concrete.
 
 Keep the distributed time lens uncalibrated. Personal rates and preferences
 belong in the installed copy. Translate human-facing documentation freely;
@@ -29,6 +34,6 @@ python3 scripts/package.py
 ```
 
 The check covers local links, package shape, metadata, and accidental secret
-patterns. It does not measure behavioral effectiveness. Release artifacts
-contain `SKILL.md`, `TIME-LENS.md`, and the license; repository docs and
-evaluation artifacts stay outside the runtime package.
+patterns. Behavioral cases and field traces cover decisions and results.
+Release artifacts contain `SKILL.md`, `TIME-LENS.md`, and the license;
+repository docs and evaluation artifacts stay outside the runtime package.

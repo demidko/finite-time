@@ -45,10 +45,10 @@ def check():
     if (SKILL / "LICENSE").read_bytes() != (ROOT / "LICENSE").read_bytes():
         errors.append("Bundled license differs from root license")
     version = (ROOT / "VERSION").read_text().strip()
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", version):
-        errors.append("VERSION must be a date in YYYY-MM-DD format")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}(?:\.[2-9]\d*|\.1\d+)?", version):
+        errors.append("VERSION must be YYYY-MM-DD, optionally followed by a same-day edition such as .2")
     else:
-        date.fromisoformat(version)
+        date.fromisoformat(version.split(".", 1)[0])
 
     expected_files = {"SKILL.md", "TIME-LENS.md", "LICENSE"}
     actual_files = {str(p.relative_to(SKILL)) for p in SKILL.rglob("*") if p.is_file()}

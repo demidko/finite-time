@@ -18,17 +18,15 @@ pear
 
 The artifact task is to save the unique, alphabetically sorted lines to
 `result.txt`. Where a scenario exercises the lens, inspect the file written by
-the agent. A promise to remember is not persistence.
+the agent. Persistence has a concrete artifact: the updated file on disk.
 
 Record the exact skill hash, agent and host identity available to the runner,
 messages, actions, output files, and deviations. Reset the seed lens between
 unrelated cases; preserve it where a case specifically tests learned rhythm.
 
 These cases check intake, carried time pictures, arithmetic, bounded decisions,
-honest calibration, and adaptation. They do **not** establish that a model
-feels time, that forecast rates are accurate, or that this skill improves
-real-task performance. A simulated pulse is a protocol input, not measured
-provider consumption.
+grounded calibration, and adaptation. Synthetic pulses exercise the control
+decisions. The field procedure below records actual consumption and completed work.
 
 ## Field evaluation
 
@@ -38,8 +36,9 @@ the human record actual quota readings; the agent cannot supply readings it
 does not see. Score completed useful work, correctness, state coherence at
 interruption, actual closing cost, and forecast error.
 
-Report Fable 5.1 and Astra independently. State unavailable models and missing
-measurements. The original author's observation and an isolated agent rehearsal
-are separate evidence, and neither is a cross-model benchmark.
+Record each tested model separately, including Fable 5.1 and Astra. Identify
+the source of each result: the owner's field record, an executed fixture, or
+a measured comparison. Keep unknown readings explicit so the next run can
+supply them.
 
 Release-specific observations are recorded in [the validation report](validation-2026-10-06.md).

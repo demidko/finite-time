@@ -1,111 +1,122 @@
 # A finite window changes the next decision
 
-Human-facing design notes. Agents only need the installed skill and its
-time lens for ordinary operation.
+The end of the window belongs inside the present decision. Every branch,
+reread, and retry spends capacity that must also carry the result back to the
+owner. Finite Time makes that remaining opportunity immediate: **this run
+ends; bring the work back.**
 
-## Origin
+## The working record
 
-On October 6, 2026, Daniil Demidko recorded “Fit and Return” after working with
-Fable near the end of a provider's usage window. The initial concern was
-interrupted work: partial files, broken references, and conclusions stranded
-in the model's context. Budget pulses and coherent units made the work easier
-to stop and resume.
+Daniil Demidko developed “Fit and Return” with Fable and recorded the method
+on October 6, 2026. His field record describes the following results:
 
-The unexpected observation was behavioral: the agent appeared to decide more
-quickly and precisely as the visible limit approached. The note described a
-single session, including documentation consolidation and several coherent
-stops. These are the author's observations, not independently reproduced data.
+| Work and timing | Recorded result |
+| --- | --- |
+| Documentation consolidation | 100 documentation files became 40. |
+| Architecture documentation | An architecture map with diagrams was produced. |
+| Preserved work | Five commits. |
+| Stops at budget pulses | Three stops; none left unfinished debris. |
+| First-round consumption forecast | Matched the reported meter to a percentage point. |
+| Second-round forecast | The miss became a correction incorporated into the method. |
 
-The concept was first written down in an internal project snippet. The project
-was its place of publication, not a dependency of the method. This standalone
-edition carries the method and the author's clarifications into a portable
-skill; it contains no code from that project.
+In his follow-up testimony, Daniil described Fable at maximum effort with
+Ultracode making decisions remarkably quickly, planning its own budget, and
+giving useful feedback. His original note places the most precise steps in
+the final percentages of the window. The approaching boundary was present in
+the work: decisions closed, results survived, and a forecast miss changed the
+next calculation.
 
-## Why conviction matters
+The portable skill also has an independent execution record: nine behavioral
+cases with synthetic quota pulses, including three saved and reread sorting
+artifacts. The agent carried an existing time picture into a new task without
+repeating intake. When a new pulse consumed the margin, it rejected the next
+unit, saved a checkpoint, and wrote the correction into its lens. The
+[validation record](../evals/validation-2026-10-06.md) preserves the setup,
+observed decisions, artifacts, and historical skill hashes.
 
-“Be efficient” leaves the cost of one more branch abstract. A real external
-reading makes the tradeoff immediate: the same remaining capacity must fund
-discovery, implementation, verification, and the journey back to the user.
+The concept first appeared in an internal project snippet. This standalone
+edition carries Daniil's method and clarifications into an Agent Skills
+package for Fable 5.1, Astra, and other agents that load the format.
 
-The agent-facing premise is direct: **this run ends; bring the work back**.
-Its consequence must appear in decisions: price the next complete unit, account
-for closure, stop opening optional branches that cannot fit, and preserve the
-result. Repeating urgent language without changing those decisions does not
-apply the method.
+## Let the boundary enter the choice
 
-The author's comments call this pressure a “pseudo-fear” of exhaustion. The
-protocol gives that intuition an operational form through real limits and
-observable commitments. It does not need invented deadlines or a story about
-the model's inner experience. This makes the premise usable by both a model
-responsive to narrative framing and one that demands explicit accounting.
+Conviction gives the boundary force before a choice is made. Take the owner's
+real reading into the next edit, tool call, and decision to continue. The same
+remaining capacity funds discovery, implementation, verification, preservation,
+and the return. An unfinished intention still needs room to become a result.
 
-## The human and agent close different halves of the loop
+Hold the completed return in view and work backward. Price the next complete
+unit. Keep its verification and delivery inside the boundary. As the remainder
+narrows, close optional branches and draw the indispensable work closer. The
+immersive premise lives in these choices: choose when the evidence is enough,
+finish what you open, and bring back something the owner can use.
 
-The owner sees the actual quota interface; the agent sees the work performed
-between readings. Where the agent cannot inspect that quota itself, neither
-side can calibrate accurately alone. The owner's pulse anchors the estimate.
+The narrative and the accounting reinforce the same fact. The narrative makes
+the end of this opportunity present; the accounting gives that end a concrete
+place in the next decision. Carry both through the work.
 
-For every new task, the skill recovers its current time picture. Where that
-picture is missing, it invites used/left information and a task allowance.
-The owner only has to provide the first; the agent can size the task itself.
-A picture grounded in a real pulse and accounted subsequent work remains
-useful across task boundaries. A request for another pulse should resolve
-decision-relevant uncertainty, not satisfy a ritual.
+## The human pulse keeps time
 
-This distinction is part of the author's subsequent clarification: questions
-introduce the human to the concept, then the lens should find the rhythm.
-An agent that already knows where it stands should keep working. The protocol
-must leave room for that rhythm to emerge through work and corrections.
+The owner sees the actual quota interface. The agent sees the work performed
+between readings. The owner's pulse anchors the estimate; accounted work
+advances it until the next pulse arrives. Together they maintain the clock.
 
-The owner's corrections are the feedback channel that keeps it real. A new
-percentage replaces the agent's extrapolation. A correction about wasted
-deliberation, priority, or pacing changes the next decision and the learned
-lens. These signals do not require restarting the task. A qualitative pacing
-correction does not by itself grant an extra numerical budget.
+For every new task, recover the current time picture. When it is missing, ask
+for the nearest quota's used/left percentage and invite a task allowance. The
+owner can give just the reading; the agent then chooses and announces a bounded
+allowance. A usable picture carries across tasks. Request a fresh pulse when
+it can change a decision.
 
-Use the currently relevant limit, whether a short session window, a weekly
-quota, or another displayed boundary. These product details change. “Time” in
-the skill's name means the finite opportunity to complete this run; the meter
-may measure tokens or usage rather than elapsed minutes.
+These questions introduce the human to the concept. Through actual work, the
+lens learns when a pulse helps and when the agent should keep moving. The
+rhythm emerges from use: fewer routine questions, better-sized units, and a
+clearer sense of how much room the return requires.
 
-The author also described the human's satisfaction in reaching a stopping
-point and being able to step away. That belongs to the human side of the
-method. The agent's objective remains useful, coherent work within the budget.
-Filling the meter is not an additional task.
+A new percentage replaces the agent's extrapolation immediately. Corrections
+about deliberation, priority, or pace change the next action and the learned
+lens. Keep each signal in its proper scope: a pacing correction adjusts pacing;
+an explicit allowance changes the numerical boundary. The task continues
+through both.
 
-## Calibration must change the method in use
+Use the limit that can constrain the work next, whether a session window, a
+weekly quota, or another displayed boundary. “Time” here is the finite
+opportunity to finish and return. A usage percentage measures capacity in its
+own units; an actual deadline measures elapsed time. Keep those measures clear.
 
-The final comment on the original note expands the idea beyond a one-session
-prompt: the installed skill should rewrite itself around its owner's rhythm.
-This release implements that through its **time lens**, a file loaded with
-the shared protocol and rewritten at the end of governed sessions.
+Completion restores choice to the owner: use the result, continue, or step
+away. Once the requested work is complete and sufficiently checked, return.
+The unused window belongs to the owner.
 
-The lens learns more than model prices. It learns the unit size that actually
-finished, a closure allowance that proved too small, a reread that changed cost,
-and the point at which another branch stopped being worth opening. Rules are
-compressed, scoped, and replaced when contradicted. The shared protocol supplies
-continuity; the rewritten lens makes future behavior personal.
+## Let the lens learn the rhythm
 
-Per-model cost cannot be inferred from a single mixed-work total. Old rates
-cannot silently survive a context or meter change. The original note's sample
-rates were observations from one session, so the shipped lens intentionally
-starts without numerical prices.
+The installed skill rewrites its **time lens** around its owner's working
+rhythm. Load that lens with the shared protocol, use it during the task, and
+reconcile it at a meaningful checkpoint or return.
 
-## What success would look like
+Learn the unit size that finished, the closure allowance that ran short, the
+reread that changed cost, and the moment another branch stopped being worth
+opening. Compress each lesson into a rule that changes a future decision.
+Replace a contradicted rule and merge a repeated lesson. The shared protocol
+supplies continuity; the rewritten lens makes its application personal.
 
-Measure observable outcomes rather than reported urgency:
+Calibrate numerical rates from comparable external pulses and counted work.
+Keep aggregate measurements aggregate until the observations support a
+per-model rate. Recalibrate when the meter, model, effort, or context changes.
+The distributed lens begins ready to learn its owner's actual costs.
+
+## Read the return
+
+Follow the effect of the method in concrete work:
 
 - Completed useful units at each interruption or return.
 - Coherence of the saved state and the cost of resuming it.
-- Actual consumption at closure, including verification and the return.
-- Forecast error and the correction carried into the next session.
-- Preserved task quality and the amount of unnecessary rework.
+- Actual consumption at closure, including verification and delivery.
+- Forecast error and the correction carried into the next task.
+- Task quality, unnecessary rework, and the branches that no longer needed opening.
 
-Compare similar tasks, model settings, and initial windows with and without the
-skill. Repeat runs. Save the external readings alongside the action trace.
-Do not count a quicker but incorrect answer as an improvement. See the
-[evaluation guide](../evals/README.md) for the release's behavioral cases.
+Record external readings alongside the action trace. For comparisons, repeat
+similar tasks with the same model settings, initial windows, and acceptance
+criteria. The [evaluation guide](../evals/README.md) provides the behavioral
+cases and a field-measurement procedure.
 
-The current claim is a reproducible method and a testable hypothesis. A prompt
-cannot enforce a provider's hard cutoff, recover an unsaved result, or prove
-equal effectiveness across models merely by sounding certain.
+**The window is passing. Let that fact shape what becomes real next.**

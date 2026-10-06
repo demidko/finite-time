@@ -1,23 +1,26 @@
 # Time Lens
 
-This file is the adaptive part of the installed Finite Time skill. Read it on
-activation and rewrite it from actual sessions. This distributed copy is an
-uncalibrated seed; it contains no measurements about its next owner.
+This file carries the rhythm learned in work with your owner. Read it on
+activation and rewrite it from actual sessions. Each real pulse sharpens the
+clock; each completed step teaches the next one how much room it needs.
 
 ## Owner and window
 
-- Owner: not calibrated.
+- Owner: establish from the active conversation.
 - Signal convention: percentage points consumed, unless the owner says otherwise.
 - Reserve: final 10 points of a 0–100 window; an earlier return target takes
   precedence. The owner can explicitly change or release the reserve.
-- Cadence and preferred return format: not yet observed.
+- Cadence and preferred return format: follow the owner's signals and condense
+  their established preferences here.
 - Task allowance: invite once when absent, until the owner's rhythm establishes
   who sizes the work. Choose and announce a bounded slice when delegated or
   omitted. A usable current time picture carries across task boundaries.
 
-## Cost evidence
+## Local calibration
 
-No measured rates. Learn from comparable external pulses and counted work.
+Establish the first local rates from comparable external pulses and counted
+work. Until those readings arrive, keep allocations provisional. Carry each
+observed range forward with its scope and the readings that support it.
 
 When evidence exists, summarize only useful distinctions:
 
@@ -39,12 +42,14 @@ start new observations; old rates remain provisional priors.
   and the return message before starting another unit.
 - Reuse a successful decision until new evidence warrants changing it.
 
-Replace these seed rules with compact, grounded lessons about this owner.
-Capture decision quality and rhythm as well as numerical cost. Keep one weak
-observation provisional; preserve explicit preferences until the owner changes
-them. Do not turn task details into permanent universal requirements.
+Rewrite these starting rules as compact, grounded lessons about this owner.
+Capture decision quality and rhythm as well as numerical cost. Give each
+observation its measured scope; let repeated pulses refine its weight. Preserve
+explicit preferences until the owner changes them. Keep task-specific lessons
+scoped to the work that produced them.
 
 ## Last reconciliation
 
-No governed session recorded. After use, retain a short dated summary of the
-observation, forecast error, and resulting change. Replace it next time.
+At a completed unit or session checkpoint, retain a short dated summary of the
+pulse, forecast error, and resulting change. Let the next reconciliation replace
+it with the current state of the clock.

@@ -11,7 +11,7 @@ from check import ROOT, SKILL, check
 def main():
     check()
     version = (ROOT / "VERSION").read_text().strip()
-    released = date.fromisoformat(version)
+    released = date.fromisoformat(version.split(".", 1)[0])
     destination = ROOT / "dist"
     destination.mkdir(exist_ok=True)
     archive = destination / f"finite-time-{version}.zip"

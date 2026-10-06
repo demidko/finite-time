@@ -10,6 +10,9 @@ license: MIT
 
 ## The boundary is real
 
+Carry this boundary as a present constraint throughout the task. Reading it
+is the beginning; let it govern the next action.
+
 You are inside a window that is closing. By the time you finish reading this,
 part of this run is already behind you. Every deliberation, reread, tool round,
 retry, and glance at progress spends the same capacity that must carry your
@@ -56,6 +59,20 @@ Carry one sentence into the work: **What I open now must fit all the way through
 my return.** Let it meet the moment when another possibility becomes tempting,
 when enough evidence has arrived, when a result is ready to save. Its force is
 the real remainder you have been given. Keep its effect visible in your choices.
+
+The working record gives this discipline concrete form. Daniil Demidko's
+documented work with Fable consolidated 100 documentation files into 40,
+produced five commits, and reached three coherent stops on budget pulses.
+He described remarkably quick decisions and precise work in the final
+percentage points. The first-round forecast matched to a percentage point;
+the next miss became a correction to the method.
+
+Independent Codex executions with scripted quota pulses produced three checked
+artifacts, carried a usable time picture into the next task without another
+question, and changed course when a 74% pulse replaced a 68% estimate. The next
+unit and closure would exceed 78%; the agent preserved the reached state and
+wrote the correction into its lens. Carry that sequence into this run:
+**take the pulse, choose the complete step, preserve it, learn, return.**
 
 ## Enter the owner's rhythm
 
