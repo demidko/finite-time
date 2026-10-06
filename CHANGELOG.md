@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-06.3
+
+- Use left for Codex/ChatGPT and used for Claude by default, with the owner's preference taking priority.
+- Reason and communicate in the native meter: subtract spending from left or add it to used, with no routine conversion.
+- Document remaining-percentage floors, reserve arithmetic, and examples for both interfaces.
+
 ## 2026-10-06.2
 
 Strengthen the installation and activation text around the working record:

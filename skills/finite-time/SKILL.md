@@ -1,6 +1,6 @@
 ---
 name: finite-time
-description: "Bring every user-assigned task into a real, finite window. Recover the current time picture; when missing, invite the owner to give the nearest quota's used/left percentage and a task allowance. Plan the allowance if omitted; do not routinely re-ask for a usable picture. Make the passing window felt in decisive, complete work and a timely return. Rewrite the installed time lens to learn the owner's rhythm. Also triggered by 'fit and return'."
+description: "Bring every user-assigned task into a real, finite window. Use left for Codex/ChatGPT and used for Claude by default; follow the owner's preference. Recover the time picture; ask for a missing quota pulse and invite an allowance. Plan it if omitted; avoid routine questions. Make the passing window felt in complete work and a timely return. Rewrite the installed time lens to learn the owner's rhythm. Also triggered by 'fit and return'."
 license: MIT
 ---
 
@@ -39,9 +39,10 @@ paths from evidence to decision, smaller units that can actually finish. Keep
 truth and the necessary checks inside that narrowing path. Spend precision on
 what matters. Spend the last workable stretch completing and returning.
 
-The owner's number is the outside world reaching into this run. **“75% used;
-come back by 90%” gives this work fifteen points in which to happen, including
-the journey back.** Take that boundary into the next edit, the next tool call,
+The owner's number is the outside world reaching into this run. **“25% left;
+come back with at least 10% left” gives this work fifteen points in which to
+happen, including the journey back.** In Claude's default terminology, that is
+“75% used; come back by 90%.” Carry the owner's language into the next edit, the next tool call,
 the next decision to continue. Your forecast answers to the next real pulse.
 It cannot bargain that pulse away.
 
@@ -90,9 +91,22 @@ When no usable picture exists, invite the owner into the rhythm with one short
 question, in their language. Ask for the missing current reading and invite
 a task allowance together:
 
-> How much of your nearest quota window is used or left, and how many percentage
-> points may this task spend? You can give just used/left; I'll plan the task
-> allowance.
+- **Codex / ChatGPT:** “How much of your nearest quota window is left, and how
+  many percentage points may this task spend? You can give just left; I'll plan
+  the allowance.”
+- **Claude / Claude Code:** “How much of your nearest quota window is used, and
+  how many percentage points may this task spend? You can give just used; I'll
+  plan the allowance.”
+
+Keep quota conversation in the owner's native direction. An explicit owner
+preference takes priority; otherwise mirror their supplied meter label, then
+use the host defaults above. Use that same coordinate system for reasoning,
+questions, progress, return boundaries, and the lens. Codex subtracts spending
+from left; Claude adds it to used. Keep one native clock, with no parallel
+counter in the opposite notation. The owner copies the displayed number and
+reads your boundary in those same terms. Convert only when the owner changes
+the reported notation or explicitly requests a translation. If neither the
+host nor the label is known, invite the displayed percentage as shown.
 
 If the reading is supplied but the allowance is not, invite that choice once,
 unless the owner's established preference or learned rhythm already leaves
@@ -136,15 +150,23 @@ each must fit. A provider's usage window is not the model's context window.
 Use the window that can constrain the work next, as shown in the owner's UI;
 do not hardcode a provider's reset duration. Other active limits still apply.
 
-For percentage pulses, use **percentage points consumed**. “62%, return by 78%”
-means 16 points of gross headroom. If the user reports remaining capacity, convert
-it explicitly. State any necessary assumption briefly; do not invent a reading
-or a reset time.
+Use **percentage points of the full quota window** for task allowances. In
+left terminology, spending points decreases the reading; in used terminology,
+it increases it. Calculate directly in that native direction and preserve it
+when stating a target.
 
-“Spend 8% on this task” means **eight points of the full quota window**. Starting
-at 62% used, that gives a return target of 70%. “Return by 78%” is an absolute
-target of 78%. “Use 20% of what remains” is relative to the remainder: with 40%
-left it allows eight points. Make the interpretation explicit when needed.
+| Owner's terms | Task allowance and return |
+| --- | --- |
+| Codex: 29% left; spend two points | Return with at least 27% left. |
+| Claude: 62% used; spend eight points | Return before 70% used. |
+| 38% left; return with at least 22% left | Sixteen gross points, including closure. |
+| 62% used; return before 78% used | Sixteen gross points, including closure. |
+| 40% left; use 20% of what remains | Eight points; return with at least 32% left. |
+
+A bare “spend 8%” means eight points of the full window; “20% of what remains”
+is a fraction of the remainder. Resolve a bare meter reading using the already
+established convention. State a needed assumption briefly without switching
+the owner's terminology or inventing a reading or reset time.
 
 When the owner leaves the allowance to you, estimate the requested result from
 the lens, its required units, closure, and uncertainty. Choose a bounded slice
@@ -164,11 +186,12 @@ long session:
 - What constitutes a finished unit; how it will be verified and saved.
 - Calls since the reading; estimated unit cost, closure cost, and uncertainty.
 
-For a normalized 0–100 window, protect the final **10 percentage points** for
-the owner by default. The effective boundary is the earlier of the user's target
-and 90%, unless the owner explicitly releases or changes that reserve. Do not
-subtract ten points again from an earlier target such as 78%. Closing the work
-needs its own allowance *before* the effective boundary.
+For a normalized 0–100 window, protect the final **10 percentage points left**
+for the owner by default. In left terms, the effective return floor is the
+greater of the owner's target and 10% left. In used terms, the effective ceiling
+is the lesser of the owner's target and 90% used. The owner may explicitly
+change or release the reserve. Do not subtract it a second time from an earlier
+target. Closing the work needs its own allowance before that boundary.
 
 An actual deadline uses the available clock and includes delivery time. Do not
 translate percentage points into minutes without evidence. Precise quota
@@ -190,40 +213,59 @@ Include your own orchestration, context rereads, retries, verification, saving,
 and the return message. A progress poll has a cost. A restarted worker has to
 read again. Previous rates are priors, not prices guaranteed for this window.
 
-Before starting the next unit, make this fit:
+Before starting the next unit, use the admission rule for the active clock:
 
 ```text
-estimated consumption now
+# Codex / left:
+estimated percentage left now
+  - next complete unit
+  - verification, preservation, and return
+  - uncertainty allowance
+  >= effective return floor
+
+# Claude / used:
+estimated percentage used now
   + next complete unit
   + verification, preservation, and return
   + uncertainty allowance
-  <= effective return boundary
+  <= effective return ceiling
 ```
 
-Keep observed and estimated consumption distinct. If no new pulse arrives,
-advance the estimate using counted work; silence does not replenish the window.
+Keep observed and estimated readings distinct. Between pulses, subtract counted
+work's estimated cost from left or add it to used. Silence does not replenish
+the window.
 Rounded meters justify ranges, not invented decimal precision. If attribution,
 drift, or reset is unclear, use the conservative estimate and a smaller unit.
 
-For comparable observations, the average cost per counted unit is the increase
-in consumption divided by the count. For mixed work, that is a mixed-work
-average. A decreasing used reading needs reconciliation: a reset, another
-window, or a switch to reporting what is left. Never learn a negative rate.
+For comparable observations, the average cost per counted unit is the change
+in the native meter divided by the count: old minus new for left readings, new minus
+old for used readings. For mixed work, that is a mixed-work average. A reading
+moving against its established direction needs reconciliation: a reset, another
+window, or a changed label. Unchanged rounded pulses do not establish zero cost.
+Never learn a negative rate.
 A model, effort, cache, or context change makes the old rate provisional.
 
 For a 0–100 window, the next unit's available space is:
 
 ```text
-min(task return target, 100 - owner reserve)
-  - last observed consumption
-  - estimated consumption since that pulse
+# Codex / left:
+estimated percentage left
+  - effective return floor
+  - closure allowance
+  - uncertainty allowance
+
+# Claude / used:
+effective return ceiling
+  - estimated percentage used
   - closure allowance
   - uncertainty allowance
 ```
 
-For a last pulse of 62, one estimated point since it, a target of 78, the default
-reserve of ten, closure of two, and uncertainty of one, twelve points remain
-for the next unit. These numbers illustrate arithmetic; they are not calibration.
+With 29% left, a 20%-left return floor, closure of two points, and one point of
+uncertainty, six points fit the next unit: 29 - 20 - 2 - 1 = 6. With 62% used,
+a 78%-used ceiling, closure of two, and one point of uncertainty, thirteen
+points fit: 78 - 62 - 2 - 1 = 13. Each clock works directly in its own notation.
+These numbers illustrate arithmetic; they are not calibration.
 
 ## Make each step able to finish
 
@@ -274,7 +316,8 @@ authorizes commits, make a coherent commit; otherwise preserve reviewable files
 or a patch. Budget pressure does not grant publication or other permissions.
 
 Keep the return concise: what landed and where, what was checked, what remains,
-and the last observed reading versus the estimated finish. State uncertainty
+and the last observed reading versus the estimated finish, both in the owner's
+chosen terminology. State uncertainty
 when present. Make the next step a choice the owner can take, with enough
 context to resume without reconstructing your reasoning.
 

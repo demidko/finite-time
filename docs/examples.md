@@ -1,27 +1,29 @@
 # Example conversations
 
-Illustrative dialogue and arithmetic, not recorded measurements. All percentage
-points refer to consumption of the full displayed quota window unless stated
-otherwise.
+Illustrative dialogue and arithmetic, not recorded measurements. Task allowances
+use percentage points of the full window. Conversation follows the owner's
+interface: left for Codex/ChatGPT, used for Claude by default. An explicit owner
+preference or displayed label takes priority. The agent calculates directly in
+that system, subtracting spending from left or adding it to used.
 
-## No numbers in the assignment
+## Codex: no numbers in the assignment
 
 **Owner:** Refactor the parser and cover the new syntax.
 
-**Agent:** How much of your nearest quota window is used or left, and how many
-percentage points may this task spend? You can give just used/left; I'll plan
+**Agent:** How much of your nearest quota window is left, and how many
+percentage points may this task spend? You can give just left; I'll plan
 the allowance.
 
 **Owner:** 38% left. You decide.
 
-**Agent:** That is 62% used. I'll provisionally allocate eight points and return
-by 70% used, including checks and saving. I'll first price the smallest parser
+**Agent:** I'll provisionally allocate eight points and return with at least
+30% left, including checks and saving. I'll first price the smallest parser
 change against the current window.
 
 The eight-point choice needs to follow the actual task and available evidence;
 it is not the skill's universal default.
 
-## Current reading supplied; allowance omitted
+## Claude: current reading supplied; allowance omitted
 
 **Owner:** Update the migration guide. 62% used.
 
@@ -36,7 +38,7 @@ checks and saving.
 The agent asks once. It does not keep requesting an allocation after the owner
 leaves that decision to it.
 
-## The next unit no longer fits
+## Claude: the next unit no longer fits
 
 **Owner:** 62% used. Consolidate the guide; return before 78%.
 
@@ -50,12 +52,26 @@ closure plus uncertainty costs two, five points will not fit in the remaining
 four. It closes the reached state, reports which required sections remain,
 and returns. It does not call the whole guide complete.
 
-## Used and left; total and remainder
+## Codex: a fraction of the remainder
 
 **Owner:** The weekly meter shows 40% left. Spend at most 20% of what remains.
 
-**Agent:** That is 60% used. Twenty percent of the remaining 40 points is eight
-points, so I'll return by 68% used with checks and saving included.
+**Agent:** Twenty percent of the remaining 40 points is eight points, so I'll
+return with at least 32% left, with checks and saving included.
+
+## The same allowance in each interface
+
+**Codex owner:** 29% left. Spend up to two points.
+
+**Agent:** I'll return with at least 27% left, including checks and saving.
+
+**Claude owner:** 62% used. Spend up to eight points.
+
+**Agent:** I'll return before 70% used, including checks and saving.
+
+The owner supplies the number as displayed; the agent keeps the response in
+that same direction. If a Claude owner explicitly prefers left, the agent uses
+left there too.
 
 ## Reserve released explicitly
 

@@ -7,7 +7,11 @@ clock; each completed step teaches the next one how much room it needs.
 ## Owner and window
 
 - Owner: establish from the active conversation.
-- Signal convention: percentage points consumed, unless the owner says otherwise.
+- Signal convention: **left** for Codex/ChatGPT and **used** for Claude/Claude
+  Code by default. An explicit owner preference takes priority; otherwise mirror
+  the displayed label. Reason and communicate in that same direction: subtract
+  spending from left or add it to used. Convert only for an actual notation change
+  or an explicit translation request.
 - Reserve: final 10 points of a 0–100 window; an earlier return target takes
   precedence. The owner can explicitly change or release the reserve.
 - Cadence and preferred return format: follow the owner's signals and condense

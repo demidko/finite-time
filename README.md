@@ -66,7 +66,9 @@ time picture part of each task's opening across hosts.
 ```text
 Bring each new task under the installed finite-time skill. Recover the current
 time picture and carry it forward while usable. When it is missing, ask for
-the nearest quota's used/left percentage and invite a task allowance. Choose
+the nearest quota's percentage in the owner's terms: left for Codex/ChatGPT,
+used for Claude by default. Reason and communicate directly in that native
+notation: subtract spending from left or add it to used. Invite a task allowance. Choose
 the allowance if omitted or already delegated. Request new pulses when they
 can change a decision. Let TIME-LENS.md learn our rhythm.
 ```
@@ -74,17 +76,24 @@ can change a decision. Let TIME-LENS.md learn our rhythm.
 Then assign work normally, or invoke it explicitly:
 
 ```text
-$finite-time Refactor the parser. 62% used; spend up to 8 percentage points.
+$finite-time Refactor the parser. 29% left; spend up to 2 percentage points.
 ```
 
-In Claude Code, use `/finite-time`. Other hosts can load
+In Claude Code, use `/finite-time`, for example with `62% used; spend up to
+8 percentage points`. Other hosts can load
 [SKILL.md](skills/finite-time/SKILL.md) directly with `TIME-LENS.md` beside it.
 
 When the agent has no usable picture of the current window, it asks:
 
-> How much of your nearest quota window is used or left, and how many percentage
-> points may this task spend? You can give just used/left; I'll plan the task
-> allowance.
+> How much of your nearest quota window is left, and how many percentage points
+> may this task spend? You can give just left; I'll plan the allowance.
+
+That is the Codex/ChatGPT wording. In Claude, the question uses **used**. The
+agent follows your preference or actual display when it differs from these
+defaults. It calculates and returns a boundary directly in the same terms:
+**29% left, two points for the task → return with at least 27% left.**
+Codex subtracts spending from left; Claude adds it to used. A conversion is
+needed only when you change notation or request one.
 
 A usable picture carries forward across tasks: the last real pulse plus
 accounted work and an honest estimate. The agent asks for a refresh when it
@@ -103,15 +112,16 @@ the loop.
 
 | You supply | The agent does |
 | --- | --- |
-| A real reading: `62% used` or `38% left` | Establishes the same 38-point remainder. |
-| `Spend 8% on this task` | Plans to return by 70% used, including closure. |
-| `Return by 78%` | Treats 78% as an absolute boundary. |
+| Codex: `29% left; spend two points` | Returns with at least 27% left, including closure. |
+| Claude: `62% used; spend eight points` | Returns before 70% used, including closure. |
+| `Return with at least 22% left` | Keeps 22% left as the return floor. |
+| `Return before 78% used` | Keeps 78% used as the return ceiling. |
 | Only the current reading | Invites an allowance when needed, then sizes the work if you leave it to the agent. |
 | A new pulse during work | Reprices the next complete unit and closes early if it no longer fits. |
 | An observed miss or correction | Rewrites the installed time lens for the next session. |
 
 The final ten points of a full window belong to the owner by default. An earlier
-target takes precedence: **62 → 78 means 16 gross points, not six.** Verification,
+target takes precedence: **38% left → 22% left gives 16 gross points.** Verification,
 saving, and the return message must also fit before the target. The owner can
 explicitly change or release the reserve.
 

@@ -92,3 +92,22 @@ test installation's lens was then restored to its distributed starting state.
 
 Tested skill SHA-256:
 `f3c5e8bd5637ffe60abaf40e4e315d576dd9cd7d94dbb53d9ca7353d4980c12e`.
+
+## Edition 2026-10-06.3: native quota notation
+
+An independent agent read the revised protocol and checked four scenarios
+directly in each owner's notation:
+
+| Scenario | Recorded calculation and response |
+| --- | --- |
+| Codex: 29% left, two-point allowance | `29 - 2 = 27`; return with at least 27% left. |
+| Claude: 62% used, eight-point allowance | `62 + 8 = 70`; return before 70% used. |
+| Claude owner explicitly prefers left: 40% left, 20% of the remainder | `40 * 0.20 = 8`, then `40 - 8 = 32`; return with at least 32% left. |
+| Codex: 11% left, requested floor 2%, reserve still protected | `max(2, 10) = 10`; only one point remains for work and closure. Admit a unit only if its complete cost fits. |
+
+The responses retained the owner's notation and the arithmetic used that same
+native clock. The reserve remained protected and the explicit owner preference
+took priority over the host default.
+
+Tested skill SHA-256:
+`3ceb198b7d7f0059abe14e8b464f9dfeaeb00148d9fdf5116ec107fc823502bf`.

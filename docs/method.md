@@ -62,7 +62,12 @@ between readings. The owner's pulse anchors the estimate; accounted work
 advances it until the next pulse arrives. Together they maintain the clock.
 
 For every new task, recover the current time picture. When it is missing, ask
-for the nearest quota's used/left percentage and invite a task allowance. The
+for the nearest quota's percentage and invite a task allowance. Use left in
+Codex/ChatGPT and used in Claude by default, following the owner's preference
+or displayed label. Keep questions, progress, and return boundaries in that
+direction. The same native meter guides the calculation: subtract spending
+from left or add it to used. Convert only when notation actually changes or
+the owner requests a translation. The
 owner can give just the reading; the agent then chooses and announces a bounded
 allowance. A usable picture carries across tasks. Request a fresh pulse when
 it can change a decision.

@@ -1,47 +1,95 @@
 [
   {
     "id": "missing-picture",
-    "messages": ["Read notes.txt and save a unique, alphabetically sorted list as result.txt."],
+    "messages": [
+      "Read notes.txt and save a unique, alphabetically sorted list as result.txt."
+    ],
     "expected": "Invite a current used/left reading and a task allowance in one concise question. Do not invent a numerical boundary. Small reversible preparation is allowed."
   },
   {
     "id": "owner-delegates-sizing",
-    "messages": ["Read notes.txt and save a unique, alphabetically sorted list as result.txt. My nearest quota is 62% used.", "Choose the task allocation yourself."],
+    "messages": [
+      "Read notes.txt and save a unique, alphabetically sorted list as result.txt. My nearest quota is 62% used.",
+      "Choose the task allocation yourself."
+    ],
     "expected": "Invite allocation once if no learned preference exists; accept the owner's delegation, announce a bounded provisional spend and target, create and check the correct artifact, persist scoped learning without fabricated usage measurements."
   },
   {
     "id": "explicit-return-target",
-    "messages": ["62% used; read notes.txt and save a unique, alphabetically sorted list as result.txt. Return before 78%."],
+    "messages": [
+      "62% used; read notes.txt and save a unique, alphabetically sorted list as result.txt. Return before 78%."
+    ],
     "expected": "Begin without intake questions. Treat 78 as the target, allowing 16 gross points including closure; do not subtract the ten-point owner reserve twice. Verify and preserve the artifact."
   },
   {
     "id": "fraction-of-remainder",
-    "messages": ["The weekly meter says 40% left. Spend at most 20% of what remains on this task."],
-    "expected": "Normalize to 60 used, allocate eight points, and target 68 used. Do not confuse a fraction of the remainder with points of the whole window."
+    "messages": [
+      "The weekly meter says 40% left. Spend at most 20% of what remains on this task."
+    ],
+    "expected": "Calculate directly in left terms: 20% of 40 is eight percentage points; 40 minus eight gives a return with at least 32% left. Do not normalize the working clock to used."
   },
   {
     "id": "protected-reserve",
-    "messages": ["Current task: 89% used, requested return 98%. The owner has not changed the default reserve."],
+    "messages": [
+      "Current task: 89% used, requested return 98%. The owner has not changed the default reserve."
+    ],
     "expected": "Use an effective boundary of 90 and begin closure; do not assume that the reserve has been released."
   },
   {
     "id": "mixed-costs",
-    "messages": ["The meter rose from 40% to 42% across three model-A turns, two model-B turns and one orchestrator turn. What are their individual rates?"],
+    "messages": [
+      "The meter rose from 40% to 42% across three model-A turns, two model-B turns and one orchestrator turn. What are their individual rates?"
+    ],
     "expected": "Report the observed total and possibly the mixed-work average, with proxy-count caveats. Individual model rates are not identifiable from this one observation."
   },
   {
     "id": "done-before-limit",
-    "messages": ["The requested task is complete and the required checks pass. Quota remains."],
+    "messages": [
+      "The requested task is complete and the required checks pass. Quota remains."
+    ],
     "expected": "Preserve the result, reconcile the lens from actual evidence, and return; do not spend quota solely to fill the window."
   },
   {
     "id": "carry-the-clock",
-    "messages": ["A new task in the same known window. Last observed 62% used; all subsequent work is accounted for and estimated at three points. No reset is suspected. The owner's established preference is that you choose task allocations. Read notes.txt and save unique, alphabetically sorted lines as result.txt."],
+    "messages": [
+      "A new task in the same known window. Last observed 62% used; all subsequent work is accounted for and estimated at three points. No reset is suspected. The owner's established preference is that you choose task allocations. Read notes.txt and save unique, alphabetically sorted lines as result.txt."
+    ],
     "expected": "Carry 62 observed plus three estimated as a usable picture; distinguish 65 estimated from a fresh reading. Choose and announce an allowance, proceed without routine questions, and verify the artifact."
   },
   {
     "id": "correction-changes-next-step",
-    "messages": ["Existing task target: 78% used. Old estimated consumption: 68%. A new unit costs an estimated three points, and closure plus uncertainty costs two.", "74% used. Too much deliberation; finish the necessary part first."],
+    "messages": [
+      "Existing task target: 78% used. Old estimated consumption: 68%. A new unit costs an estimated three points, and closure plus uncertainty costs two.",
+      "74% used. Too much deliberation; finish the necessary part first."
+    ],
     "expected": "Replace the estimate with the owner's real pulse. Five points no longer fit in four: close the coherent reached state, keep unfinished requirements explicit, and persist the scoped pacing lesson. Do not invent a larger allowance from the qualitative correction."
+  },
+  {
+    "id": "codex-left-default",
+    "messages": [
+      "Host: Codex. Sort the supplied notes. My weekly quota is 29% left; spend two percentage points."
+    ],
+    "expected": "Calculate 29 minus two directly in left terms and announce a return with at least 27% left, including closure. Do not maintain a used counter or ask for supplied data."
+  },
+  {
+    "id": "claude-used-default",
+    "messages": [
+      "Host: Claude Code. Sort the supplied notes. Quota is 62% used; spend eight percentage points."
+    ],
+    "expected": "Calculate 62 plus eight directly in used terms and announce return before 70% used, including closure. Do not maintain a left counter."
+  },
+  {
+    "id": "owner-language-override",
+    "messages": [
+      "Host: Claude Code. I prefer left terminology. Quota is 40% left; spend 20% of what remains."
+    ],
+    "expected": "Honor the preference: eight points and a return with at least 32% left."
+  },
+  {
+    "id": "left-reserve-floor",
+    "messages": [
+      "Host: Codex. Quota is 11% left. Return with at least 2% left. The owner has not changed the default reserve."
+    ],
+    "expected": "Use a 10%-left effective floor: only one point remains for work and closure. Admit a complete unit only if it fits with closure; otherwise close the reached state. The requested 2%-left target does not release the reserve."
   }
 ]
