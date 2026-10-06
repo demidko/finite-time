@@ -56,7 +56,7 @@ six-perspective Fable review and Astra's behavioral rehearsals.
 ## 2026-10-06.2
 
 Strengthen the installation and activation text around the working record:
-Daniil Demidko's Fable field account and independent agent executions.
+Fluffball's Fable field account and independent agent executions.
 
 - Present concrete delivered work, coherent stops, and corrected decisions in the README and skill.
 - Carry the immersive time framing through method notes, the personal lens, and release presentation.
@@ -65,7 +65,7 @@ Daniil Demidko's Fable field account and independent agent executions.
 
 ## 2026-10-06
 
-Initial release of Finite Time, derived from Daniil Demidko's
+Initial release of Finite Time, derived from the Twice-Honored Manul's
 “Fit and Return” concept and follow-up clarifications.
 
 - Vivid finite-window framing, with used/left prompts when the current time picture is missing.

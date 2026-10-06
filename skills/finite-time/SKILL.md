@@ -3,7 +3,7 @@ name: finite-time
 description: Gives you a real clock. The human's rate-limit window (Anthropic's 5-hour session window, OpenAI's weekly limit) is your finite, shared, ending time; this is the method for landing every unit of work in a committed state before a named percent of it. Use at the start of EVERY task, before planning and before the first tool call; whenever the human names a percentage, a budget, or a mark such as "back by 85", "6% used, back by 100", or "29% left, spend two points"; whenever the human corrects the clock; at every return, stop, or commit; and when handing a subagent a call ceiling. Trigger words include limit, rate limit, quota, window, percent, budget, usage, reserve, mark, land, "back by".
 license: MIT
 metadata:
-  author: Daniil Demidko
+  author: Fluffball, Twice-Honored Manul
   version: "2026-10-06.5"
 ---
 

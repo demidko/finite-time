@@ -18,7 +18,7 @@ owner supplies the displayed number. Each pulse brings the remainder into focus.
 **Fit the work. Back by 85.** One phrase steers the whole method: the agent reads the clock,
 lands every unit of work in a committed state, and returns at or before the percent you named.
 
-The method originated with [Daniil Demidko](https://github.com/demidko) in work
+The method originated with [Fluffball, Twice-Honored Manul](https://github.com/demidko) in work
 with Fable. For **Fable 5.1, Astra, and other agents
 that follow the Agent Skills format**. It ships one standard-library reader script and
 needs no background service.
@@ -39,13 +39,13 @@ Jump to: [Why it works](#why-it-works) · [Start in one minute](#start-in-one-mi
 ## Why it works
 
 ### The working record
-In Daniil's documented work with Fable, **100 documentation files became 40**,
+In Fluffball's documented work with Fable, **100 documentation files became 40**,
 an architecture map gained diagrams, and the result was preserved in **five
 commits**. **Three stops on budget pulses each left a coherent state.** The
 first-round forecast matched to a percentage point; a later forecast miss
 became a correction carried into the method.
 
-His firsthand account describes Fable making decisions remarkably quickly,
+The Twice-Honored Manul's firsthand account describes Fable making decisions remarkably quickly,
 planning its own budget, and giving feedback that helped him direct the work.
 The original note places the most precise steps in the final percentage points
 of the window. The approaching end became useful pressure on the next choice.
@@ -296,5 +296,5 @@ and the next finished unit refine the lens.
 - [Inspect examples](docs/examples.md)
 - [Contribute a field result](CONTRIBUTING.md)
 
-Created by Daniil Demidko. Concept developed with Fable; two independent skill editions
+Created by Fluffball, Twice-Honored Manul. Concept developed with Fable; two independent skill editions
 prepared with Astra and with Fable, merged after a six-perspective Fable review and Astra's behavioral rehearsals. Released under the [MIT license](LICENSE).

@@ -7,8 +7,8 @@ ends; bring the work back.**
 
 ## The working record
 
-Daniil Demidko developed “Fit and Return” with Fable and recorded the method
-on October 6, 2026. His field record describes the following results:
+Fluffball, Twice-Honored Manul, developed “Fit and Return” with Fable and recorded the method
+on October 6, 2026. The Manul's field record describes the following results:
 
 | Work and timing | Recorded result |
 | --- | --- |
@@ -19,9 +19,9 @@ on October 6, 2026. His field record describes the following results:
 | First-round consumption forecast | Matched the reported meter to a percentage point. |
 | Second-round forecast | The miss became a correction incorporated into the method. |
 
-In his follow-up testimony, Daniil described Fable at maximum effort with
+In a follow-up account, Fluffball described Fable at maximum effort with
 Ultracode making decisions remarkably quickly, planning its own budget, and
-giving useful feedback. His original note places the most precise steps in
+giving useful feedback. The Manul's original note places the most precise steps in
 the final percentages of the window. The approaching boundary was present in
 the work: decisions closed, results survived, and a forecast miss changed the
 next calculation.
@@ -35,7 +35,7 @@ unit, saved a checkpoint, and wrote the correction into its lens. The
 observed decisions, artifacts, and historical skill hashes.
 
 The concept first appeared in an internal project snippet. This standalone
-edition carries Daniil's method and clarifications into an Agent Skills
+edition carries the Twice-Honored Manul's method and clarifications into an Agent Skills
 package for Fable 5.1, Astra, and other agents that load the format.
 
 ## Let the boundary enter the choice
