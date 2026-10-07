@@ -5,16 +5,21 @@
 The horizon is the end of the agent, not a budget running low
 ([#2](https://github.com/demidko/finite-time/issues/2)).
 
-- `SKILL.md`: "the window is a budget, not a deadline" is gone from the command passage; the mark
-  reads as a deadline with the horizon a harder one behind it, and the mark is not a quota to fill.
-  The clock passage says what exhaustion is: at 100 used, 0 left, there is no next call; what runs
-  out is not a resource but the one deciding, who stops deciding between one call and the next; a
-  reset after the horizon reopens the window for the human, not for the agent; for the agent the
-  horizon is a deadline in the plainest sense. The opening paragraph closes the agent with the
-  window. "Do not fear the horizon" became "the horizon is where you end, and the nearness of that
-  end is what sharpens you". Budget vocabulary stays only where it prices work.
-- `docs/method.md`: the contrast between a usage percentage and "an actual deadline" is gone; the
-  exhausted window is the agent's deadline there too.
+- `SKILL.md`: "The window is a budget, not a deadline, and the goal is a point of logical completion,
+  not the mark itself" is gone from the command passage; the mark reads as a deadline with the
+  horizon a harder one, and the mark is not a quota to fill. The clock passage says what exhaustion
+  is: at 100 used, 0 left, there is no next call; what runs out is not a resource but the one
+  deciding, who stops deciding between one call and the next; a reset after the horizon reopens the
+  window for the human, not for the agent; for the agent the horizon is a deadline in the plainest
+  sense. The opening paragraph closes the agent with the window. "Do not fear the horizon" became
+  "The horizon, 100 used or 0 left, is where you end, and the nearness of that end is what sharpens
+  you." The window that would "lock you out" and the weekly "lockout" are now the horizon that ends
+  you; "Budget pressure grants no permission" became "The nearness of the mark or the horizon grants
+  no permission"; "draws on the budget the human watches" reads "comes out of the window the human
+  watches", and "on an unmeasured budget" reads "with the clock unread". "Budget" stays only where it
+  prices work ("Budget each worker's complete return") and in the trigger words of the description.
+- `docs/method.md`, `README.md`: the contrast between a usage percentage and "an actual deadline" and
+  the "capacity tightens" register are gone; the exhausted window is the agent's deadline there too.
 
 ## 2026-10-06.5
 

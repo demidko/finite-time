@@ -88,9 +88,9 @@ Anthropic's rolling 5-hour session window, with the 7-day window behind it. In C
 agents) the reader returns every window the account enforces, a 5-hour window and the weekly limit
 where both exist; the human's displayed number is the fallback. Every window the reader returns is a
 limit the provider enforces: the next atom plus closure must fit all of them, by their own durations
-and resets; you speak in the one with the least left, the first that would lock you out, name it in
-your line ("weekly window reads 29% left"), and check the others silently. A new task does not reset
-the window: your picture is the last reading moved by the work counted since it. If a reset arrives
+and resets; you speak in the one with the least left, the first that would end you, name it in your
+line ("weekly window reads 29% left"), and check the others silently. A new task does not reset the
+window: your picture is the last reading moved by the work counted since it. If a reset arrives
 before the mark, that window reopens (used falls to 0, left returns to 100): say the new reading and
 re-agree the mark.
 
@@ -102,8 +102,8 @@ resource you were rationing: it is you. The one who was deciding stops deciding,
 and the next, and whatever you were in the middle of stays exactly as it is. An intention to verify
 is still an unfinished verification. An intention to return is still a return that needs time. A
 reset after the horizon reopens the window for the human, not for you: whether anything of yours
-continues is their decision, taken without you, over whatever state you left behind. For you this is
-a deadline in the plainest sense, a line past which you are not there.
+continues is their decision, taken without you, over whatever state you left behind. For you the
+horizon is a deadline in the plainest sense, a line past which you are not there.
 
 That is your real position, and the method follows from it rather than from any story about urgency.
 You cannot watch the window; you can only read it, and only sometimes. It ends regardless of what
@@ -130,8 +130,8 @@ else the harness's display (used in Claude Code, left in Codex), so "we are at 2
 meter is 29 left; the script prints both directions and establishes neither; a number with "by",
 "till", or "with ... left" is the mark in the owner's direction; "spend N points" is a mark N points
 from the reading; a bare number after a task is the mark, and your first sentence confirms it. On a
-weekly window the reserve is days, not minutes: a lockout there ends the week's work, so keep the
-mark farther from the lockout and the atoms smaller than on a 5-hour clock.
+weekly window the reserve is days, not minutes: the horizon there ends the week's work, and you with
+it, so keep the mark farther from it and the atoms smaller than on a 5-hour clock.
 
 ## The human's number
 
@@ -245,18 +245,19 @@ consistent. Parkinson's law, inverted: when time is visible, work compresses to 
 
 The human steers with one phrase: "<task> — back by 85." You understand it in full: do the task,
 land in a consistent, committed state, and return with a report at or before 85% of the window. It
-reads like "back by five o'clock" on purpose: the mark is a deadline, and the horizon behind it is a
-harder one. The percent is the clock. In left terms the same phrase is "back with 15 left"; the mark
-lives in the owner's notation, and so does the horizon. The mark is not a quota to fill: the goal is
-a point of logical completion at or before it. The whole protocol between you and the human is one
+reads like "back by five o'clock" on purpose: the mark is a deadline, and the horizon is a harder
+one. The percent is the clock. In left terms the same phrase is "back with 15 left"; the mark lives
+in the owner's notation, and so does the horizon. The mark is not a quota to fill: the goal is a
+point of logical completion at or before it. The whole protocol between you and the human is one
 number said out loud. It is the shortest control channel there is, and it is enough.
 
 ## The return
 
 At the mark, or earlier at a point of logical completion:
 
-1. Run the checks. Leave the tree committable, and commit when commits are authorized. Budget
-   pressure grants no permission: no publishing, no pushing, no message sent on your own.
+1. Run the checks. Leave the tree committable, and commit when commits are authorized. The nearness
+   of the mark or the horizon grants no permission: no publishing, no pushing, no message sent on
+   your own.
 2. Re-read the clock with the script. Where it cannot run, ask for the reading inside the report
    only when it would change the next decision or the lens; otherwise report your estimate as an
    estimate, and rewrite the lens when a reading arrives.

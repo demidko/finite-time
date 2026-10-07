@@ -204,8 +204,8 @@ saving, and the return message must also fit before the target. The owner can
 explicitly change or release the reserve.
 
 The agent measures cost through useful work, protects coherent checkpoints, and
-shortens optional exploration as capacity tightens. It finishes when the task
-is done; unused capacity remains yours.
+shortens optional exploration as the end of the window nears. It finishes when
+the task is done; the unused window remains yours.
 
 ## A skill that learns your pace
 
