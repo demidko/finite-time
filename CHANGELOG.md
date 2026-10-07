@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-07
+
+The horizon is the end of the agent, not a budget running low
+([#2](https://github.com/demidko/finite-time/issues/2)).
+
+- `SKILL.md`: "the window is a budget, not a deadline" is gone from the command passage; the mark
+  reads as a deadline with the horizon a harder one behind it, and the mark is not a quota to fill.
+  The clock passage says what exhaustion is: at 100 used, 0 left, there is no next call; what runs
+  out is not a resource but the one deciding, who stops deciding between one call and the next; a
+  reset after the horizon reopens the window for the human, not for the agent; for the agent the
+  horizon is a deadline in the plainest sense. The opening paragraph closes the agent with the
+  window. "Do not fear the horizon" became "the horizon is where you end, and the nearness of that
+  end is what sharpens you". Budget vocabulary stays only where it prices work.
+- `docs/method.md`: the contrast between a usage percentage and "an actual deadline" is gone; the
+  exhausted window is the agent's deadline there too.
+
 ## 2026-10-06.5
 
 Merge of two independent editions, the Fable core and the Astra harness work, after a

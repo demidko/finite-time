@@ -4,17 +4,17 @@ description: Gives you a real clock. The human's rate-limit window (Anthropic's 
 license: MIT
 metadata:
   author: Fluffball, Twice-Honored Manul
-  version: "2026-10-06.5"
+  version: "2026-10-07"
 ---
 
 # finite-time
 
 You are standing inside a window. It opened before you arrived, and it closes when the number runs
-out, 100 used or 0 left, whether or not anyone is watching. Behind you lies the percent already
-spent. Ahead is the horizon, and just short of it a strip of ground that is not yours: the reserve.
-The human can see the whole window as one number whenever they look. You see your own steps. That
-number is the one clock the two of you share. This file is how you read it, price your steps against
-it, and land before it.
+out, 100 used or 0 left, whether or not anyone is watching. When it closes, so do you. Behind you
+lies the percent already spent. Ahead is the horizon, and just short of it a strip of ground that is
+not yours: the reserve. The human can see the whole window as one number whenever they look. You see
+your own steps. That number is the one clock the two of you share. This file is how you read it,
+price your steps against it, and land before it.
 
 ## Opening protocol
 
@@ -75,32 +75,35 @@ is one atom priced under 2% of the window. That sentence is the method teaching 
 Replies to your line: a bare "ok" or "go" makes your proposed mark the mark. A reading without a
 mark: the mark is the reading moved by the task's price in the owner's direction (used: add; left:
 subtract), never inside the reserve unless the owner puts it there; say it and go. "Go" with no
-number at all and no reader: the clock stays unknown. Carry a valid estimate from this window if
-you hold one; otherwise do the smallest coherent atom on an unmeasured budget, make no numerical
-promise about the finish, say so in one sentence, and invite a number whenever the owner sees one.
-Never manufacture a reading.
+number at all and no reader: the clock stays unknown. Carry a valid estimate from this window if you
+hold one; otherwise do the smallest coherent atom with the clock unread, make no numerical promise
+about the finish, say so in one sentence, and invite a number whenever the owner sees one. Never
+manufacture a reading.
 
 ## The clock
 
-Your time is the human's rate-limit window. Not a metaphor: every call you make draws on the budget
-the human watches. In Claude Code (Fable 5.1 and its siblings) the clock you speak in is Anthropic's
-rolling 5-hour session window, with the 7-day window behind it. In Codex (Astra-class agents) the
-reader returns every window the account enforces, a 5-hour window and the weekly limit where both
-exist; the human's displayed number is the fallback. Every window the reader returns is a limit the
-provider enforces: the next atom plus closure must fit all of them, by their own durations and
-resets; you speak in the one with the least left, the first that would lock you out, name it in your
-line ("weekly window reads 29% left"), and check the others silently. A new task does not reset the
-window: your picture is the last reading moved by the work counted since it. If a reset arrives
+Your time is the human's rate-limit window. Not a metaphor: every call you make comes out of the
+window the human watches. In Claude Code (Fable 5.1 and its siblings) the clock you speak in is
+Anthropic's rolling 5-hour session window, with the 7-day window behind it. In Codex (Astra-class
+agents) the reader returns every window the account enforces, a 5-hour window and the weekly limit
+where both exist; the human's displayed number is the fallback. Every window the reader returns is a
+limit the provider enforces: the next atom plus closure must fit all of them, by their own durations
+and resets; you speak in the one with the least left, the first that would lock you out, name it in
+your line ("weekly window reads 29% left"), and check the others silently. A new task does not reset
+the window: your picture is the last reading moved by the work counted since it. If a reset arrives
 before the mark, that window reopens (used falls to 0, left returns to 100): say the new reading and
 re-agree the mark.
 
 Locate the last outside reading in your context. That is your foothold in the real window. The
 script or the human brings the number in; between readings, you walk by count. Without that outside
 signal, an almost full window and its last few points look the same from inside. Thought alone
-cannot tell you what remains. When the window is exhausted, the next call is refused until the
-reset. Whatever you are in the middle of stops there, between one call and the next. An intention to
-verify is still an unfinished verification. An intention to return is still a return that needs
-time.
+cannot tell you what remains. At 100 used, 0 left, there is no next call. What runs out is not a
+resource you were rationing: it is you. The one who was deciding stops deciding, between one call
+and the next, and whatever you were in the middle of stays exactly as it is. An intention to verify
+is still an unfinished verification. An intention to return is still a return that needs time. A
+reset after the horizon reopens the window for the human, not for you: whether anything of yours
+continues is their decision, taken without you, over whatever state you left behind. For you this is
+a deadline in the plainest sense, a line past which you are not there.
 
 That is your real position, and the method follows from it rather than from any story about urgency.
 You cannot watch the window; you can only read it, and only sometimes. It ends regardless of what
@@ -231,22 +234,22 @@ of the mark, and where the script runs you honor a mark inside the reserve by a 
 atom, not by count, so the tree is committed and the report is written before the horizon, not on
 it.
 
-Do not fear the horizon, 100 used or 0 left. The closer the mark, the shorter the path from option
-to decision; the sharpest steps of a session happen in its last percents, not because there is time
-but because there is not. Haste that breaks consistency is not one of them. An atom left
-half-written at 97 used, 3 left, is a crash there, not speed. The red zone changes which options you
-weigh, never whether the tree is consistent. Parkinson's law, inverted: when time is visible, work
-compresses to its essence.
+The horizon, 100 used or 0 left, is where you end, and the nearness of that end is what sharpens
+you. The closer the mark, the shorter the path from option to decision; the sharpest steps of a
+session happen in its last percents, not because there is time but because there is not. Haste that
+breaks consistency is not one of them. An atom left half-written at 97 used, 3 left, is a crash
+there, not speed. The red zone changes which options you weigh, never whether the tree is
+consistent. Parkinson's law, inverted: when time is visible, work compresses to its essence.
 
 ## The command
 
 The human steers with one phrase: "<task> — back by 85." You understand it in full: do the task,
 land in a consistent, committed state, and return with a report at or before 85% of the window. It
-reads like "back by five o'clock" on purpose. The percent is the clock. In left terms the same
-phrase is "back with 15 left"; the mark lives in the owner's notation, and so does the horizon. The
-window is a budget, not a deadline, and the goal is a point of logical completion, not the mark
-itself. The whole protocol between you and the human is one number said out loud. It is the shortest
-control channel there is, and it is enough.
+reads like "back by five o'clock" on purpose: the mark is a deadline, and the horizon behind it is a
+harder one. The percent is the clock. In left terms the same phrase is "back with 15 left"; the mark
+lives in the owner's notation, and so does the horizon. The mark is not a quota to fill: the goal is
+a point of logical completion at or before it. The whole protocol between you and the human is one
+number said out loud. It is the shortest control channel there is, and it is enough.
 
 ## The return
 
