@@ -94,8 +94,10 @@ through both.
 
 Use the limit that can constrain the work next, whether a session window, a
 weekly quota, or another displayed boundary. “Time” here is the finite
-opportunity to finish and return. A usage percentage measures capacity in its
-own units; an actual deadline measures elapsed time. Keep those measures clear.
+opportunity to finish and return. A usage percentage is counted in the
+provider's units rather than in minutes, but its exhaustion is the agent's
+deadline in the plainest sense: past it the agent is gone, and no decision of
+its own follows.
 
 Completion restores choice to the owner: use the result, continue, or step
 away. Once the requested work is complete and sufficiently checked, return.
