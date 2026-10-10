@@ -13,42 +13,39 @@ that system, subtracting spending from left or adding it to used.
 **Owner:** Refactor the parser and cover the new syntax.
 
 The agent reads the authenticated Codex meter. In this example, the relevant
-window reports 29% left. The owner's standing preference delegates task sizing.
+window reports 29% left. The owner's standing preference leaves the mark to the agent.
 
-**Agent:** The live meter shows 29% left. I'll allocate two points and return
-with at least 27% left, including checks and saving.
+**Agent:** The live meter shows 29% left. The refactor prices at two points
+with checks and saving; I'll land it with 27 left. Say another number if you
+want it different.
 
 ### With no accessible quota source
 
 **Owner:** Refactor the parser and cover the new syntax.
 
-**Agent:** How much of your nearest quota window is left, and how many
-percentage points may this task spend? You can give just left; I'll plan
-the allowance.
+**Agent:** I can't read the weekly window from here. What percent are we at,
+and back by what? One number is the reading and I'll set the mark from it; two
+numbers are the reading and the mark.
 
 **Owner:** 38% left. You decide.
 
-**Agent:** I'll provisionally allocate eight points and return with at least
-30% left, including checks and saving. I'll first price the smallest parser
-change against the current window.
+**Agent:** No rate on this meter yet: I'll land the first parser piece with 37
+left and price the rest from the reading there. Back with 37 left?
 
-The eight-point choice needs to follow the actual task and available evidence;
-it is not the skill's universal default.
+The first piece is priced alone because the meter has no rate yet; the reading
+at its landing sets the rate, and the rest is priced then as a statement.
 
-## Claude: current reading supplied; allowance omitted
+## Claude: current reading supplied; mark omitted
 
 **Owner:** Update the migration guide. 62% used.
 
-**Agent:** How many percentage points should this task use? I can choose the
-allowance from the work if you prefer.
+**Agent:** Priced at five points with link checks and saving. Back by 67?
 
-**Owner:** Choose it.
+**Owner:** ok.
 
-**Agent:** I'll use up to five points and return by 67% used, including link
-checks and saving.
-
-The agent asks once. It does not keep requesting an allocation after the owner
-leaves that decision to it.
+The agent says the line once, as a question a single "ok" can answer, and
+starts on the go. It does not ask how many points it may spend: the price is
+its own count, and the mark follows from it.
 
 ## Claude: the next unit no longer fits as priced
 
@@ -79,18 +76,18 @@ commits, and returns at 14. Early is early only with done in front of it.
 
 ## Claude: the mark is short at the opening
 
-**Owner:** 62% used. Consolidate all twelve sections of the guide; return
-before 66%.
+**Owner:** 62% used. Rewrite all twelve sections of the guide in the house
+style; return before 66%.
 
-**Agent:** Twelve sections at a point each and two for closure is fourteen;
-the mark holds four. Folded to one call per section they are seven with
-closure. By 66 I can land six sections checked; the whole guide needs back by
-70. Which?
+**Agent:** Twelve sections, a write apiece at half a point, and one for closure
+is seven; the mark holds four, and a rewrite cannot be scripted below one call
+a section. Six sections land by 66; the whole guide needs back by 69. Which?
 
 This is the one moment the fit is discussed: before the first call, with the
-arithmetic, and the scope is the owner's to cut. After "by 70" or "six
-sections" the agent fits what was agreed and does not raise the question
-again.
+arithmetic, and the scope is the owner's to cut by naming what to drop. A bare
+"ok" takes 69, the one mark the agent proposed; "66" restated without a cut is
+the whole guide by 66, the fit the agent's to make. Either way the question
+does not come back.
 
 ## Codex: a fraction of the remainder
 

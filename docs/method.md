@@ -15,7 +15,7 @@ on October 6, 2026. The Honored Manul's field record describes the following res
 | Documentation consolidation | 100 documentation files became 40. |
 | Architecture documentation | An architecture map with diagrams was produced. |
 | Preserved work | Five commits. |
-| Stops at budget pulses | Three stops; none left unfinished debris. |
+| Stops at clock readings | Three stops; each left a consistent, committed tree. |
 | First-round consumption forecast | Matched the reported meter to a percentage point. |
 | Second-round forecast | The miss became a correction incorporated into the method. |
 
@@ -29,8 +29,10 @@ next calculation.
 The portable skill also has an independent execution record: nine behavioral
 cases with synthetic quota pulses, including three saved and reread sorting
 artifacts. The agent carried an existing time picture into a new task without
-repeating intake. When a new pulse consumed the margin, it rejected the next
-unit, saved a checkpoint, and wrote the correction into its lens. The
+repeating intake. When a new pulse consumed the margin, that edition rejected
+the next unit and saved a checkpoint; the current edition reprices the unit,
+folds its write and check into one call, lands it before the mark, and writes
+the correction into its lens. The
 [validation record](../evals/validation-2026-10-06.md) preserves the setup,
 observed decisions, artifacts, and historical skill hashes.
 
@@ -72,15 +74,15 @@ the owner's displayed reading supplies the same external grounding.
 
 For every new task, recover the current time picture. When a pulse is needed,
 read the available live meter or ask the owner for the displayed percentage.
-Invite a task allowance. Use left in
+Price the whole task and say the mark in the same line. Use left in
 Codex/ChatGPT and used in Claude by default, following the owner's preference
 or displayed label. Keep questions, progress, and return boundaries in that
 direction. Adapt external transport fields once at ingestion. The same native
 meter then guides the calculation: subtract spending from left or add it to used.
 Convert further only when notation actually changes or
 the owner requests a translation. The
-owner can give just the reading; the agent then chooses and announces a bounded
-allowance. A usable picture carries across tasks. Request a fresh pulse when
+owner can give just the reading; the agent then prices the whole task and
+announces the mark that price sets. A usable picture carries across tasks. Request a fresh pulse when
 it can change a decision.
 
 These questions introduce the human to the concept. Through actual work, the
@@ -128,7 +130,7 @@ The distributed lens begins ready to learn its owner's actual costs.
 
 Follow the effect of the method in concrete work:
 
-- Completed useful units at each interruption or return.
+- The whole task done at each return, and a committable tree at each interruption.
 - Coherence of the saved state and the cost of resuming it.
 - Actual consumption at closure, including verification and delivery.
 - Forecast error and the correction carried into the next task.

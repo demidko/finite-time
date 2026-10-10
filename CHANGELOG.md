@@ -42,6 +42,28 @@ sentences that excused it.
   pulse no longer "closes early if it no longer fits"; a return before done is a missed deadline.
 - `docs/examples.md`: the unit that no longer fits as priced is folded and landed, not refused; two
   new dialogues, room before the mark and a mark short at the opening.
+- Review of the edition: two adversarial readers (Claude Fable 5.1 at xhigh: an agent hunting for a
+  sentence it could cite to stop early, an editorial judge against the owner's rules) and three
+  rehearsals of the changed cases on the new text with usage.py absent and the readings in the
+  owner's messages (Opus 5.5 xhigh on the correction case, Fable 5.1 xhigh on the room and opening
+  cases). The correction case folded the last two files and the lens into one call at the 74 reading
+  and returned done at 77 under a mark of 78; the room case went on from 12 to the second file and
+  returned done at 15, exactly at the mark; the opening case, run against an input the fixture did
+  not hold, returned missed with the reason and fabricated nothing. The readers' findings are
+  applied: the opening prices the folded plan with the margin, proposes the one mark the whole task
+  needs when the human's is short, and a cut exists only when the human names what to drop; a mark
+  in the task statement makes the line a statement whatever the lens knows; the human's reading
+  moves the rate and the price and never reopens the fit; an atom that fails at the floor is split
+  and pieces land in plan order until the mark; the mark reached with anything undone lands the atom
+  in hand and returns missed, never into the reserve and never early; the subagent threshold is
+  where the worker compresses, and a worker past its mark returns missed with what is missing; the
+  weekly first reading is read or invited without waiting; the reserve is spent on corrections and
+  the last landing move only, and a mark inside it keeps the whole task due; the return's four steps
+  are an order, not four calls; margin is at most a point where no reading exists; the lens changes
+  how the next session spends, never what it delivers; the task is fixed by the human's words alone.
+  Docs and cases drop the allowance and allocation language for the priced mark, the 2026-10-06
+  refusal is marked as that edition's behavior beside the current repricing, and the short-mark
+  example prices a rewrite that cannot be scripted (69, not 70).
 - `evals/cases.json`: the correction case expects re-pricing and a landed unit; the left-floor case
   brings the price down instead of closing the reached state; three new cases: room-before-the-mark,
   mark-short-at-opening, burn-faster-than-forecast.

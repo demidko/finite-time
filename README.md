@@ -10,7 +10,7 @@
 </p>
 
 Your working window is real, finite, and already passing. Finite Time brings
-that boundary into every choice: what to open, what to finish, and when to
+that boundary into every choice: what to open, how to fit it, and when to
 bring the work back. The real quota and the agent's accounted steps form a
 shared clock. The agent reads its live meter itself, in Claude Code and in Codex; otherwise the
 owner supplies the displayed number. Each pulse brings the remainder into focus.
@@ -42,7 +42,7 @@ Jump to: [Why it works](#why-it-works) · [Start in one minute](#start-in-one-mi
 ### The working record
 In Fluffball's documented work with Fable, **100 documentation files became 40**,
 an architecture map gained diagrams, and the result was preserved in **five
-commits**. **Three stops on budget pulses each left a coherent state.** The
+commits**. **Three stops at clock readings each left a consistent, committed tree.** The
 first-round forecast matched to a percentage point; a later forecast miss
 became a correction carried into the method.
 
@@ -55,15 +55,18 @@ Independent Codex executions exercised the protocol across **nine scripted
 quota scenarios**. Three executions produced and verified their requested
 files. A subsequent task carried **62% used + 3 estimated points = 65% used**
 forward without another intake question. When a new **74% used** pulse replaced
-a **68% used** estimate, the agent rejected work that would exceed **78% used**,
-saved the reached checkpoint, and wrote the pacing correction into its lens.
+a **68% used** estimate, that edition's agent refused the unit as priced, saved a
+checkpoint, and wrote the pacing correction into its lens; the current edition
+reprices the unit, folds its write and check into one call, and lands it checked
+before **78% used**.
 
 A follow-up pass began with the installation text and reproduced the carried
-clock, the corrective stop, and a concise request when the reading was missing.
+clock, the stop at the corrected reading that the current edition replaces with
+a repricing, and a concise request when the reading was missing.
 It saved another checked file and persisted the updated lens.
 
-These records show the method in action: a pulse changes a decision, a complete
-result survives the stop, and the lesson changes the next run. Read the
+These records show the method in action: a pulse changes a decision, a committed
+tree survives every boundary, and the lesson changes the next run. Read the
 [field account and mechanism](docs/method.md) and the
 [execution record](evals/validation-2026-10-06.md).
 
@@ -105,7 +108,7 @@ The urgency it produces is grounded in a consequence that will actually occur.
   tokens spent on those paths. This is why the owner's number overrides the agent's count, why the
   rate is calibrated from readings rather than from the model's self-estimate, and why the next
   atom must pass an admission test before it starts.
-- **Return something usable at any stop.** Zhang et al. (ACL 2026 Findings) formalize anytime
+- **A committable tree at any stop.** Zhang et al. (ACL 2026 Findings) formalize anytime
   reasoning under token budgets with the Anytime Index, the rate at which solution quality grows
   with spent tokens. Zilberstein (1996) and Russell and Subramanian (1995) laid the classical
   ground: interruptible computation whose state is coherent at every stop, and agents rational
@@ -204,7 +207,7 @@ documentation written for you.
 | Claude: `62% used; spend eight points` | Returns before 70% used, including closure. |
 | `Return with at least 22% left` | Keeps 22% left as the return floor. |
 | `Return before 78% used` | Keeps 78% used as the return ceiling. |
-| Only the current reading | Invites an allowance when needed, then sizes the work if you leave it to the agent. |
+| Only the current reading | Prices the whole task and proposes the mark from it in one line; "ok" makes it the mark. |
 | A new pulse during work | Reprices the rest and compresses its own process to fit; the scope stays yours. |
 | An observed miss or correction | Rewrites the installed time lens for the next session. |
 
