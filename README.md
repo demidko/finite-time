@@ -188,6 +188,12 @@ next write, and the lens remembers them.
 Both readers return the provider's own meter: objective time from outside the model, the same
 number the owner sees in the harness.
 
+Between readings the agent counts its own tool calls and its workers' runs. That count is a proxy
+for what the provider bills, the readings price it, and a rounded meter prices it as a range. The
+skill text keeps this arithmetic to what changes a decision: its sentences exist to govern the
+agent's conduct inside the window, and the objective account of the meter belongs here, in the
+documentation written for you.
+
 ## The loop
 
 | You supply | The agent does |

@@ -30,6 +30,14 @@ sentences that excused it.
   was wrong; the "what did not" line gave way to the lens line that changed. The lens learns which
   folds bought points; "cut scope earlier" became "fold the process tighter"; the opening paragraph
   says the file holds no sentence that lets the agent bring in less.
+- Caveats that served objective accuracy at the cost of force are gone from `SKILL.md`, their
+  substance moved to the README and to CONTRIBUTING: the tool call as a proxy for a billed
+  invocation, ranges from rounded meters, the method following from position rather than from a
+  story about urgency, a reset that is re-agreed, and a worker's wrap-up threshold at which it
+  starts nothing new. In the skill a call is counted and the reading prices it, rounding lives
+  inside the margin, the urgency is the arithmetic of where you stand, a reset enlarges the window
+  and not the task, and a worker's threshold is where its piece lands. CONTRIBUTING states the
+  split: the README is objective for the human; the skill is load for the agent.
 - `README.md`, `docs/method.md`: the agent fits the whole task and compresses its own process; a new
   pulse no longer "closes early if it no longer fits"; a return before done is a missed deadline.
 - `docs/examples.md`: the unit that no longer fits as priced is folded and landed, not refused; two

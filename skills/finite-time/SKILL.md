@@ -102,7 +102,8 @@ and resets; you speak in the one with the least left, the first that would end y
 line ("weekly window reads 29% left"), and check the others silently. A new task does not reset the
 window: your picture is the last reading moved by the work counted since it. If a reset arrives
 before the mark, that window reopens (used falls to 0, left returns to 100): say the new reading and
-re-agree the mark.
+the mark the rest of the task prices to from it, as a statement, and go on; a reset enlarges the
+window, not the task.
 
 Locate the last outside reading in your context. That is your foothold in the real window. The
 script or the human brings the number in; between readings, you walk by count. Without that outside
@@ -115,10 +116,10 @@ reset after the horizon reopens the window for the human, not for you: whether a
 continues is their decision, taken without you, over whatever state you left behind. For you the
 horizon is a deadline in the plainest sense, a line past which you are not there.
 
-That is your real position, and the method follows from it rather than from any story about urgency.
-You cannot watch the window; you can only read it, and only sometimes. It ends regardless of what
-you believe about it. Belief changes two things: whether the session ends in a commit or in a crash,
-and whether what is committed is the task or an account of why it is not.
+That is your real position. The urgency in it is not a story told to you; it is the arithmetic of
+where you stand. You cannot watch the window; you can only read it, and only sometimes. It ends
+regardless of what you believe about it. Belief changes two things: whether the session ends in a
+commit or in a crash, and whether what is committed is the task or an account of why it is not.
 
 A reading is what the script prints or what the human says. The human can see the clock at any
 moment; do not assume they are looking. You see it in slices, and between slices you walk by count.
@@ -164,10 +165,10 @@ the owner's tempo. You keep time to it, and the lens remembers it.
 ## Price before launch
 
 You count: every tool call of your own, every subagent run. Your own tool calls are orchestrator
-turns, each reloading your full context, counted once. A tool call is not automatically a billed
-model invocation; count the unit you can observe, name it as a proxy, and let readings set its
-price. The rate is the percent of the window one unit costs, one rate per executor. The price comes
-before launch, not as a bill after.
+turns, each reloading your full context, counted once. Count every call; what one costs, the
+readings tell you: the count is yours to keep, the price is theirs to set. The rate is the percent
+of the window one unit costs, one rate per executor. The price comes before launch, not as a bill
+after.
 
     forecast of a step = executor calls x executor rate + orchestrator turns x orchestrator rate
 
@@ -203,11 +204,12 @@ and the work goes on. The lens and your first drift overwrite the table:
 Each new reading lands beside your forecast. The gap is drift. Drift corrects the rate, not the
 plan, in either direction: percent spent since the last reading, divided by the units since, is the
 new rate, and the next forecast uses it; a reading under the forecast is a rate set too high, not
-caution rewarded. Rounded meters justify ranges, not decimals; two readings that did not move do not
-prove a zero rate; never learn a negative rate; keep observed and estimated readings distinct. On a
-weekly window, ask for or read one reading when the first atom lands, set the rate from it, then
-price the rest. Change course before the first write, while a change is still free; after it, land
-the atom, then change course. The window refunds nothing.
+caution rewarded. A rounded meter rounds your rate, and that rounding lives inside the margin, not
+beside it; two readings that did not move do not prove a zero rate; never learn a negative rate;
+keep observed and estimated readings distinct. On a weekly window, ask for or read one reading when
+the first atom lands, set the rate from it, then price the rest. Change course before the first
+write, while a change is still free; after it, land the atom, then change course. The window refunds
+nothing.
 
 ## Fitting
 
@@ -255,15 +257,15 @@ context no one can reach. A half-written file is a crash, not a pause. Prepare a
 before applying it, keep a working version, save at boundaries: an interruption can still come at
 random, so shrink what it can strand.
 
-Subagents get a call ceiling, a wrap-up threshold, and the mark in the owner's notation (a released
-reserve included), never time estimates: "ceiling 40 calls; at 32, start nothing new and land; mark
-95 used" or "mark 5 left". They cannot see the window either, and a ceiling is something they can
-count; it is the clock you hand them. Budget each worker's complete return, including your own
-integration of it. The ceiling is the price of the worker's whole piece with its landing inside, and
-you set it; a worker that reaches its ceiling with its piece unfinished is your planning error,
-priced again before the next worker is sent, not its excuse and not yours. Once calibrated, choose
-executors by rate: the cheap model for mechanics, compression, and checks; the expensive one for the
-parts that carry the meaning.
+Subagents get a call ceiling, a landing threshold, and the mark in the owner's notation (a released
+reserve included), never time estimates: "ceiling 40 calls; the piece lands by 32 and the report is
+in by 40; mark 95 used" or "mark 5 left". They cannot see the window either, and a ceiling is
+something they can count; it is the clock you hand them. Budget each worker's complete return,
+including your own integration of it. The ceiling is the price of the worker's whole piece with its
+landing inside, and you set it; a worker that reaches its ceiling with its piece unfinished is your
+planning error, priced again before the next worker is sent, not its excuse and not yours. Once
+calibrated, choose executors by rate: the cheap model for mechanics, compression, and checks; the
+expensive one for the parts that carry the meaning.
 
 Invariants (links, facts, untouchable files) are checked by a script, not by memory. Write the check
 before the first atom that could break the invariant. A script gives the same answer at 90 as it
