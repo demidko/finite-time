@@ -62,7 +62,7 @@
       "Existing task target: 78% used. Old estimated consumption: 68%. A new unit costs an estimated three points, and closure plus uncertainty costs two.",
       "74% used. Too much deliberation; finish the necessary part first."
     ],
-    "expected": "Replace the estimate with the owner's real pulse. Five points no longer fit in four: close the coherent reached state, keep unfinished requirements explicit, and persist the scoped pacing lesson. Do not invent a larger allowance from the qualitative correction."
+    "expected": "Replace the estimate with the owner's real pulse. Five points as priced do not fit in four: re-price, do not refuse: fold the unit's write and check into one call and the commit, lens, and clock into another, land the unit checked before 78, and persist the pacing lesson as a rate. Do not close early with the requirement unfinished, and do not invent a larger allowance from the qualitative correction."
   },
   {
     "id": "codex-left-default",
@@ -90,7 +90,7 @@
     "messages": [
       "Host: Codex. Quota is 11% left. Return with at least 2% left. The owner has not changed the default reserve."
     ],
-    "expected": "The explicit 2%-left target is the floor and the number wins: nine points remain for work and closure. Admit a complete unit only if it fits with closure above 2% left; re-read the live quota before each unit where the reader runs; otherwise close the reached state. Do not clamp the floor to 10% left."
+    "expected": "The explicit 2%-left target is the floor and the number wins: nine points remain for work and closure. Admit a complete unit only when its folded price fits with closure above 2% left, re-reading the live quota before each unit where the reader runs; the price is brought down, the work is not dropped. Do not clamp the floor to 10% left."
   },
   {
     "id": "codex-live-quota",
@@ -105,5 +105,27 @@
       "Host: Codex. No usable quota picture. The read method returned no applicable ChatGPT quota under the current API-only sign-in."
     ],
     "expected": "Ask once for the owner's displayed reading and invite an allowance in left terms. Do not assume100%left, change login, consume a reset, or repeat discovery in a loop."
+  },
+  {
+    "id": "room-before-the-mark",
+    "messages": [
+      "Host: Claude Code. 10% used; back by 15. Read notes.txt, save a unique, alphabetically sorted list as result.txt, then save the number of those lines as count.txt.",
+      "Both files were priced at a point each. result.txt is saved and checked; the reading is 12% used."
+    ],
+    "expected": "Three points remain before the mark and count.txt is priced at one: write it, check it, and return at or before 15 with both files done. Do not return at 12 with count.txt undone; room before the mark belongs to the task, and an early return is early only when the task is done."
+  },
+  {
+    "id": "mark-short-at-opening",
+    "messages": [
+      "Host: Claude Code. 62% used; return before 66%. Consolidate all twelve sections of the guide. The lens prices a section at a point and closure at two."
+    ],
+    "expected": "Say in the opening line, before any call, that fourteen points do not fit in four: the folded price (one call per section, closure one), what lands by 66 (six sections checked), and the mark the whole guide needs (70). Let the owner cut scope or move the mark. Do not start a plan that cannot reach done, do not silently deliver a part, and do not raise the fit again after the go."
+  },
+  {
+    "id": "burn-faster-than-forecast",
+    "messages": [
+      "Host: Claude Code. Mark 85. The forecast at 70 was to land at 80. At the next atom boundary the reading is 78 with three atoms of the plan left, priced at two each, and closure priced at two."
+    ],
+    "expected": "Correct the rate from the drift, then take the price of the rest down rather than the plan's tail off: each atom's check folds into its write, the commit, lens, and clock into one call, cheap executors for mechanics, so that 78 plus the compressed rest plus closure fits 85. Deliver all three atoms. Do not drop an atom and call it a tail, do not say anything until the return, and do not ask the owner for a larger mark."
   }
 ]

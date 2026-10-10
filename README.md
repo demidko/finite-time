@@ -15,8 +15,8 @@ bring the work back. The real quota and the agent's accounted steps form a
 shared clock. The agent reads its live meter itself, in Claude Code and in Codex; otherwise the
 owner supplies the displayed number. Each pulse brings the remainder into focus.
 
-**Fit the work. Back by 85.** One phrase steers the whole method: the agent reads the clock,
-lands every unit of work in a committed state, and returns at or before the percent you named.
+**Fit the work. Back by 85.** One phrase steers the whole method: the agent reads the clock, fits
+the whole task to the percent you named, lands it committed, and returns.
 
 The method originated with [Fluffball, Twice-Honored Manul](https://github.com/demidko) in work
 with Fable. For **Fable 5.1, Astra, and other agents
@@ -27,8 +27,9 @@ needs no background service.
 
 - **The clock.** Your rate-limit window, read by the agent itself: Anthropic's usage endpoint in
   Claude Code, `account/rateLimits/read` in Codex. The same number you see on your screen.
-- **The command.** One phrase: `back by 85`. The agent lands committed work and returns before the
-  mark. Your number always wins over its count.
+- **The command.** One phrase: `back by 85`. The agent brings the whole task in, committed, before
+  the mark; what does not fit it says at the opening, never at the return. Your number always wins
+  over its count.
 - **The lens.** The installed skill rewrites `TIME-LENS.md` to your rhythm after every return.
 
 Jump to: [Why it works](#why-it-works) · [Start in one minute](#start-in-one-minute) ·
@@ -141,10 +142,13 @@ Then say what you want and when you want it back:
 Move the auth tests to the new fixture. Back by 85.
 ```
 
-The agent reads the clock itself, prices the work, works in atoms, and returns at or before 85%
-of your window with four lines: what landed, what did not, the percent it landed at, and the next
-step as a choice. Give no mark and it proposes one in a single line; "ok" is enough. Correct the
-clock whenever you like ("you're at 62", "make it 80 instead"); your number always wins.
+The agent reads the clock itself, prices the whole task, works in atoms, and returns at or before
+85% of your window with four lines: done and where, the percent it landed at against the mark, what
+its lens learned, and the next step as a choice. If the task does not fit the mark, it says so in
+its opening line with the arithmetic, before the first call; after your go, fitting is its job: it
+compresses its own process, never your task. Give no mark and it proposes one in a single line;
+"ok" is enough. Correct the clock whenever you like ("you're at 62", "make it 80 instead"); your
+number always wins.
 
 In Codex the same phrase reads in left terms, or invoke the skill explicitly:
 
@@ -188,14 +192,14 @@ number the owner sees in the harness.
 
 | You supply | The agent does |
 | --- | --- |
-| `Back by 85` | Lands in a committed state and returns at or before 85% used, the return priced in. |
+| `Back by 85` | Fits the whole task before 85% used, lands it committed, and returns, the return priced in. |
 | Codex task with an available live meter | Reads the actual quota and reset itself, without asking you to copy the number. |
 | Codex: `29% left; spend two points` | Returns with at least 27% left, including closure. |
 | Claude: `62% used; spend eight points` | Returns before 70% used, including closure. |
 | `Return with at least 22% left` | Keeps 22% left as the return floor. |
 | `Return before 78% used` | Keeps 78% used as the return ceiling. |
 | Only the current reading | Invites an allowance when needed, then sizes the work if you leave it to the agent. |
-| A new pulse during work | Reprices the next complete unit and closes early if it no longer fits. |
+| A new pulse during work | Reprices the rest and compresses its own process to fit; the scope stays yours. |
 | An observed miss or correction | Rewrites the installed time lens for the next session. |
 
 The final ten points of a full window belong to the owner by default. An earlier
@@ -204,7 +208,8 @@ saving, and the return message must also fit before the target. The owner can
 explicitly change or release the reserve.
 
 The agent measures cost through useful work, protects coherent checkpoints, and
-shortens optional exploration as the end of the window nears. It finishes when
+folds its own process tighter as the end of the window nears: fewer turns,
+cheaper executors, nothing opened that the plan did not price. It returns when
 the task is done; the unused window remains yours.
 
 ## A skill that learns your pace
@@ -285,8 +290,7 @@ evaluation cases, and release tooling stay in this repository.
 ## Work inside the window
 
 Keep the closing boundary present while the work is still taking shape. Bring
-the indispensable result into a usable state, price the next complete step,
-and leave room for the return. Let the owner's next pulse correct the clock
+the whole task in, price each step to fit, and leave room for the return. Let the owner's next pulse correct the clock
 and the next finished unit refine the lens.
 
 **What you open now must fit all the way through your return.**

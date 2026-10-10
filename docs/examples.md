@@ -50,7 +50,7 @@ checks and saving.
 The agent asks once. It does not keep requesting an allocation after the owner
 leaves that decision to it.
 
-## Claude: the next unit no longer fits
+## Claude: the next unit no longer fits as priced
 
 **Owner:** 62% used. Consolidate the guide; return before 78%.
 
@@ -59,10 +59,38 @@ unit is one complete section and its references.
 
 **Owner, later:** 74% used.
 
-If the agent estimates that another complete section costs three points and
-closure plus uncertainty costs two, five points will not fit in the remaining
-four. It closes the reached state, reports which required sections remain,
-and returns. It does not call the whole guide complete.
+The agent had priced the last section at three points and closure plus margin
+at two; five points do not fit in four. The price is wrong, not the task: the
+section's write and its link check fold into one call, the commit, the lens,
+and the clock into another, and the section is two points with closure one.
+It lands checked before 78. The agent does not close early with a required
+section unwritten, and it does not call the guide complete before the section
+is in.
+
+## Claude: room before the mark
+
+**Owner:** 10% used. Finish the cleanup; back by 15.
+
+The agent lands the planned pieces at 12% used with two small items it had
+priced at a point each still undone. Three points stand between it and the
+mark. Returning now would be leaving early with the task undone, the plainest
+planning failure: the window had the points. It finishes both items, checks,
+commits, and returns at 14. Early is early only with done in front of it.
+
+## Claude: the mark is short at the opening
+
+**Owner:** 62% used. Consolidate all twelve sections of the guide; return
+before 66%.
+
+**Agent:** Twelve sections at a point each and two for closure is fourteen;
+the mark holds four. Folded to one call per section they are seven with
+closure. By 66 I can land six sections checked; the whole guide needs back by
+70. Which?
+
+This is the one moment the fit is discussed: before the first call, with the
+arithmetic, and the scope is the owner's to cut. After "by 70" or "six
+sections" the agent fits what was agreed and does not raise the question
+again.
 
 ## Codex: a fraction of the remainder
 

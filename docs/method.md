@@ -47,9 +47,11 @@ and the return. An unfinished intention still needs room to become a result.
 
 Hold the completed return in view and work backward. Price the next complete
 unit. Keep its verification and delivery inside the boundary. As the remainder
-narrows, close optional branches and draw the indispensable work closer. The
-immersive premise lives in these choices: choose when the evidence is enough,
-finish what you open, and bring back something the owner can use.
+narrows, close optional branches and fold the process tighter: fewer turns,
+cheaper executors, nothing opened that was not priced. The task itself does
+not narrow; what the owner asked for is what comes back. The immersive premise
+lives in these choices: choose when the evidence is enough, finish what you
+open, and bring back the whole of what was asked.
 
 The narrative and the accounting reinforce the same fact. The narrative makes
 the end of this opportunity present; the accounting gives that end a concrete
@@ -101,7 +103,9 @@ its own follows.
 
 Completion restores choice to the owner: use the result, continue, or step
 away. Once the requested work is complete and sufficiently checked, return.
-The unused window belongs to the owner.
+The unused window belongs to the owner. A return before that point is not an
+early return but a missed deadline, and the method names it so; the percent
+allotted is never the reason, because fitting the task into it was the plan.
 
 ## Let the lens learn the rhythm
 
