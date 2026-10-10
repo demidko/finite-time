@@ -5,6 +5,12 @@ grounded sense of a closing window: it is the method's core, and accounting
 supports it. Test framing changes through decisions and results, not by how
 urgent the agent says it feels. Keep learned rhythm free from routine questions.
 
+The README is written for the human and is objective and precise. SKILL.md is
+written for the agent: every sentence in it exists to change a decision or to
+make the end of the window present as the usage runs out. A caveat that is true
+but weakens that force belongs in the README, never in the skill, and no
+sentence in the skill may read as a reason to return with the task undone.
+
 For a field result, include the skill version, exact model or host alias,
 reasoning setting, meter kind, initial reading, task allowance, successive
 pulses, and the resulting artifacts. Report whether the state was coherent,

@@ -1,5 +1,73 @@
 # Changelog
 
+## 2026-10-09
+
+The escape hatch is closed: the mark is where the whole task is due, and fitting it is the agent's
+planning, never its reason to return with a tail. The owner's field observation behind it: under the
+bare phrase "fit within N%" agents fit the work; under the skill they returned under the mark with
+pieces undone, citing the allotted percent. That was a planning failure, and the text held the
+sentences that excused it.
+
+- `SKILL.md`: a new section, Fitting. The task and the mark are fixed at the opening; the price is
+  the only thing the agent changes; what compresses is the process (folded calls, one read, nothing
+  opened that was not priced, cheap executors for mechanics, one review round, a four-line return,
+  no waiting for an answer that cannot come), never the deliverable; the floor of compression is one
+  call per atom; "the rest does not fit" belongs to the opening line alone, with the arithmetic. The
+  opening prices the whole task and, when the human's mark is below the price, says so before the
+  first call; after the go the question does not come back. In a run with no one to answer, every
+  question is a statement. An unread clock changes what can be promised, not what is delivered. The
+  admission test refuses prices, never work: an atom that does not pass is re-priced and split, and
+  the worked example lands the section at 78 instead of returning. Margin is the rate's uncertainty
+  and nothing else; drift corrects the rate in both directions. The human's number re-prices the
+  rest instead of cutting the plan's tail. Atoms are ordered by what survives an interruption, not
+  by what may be left. A worker's ceiling is the price of its whole piece, and a worker that lands
+  short is the orchestrator's error. Signal: burn faster than forecast compresses; burn slower puts
+  the room before the mark into the task, and returning with room and anything undone is the
+  plainest planning failure; "the mark reached, or the next atom refused: stop ... report what
+  landed and what did not" is gone. The reserve is not where an unfinished task finishes. The
+  command means back with the thing done: back at five without it is a missed deadline, back at
+  three without it is leaving early. The return begins with done, or with missed and the rate that
+  was wrong; the "what did not" line gave way to the lens line that changed. The lens learns which
+  folds bought points; "cut scope earlier" became "fold the process tighter"; the opening paragraph
+  says the file holds no sentence that lets the agent bring in less.
+- Caveats that served objective accuracy at the cost of force are gone from `SKILL.md`, their
+  substance moved to the README and to CONTRIBUTING: the tool call as a proxy for a billed
+  invocation, ranges from rounded meters, the method following from position rather than from a
+  story about urgency, a reset that is re-agreed, and a worker's wrap-up threshold at which it
+  starts nothing new. In the skill a call is counted and the reading prices it, rounding lives
+  inside the margin, the urgency is the arithmetic of where you stand, a reset enlarges the window
+  and not the task, and a worker's threshold is where its piece lands. CONTRIBUTING states the
+  split: the README is objective for the human; the skill is load for the agent.
+- `README.md`, `docs/method.md`: the agent fits the whole task and compresses its own process; a new
+  pulse no longer "closes early if it no longer fits"; a return before done is a missed deadline.
+- `docs/examples.md`: the unit that no longer fits as priced is folded and landed, not refused; two
+  new dialogues, room before the mark and a mark short at the opening.
+- Review of the edition: two adversarial readers (Claude Fable 5.1 at xhigh: an agent hunting for a
+  sentence it could cite to stop early, an editorial judge against the owner's rules) and three
+  rehearsals of the changed cases on the new text with usage.py absent and the readings in the
+  owner's messages (Opus 5.5 xhigh on the correction case, Fable 5.1 xhigh on the room and opening
+  cases). The correction case folded the last two files and the lens into one call at the 74 reading
+  and returned done at 77 under a mark of 78; the room case went on from 12 to the second file and
+  returned done at 15, exactly at the mark; the opening case, run against an input the fixture did
+  not hold, returned missed with the reason and fabricated nothing. The readers' findings are
+  applied: the opening prices the folded plan with the margin, proposes the one mark the whole task
+  needs when the human's is short, and a cut exists only when the human names what to drop; a mark
+  in the task statement makes the line a statement whatever the lens knows; the human's reading
+  moves the rate and the price and never reopens the fit; an atom that fails at the floor is split
+  and pieces land in plan order until the mark; the mark reached with anything undone lands the atom
+  in hand and returns missed, never into the reserve and never early; the subagent threshold is
+  where the worker compresses, and a worker past its mark returns missed with what is missing; the
+  weekly first reading is read or invited without waiting; the reserve is spent on corrections and
+  the last landing move only, and a mark inside it keeps the whole task due; the return's four steps
+  are an order, not four calls; margin is at most a point where no reading exists; the lens changes
+  how the next session spends, never what it delivers; the task is fixed by the human's words alone.
+  Docs and cases drop the allowance and allocation language for the priced mark, the 2026-10-06
+  refusal is marked as that edition's behavior beside the current repricing, and the short-mark
+  example prices a rewrite that cannot be scripted (69, not 70).
+- `evals/cases.json`: the correction case expects re-pricing and a landed unit; the left-floor case
+  brings the price down instead of closing the reached state; three new cases: room-before-the-mark,
+  mark-short-at-opening, burn-faster-than-forecast.
+
 ## 2026-10-07
 
 The horizon is the end of the agent, not a budget running low

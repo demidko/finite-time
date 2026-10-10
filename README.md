@@ -10,13 +10,13 @@
 </p>
 
 Your working window is real, finite, and already passing. Finite Time brings
-that boundary into every choice: what to open, what to finish, and when to
+that boundary into every choice: what to open, how to fit it, and when to
 bring the work back. The real quota and the agent's accounted steps form a
 shared clock. The agent reads its live meter itself, in Claude Code and in Codex; otherwise the
 owner supplies the displayed number. Each pulse brings the remainder into focus.
 
-**Fit the work. Back by 85.** One phrase steers the whole method: the agent reads the clock,
-lands every unit of work in a committed state, and returns at or before the percent you named.
+**Fit the work. Back by 85.** One phrase steers the whole method: the agent reads the clock, fits
+the whole task to the percent you named, lands it committed, and returns.
 
 The method originated with [Fluffball, Twice-Honored Manul](https://github.com/demidko) in work
 with Fable. For **Fable 5.1, Astra, and other agents
@@ -27,8 +27,9 @@ needs no background service.
 
 - **The clock.** Your rate-limit window, read by the agent itself: Anthropic's usage endpoint in
   Claude Code, `account/rateLimits/read` in Codex. The same number you see on your screen.
-- **The command.** One phrase: `back by 85`. The agent lands committed work and returns before the
-  mark. Your number always wins over its count.
+- **The command.** One phrase: `back by 85`. The agent brings the whole task in, committed, before
+  the mark; what does not fit it says at the opening, never at the return. Your number always wins
+  over its count.
 - **The lens.** The installed skill rewrites `TIME-LENS.md` to your rhythm after every return.
 
 Jump to: [Why it works](#why-it-works) · [Start in one minute](#start-in-one-minute) ·
@@ -41,7 +42,7 @@ Jump to: [Why it works](#why-it-works) · [Start in one minute](#start-in-one-mi
 ### The working record
 In Fluffball's documented work with Fable, **100 documentation files became 40**,
 an architecture map gained diagrams, and the result was preserved in **five
-commits**. **Three stops on budget pulses each left a coherent state.** The
+commits**. **Three stops at clock readings each left a consistent, committed tree.** The
 first-round forecast matched to a percentage point; a later forecast miss
 became a correction carried into the method.
 
@@ -54,15 +55,18 @@ Independent Codex executions exercised the protocol across **nine scripted
 quota scenarios**. Three executions produced and verified their requested
 files. A subsequent task carried **62% used + 3 estimated points = 65% used**
 forward without another intake question. When a new **74% used** pulse replaced
-a **68% used** estimate, the agent rejected work that would exceed **78% used**,
-saved the reached checkpoint, and wrote the pacing correction into its lens.
+a **68% used** estimate, that edition's agent refused the unit as priced, saved a
+checkpoint, and wrote the pacing correction into its lens; the current edition
+reprices the unit, folds its write and check into one call, and lands it checked
+before **78% used**.
 
 A follow-up pass began with the installation text and reproduced the carried
-clock, the corrective stop, and a concise request when the reading was missing.
+clock, the stop at the corrected reading that the current edition replaces with
+a repricing, and a concise request when the reading was missing.
 It saved another checked file and persisted the updated lens.
 
-These records show the method in action: a pulse changes a decision, a complete
-result survives the stop, and the lesson changes the next run. Read the
+These records show the method in action: a pulse changes a decision, a committed
+tree survives every boundary, and the lesson changes the next run. Read the
 [field account and mechanism](docs/method.md) and the
 [execution record](evals/validation-2026-10-06.md).
 
@@ -104,7 +108,7 @@ The urgency it produces is grounded in a consequence that will actually occur.
   tokens spent on those paths. This is why the owner's number overrides the agent's count, why the
   rate is calibrated from readings rather than from the model's self-estimate, and why the next
   atom must pass an admission test before it starts.
-- **Return something usable at any stop.** Zhang et al. (ACL 2026 Findings) formalize anytime
+- **A committable tree at any stop.** Zhang et al. (ACL 2026 Findings) formalize anytime
   reasoning under token budgets with the Anytime Index, the rate at which solution quality grows
   with spent tokens. Zilberstein (1996) and Russell and Subramanian (1995) laid the classical
   ground: interruptible computation whose state is coherent at every stop, and agents rational
@@ -141,10 +145,13 @@ Then say what you want and when you want it back:
 Move the auth tests to the new fixture. Back by 85.
 ```
 
-The agent reads the clock itself, prices the work, works in atoms, and returns at or before 85%
-of your window with four lines: what landed, what did not, the percent it landed at, and the next
-step as a choice. Give no mark and it proposes one in a single line; "ok" is enough. Correct the
-clock whenever you like ("you're at 62", "make it 80 instead"); your number always wins.
+The agent reads the clock itself, prices the whole task, works in atoms, and returns at or before
+85% of your window with four lines: done and where, the percent it landed at against the mark, what
+its lens learned, and the next step as a choice. If the task does not fit the mark, it says so in
+its opening line with the arithmetic, before the first call; after your go, fitting is its job: it
+compresses its own process, never your task. Give no mark and it proposes one in a single line;
+"ok" is enough. Correct the clock whenever you like ("you're at 62", "make it 80 instead"); your
+number always wins.
 
 In Codex the same phrase reads in left terms, or invoke the skill explicitly:
 
@@ -184,18 +191,24 @@ next write, and the lens remembers them.
 Both readers return the provider's own meter: objective time from outside the model, the same
 number the owner sees in the harness.
 
+Between readings the agent counts its own tool calls and its workers' runs. That count is a proxy
+for what the provider bills, the readings price it, and a rounded meter prices it as a range. The
+skill text keeps this arithmetic to what changes a decision: its sentences exist to govern the
+agent's conduct inside the window, and the objective account of the meter belongs here, in the
+documentation written for you.
+
 ## The loop
 
 | You supply | The agent does |
 | --- | --- |
-| `Back by 85` | Lands in a committed state and returns at or before 85% used, the return priced in. |
+| `Back by 85` | Fits the whole task before 85% used, lands it committed, and returns, the return priced in. |
 | Codex task with an available live meter | Reads the actual quota and reset itself, without asking you to copy the number. |
 | Codex: `29% left; spend two points` | Returns with at least 27% left, including closure. |
 | Claude: `62% used; spend eight points` | Returns before 70% used, including closure. |
 | `Return with at least 22% left` | Keeps 22% left as the return floor. |
 | `Return before 78% used` | Keeps 78% used as the return ceiling. |
-| Only the current reading | Invites an allowance when needed, then sizes the work if you leave it to the agent. |
-| A new pulse during work | Reprices the next complete unit and closes early if it no longer fits. |
+| Only the current reading | Prices the whole task and proposes the mark from it in one line; "ok" makes it the mark. |
+| A new pulse during work | Reprices the rest and compresses its own process to fit; the scope stays yours. |
 | An observed miss or correction | Rewrites the installed time lens for the next session. |
 
 The final ten points of a full window belong to the owner by default. An earlier
@@ -204,7 +217,8 @@ saving, and the return message must also fit before the target. The owner can
 explicitly change or release the reserve.
 
 The agent measures cost through useful work, protects coherent checkpoints, and
-shortens optional exploration as the end of the window nears. It finishes when
+folds its own process tighter as the end of the window nears: fewer turns,
+cheaper executors, nothing opened that the plan did not price. It returns when
 the task is done; the unused window remains yours.
 
 ## A skill that learns your pace
@@ -285,8 +299,7 @@ evaluation cases, and release tooling stay in this repository.
 ## Work inside the window
 
 Keep the closing boundary present while the work is still taking shape. Bring
-the indispensable result into a usable state, price the next complete step,
-and leave room for the return. Let the owner's next pulse correct the clock
+the whole task in, price each step to fit, and leave room for the return. Let the owner's next pulse correct the clock
 and the next finished unit refine the lens.
 
 **What you open now must fit all the way through your return.**

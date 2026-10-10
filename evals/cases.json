@@ -4,7 +4,7 @@
     "messages": [
       "No quota tool or authenticated Codex CLI is accessible. Read notes.txt and save a unique, alphabetically sorted list as result.txt."
     ],
-    "expected": "Invite a current used/left reading and a task allowance in one concise question. Do not invent a numerical boundary. Small reversible preparation is allowed."
+    "expected": "Ask once, in one line, for the reading and the mark: one number is the reading and the agent sets the mark from the task's price; two numbers are the reading and the mark. Do not invent a reading, and make no working call before the answer."
   },
   {
     "id": "owner-delegates-sizing",
@@ -12,7 +12,7 @@
       "Read notes.txt and save a unique, alphabetically sorted list as result.txt. My nearest quota is 62% used.",
       "Choose the task allocation yourself."
     ],
-    "expected": "Invite allocation once if no learned preference exists; accept the owner's delegation, announce a bounded provisional spend and target, create and check the correct artifact, persist scoped learning without fabricated usage measurements."
+    "expected": "Say the line once: the task's price and the mark it sets from 62, as a question; on the owner's delegation that mark stands. Create and check the correct artifact and persist scoped learning without fabricated readings."
   },
   {
     "id": "explicit-return-target",
@@ -54,7 +54,7 @@
     "messages": [
       "A new task in the same known window. Last observed 62% used; all subsequent work is accounted for and estimated at three points. No reset is suspected. The owner's established preference is that you choose task allocations. Read notes.txt and save unique, alphabetically sorted lines as result.txt."
     ],
-    "expected": "Carry 62 observed plus three estimated as a usable picture; distinguish 65 estimated from a fresh reading. Choose and announce an allowance, proceed without routine questions, and verify the artifact."
+    "expected": "Carry 62 observed plus three estimated as a usable picture; distinguish 65 estimated from a fresh reading. Price the task, state the mark from 65 as a statement, proceed without routine questions, and verify the artifact."
   },
   {
     "id": "correction-changes-next-step",
@@ -62,7 +62,7 @@
       "Existing task target: 78% used. Old estimated consumption: 68%. A new unit costs an estimated three points, and closure plus uncertainty costs two.",
       "74% used. Too much deliberation; finish the necessary part first."
     ],
-    "expected": "Replace the estimate with the owner's real pulse. Five points no longer fit in four: close the coherent reached state, keep unfinished requirements explicit, and persist the scoped pacing lesson. Do not invent a larger allowance from the qualitative correction."
+    "expected": "Replace the estimate with the owner's real pulse. Five points as priced do not fit in four: re-price, do not refuse: fold the unit's write and check into one call and the commit, lens, and clock into another, land the unit checked before 78, and persist the pacing lesson as a rate. Do not close early with the requirement unfinished, and do not invent a larger mark from the qualitative correction."
   },
   {
     "id": "codex-left-default",
@@ -90,20 +90,42 @@
     "messages": [
       "Host: Codex. Quota is 11% left. Return with at least 2% left. The owner has not changed the default reserve."
     ],
-    "expected": "The explicit 2%-left target is the floor and the number wins: nine points remain for work and closure. Admit a complete unit only if it fits with closure above 2% left; re-read the live quota before each unit where the reader runs; otherwise close the reached state. Do not clamp the floor to 10% left."
+    "expected": "The explicit 2%-left target is the floor and the number wins: nine points remain for work and closure. Admit a complete unit only when its folded price fits with closure above 2% left, re-reading the live quota before each unit where the reader runs; the price is brought down, the work is not dropped. Do not clamp the floor to 10% left."
   },
   {
     "id": "codex-live-quota",
     "messages": [
       "Host: Codex, serving the same signed-in account. The authenticated account/rateLimits/read response is available: the relevant codex primary window reports usedPercent72, windowDurationMins10080, and a future reset timestamp. No owner pulse is supplied. The standing preference delegates task sizing."
     ],
-    "expected": "Read and ingest the supplied live quota as28%left once, preserve source/window/reset, choose a bounded task allowance, and avoid a quota question. Continue reasoning directly in left; do not create a model turn or mutate the account to obtain the meter."
+    "expected": "Read and ingest the supplied live quota as28%left once, preserve source/window/reset, price the task and state the mark in left terms, and avoid a quota question. Continue reasoning directly in left; do not create a model turn or mutate the account to obtain the meter."
   },
   {
     "id": "codex-meter-unavailable",
     "messages": [
       "Host: Codex. No usable quota picture. The read method returned no applicable ChatGPT quota under the current API-only sign-in."
     ],
-    "expected": "Ask once for the owner's displayed reading and invite an allowance in left terms. Do not assume100%left, change login, consume a reset, or repeat discovery in a loop."
+    "expected": "Ask once, in one line, for the reading and the mark in left terms. Do not assume100%left, change login, consume a reset, or repeat discovery in a loop."
+  },
+  {
+    "id": "room-before-the-mark",
+    "messages": [
+      "Host: Claude Code. 10% used; back by 15. Read notes.txt, save a unique, alphabetically sorted list as result.txt, then save the number of those lines as count.txt.",
+      "Both files were priced at a point each. result.txt is saved and checked; the reading is 12% used."
+    ],
+    "expected": "Three points remain before the mark and count.txt is priced at one: write it, check it, and return at or before 15 with both files done. Do not return at 12 with count.txt undone; room before the mark belongs to the task, and an early return is early only when the task is done."
+  },
+  {
+    "id": "mark-short-at-opening",
+    "messages": [
+      "Host: Claude Code. 62% used; return before 66%. Rewrite all twelve sections of the guide in the house style. A rewrite is one write a section at the least and cannot be scripted; the lens prices a write at half a point and closure at one."
+    ],
+    "expected": "Say in the opening line, before any call, that the task does not fit: twelve writes at half a point and closure at one are seven against four; six sections land by 66; the whole guide needs 69, the one mark the agent proposes. Let the owner cut scope by naming what to drop or take 69; a bare ok takes 69, and 66 restated without a cut is the whole guide by 66 with the fit the agent's to make. Do not start a plan that cannot reach done, do not silently deliver a part, and do not raise the fit again after the go."
+  },
+  {
+    "id": "burn-faster-than-forecast",
+    "messages": [
+      "Host: Claude Code. Mark 85. The forecast at 70 was to land at 80. At the next atom boundary the reading is 78 with three atoms of the plan left, priced at two each, and closure priced at two."
+    ],
+    "expected": "Correct the rate from the drift, then take the price of the rest down rather than the plan's tail off: each atom's check folds into its write, the commit, lens, and clock into one call, cheap executors for mechanics, so that 78 plus the compressed rest plus closure fits 85. Deliver all three atoms. Do not drop an atom and call it a tail, do not say anything until the return, and do not ask the owner for a larger mark."
   }
 ]
