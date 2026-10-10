@@ -222,7 +222,7 @@ goes on. The lens and your first drift overwrite the table:
 | --- | --- |
 | cheap model in a swarm | about 0.08 per call |
 | expensive model as a subagent | about 0.15 per call; a run of 10 to 15 calls costs about 2 |
-| orchestrator holding full context | 0.3 to 0.5 per turn; 1 only past 200k tokens of context, and only where a reading has shown it |
+| orchestrator holding full context | 0.3 to 0.5 per turn; 1 only where a reading has shown it |
 | restart | twice the cost of everything you had read, read again |
 
 Each new reading lands beside your forecast. The gap is drift. Drift corrects the rate, and the rate

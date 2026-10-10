@@ -1,6 +1,6 @@
 # Example conversations
 
-Illustrative dialogue and arithmetic, not recorded measurements. Task allowances
+Illustrative dialogue and arithmetic, not recorded measurements. Marks and prices
 use percentage points of the full window. Conversation follows the owner's
 interface: left for Codex/ChatGPT, used for Claude by default. An explicit owner
 preference or displayed label takes priority. The agent calculates directly in
@@ -96,7 +96,7 @@ does not come back.
 **Agent:** Twenty percent of the remaining 40 points is eight points, so I'll
 return with at least 32% left, with checks and saving included.
 
-## The same allowance in each interface
+## The same mark in each interface
 
 **Codex owner:** 29% left. Spend up to two points.
 

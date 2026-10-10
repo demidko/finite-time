@@ -93,7 +93,7 @@ clearer sense of how much room the return requires.
 A new percentage replaces the agent's extrapolation immediately. Corrections
 about deliberation, priority, or pace change the next action and the learned
 lens. Keep each signal in its proper scope: a pacing correction adjusts pacing;
-an explicit allowance changes the numerical boundary. The task continues
+an explicit mark changes the numerical boundary. The task continues
 through both.
 
 Use the limit that can constrain the work next, whether a session window, a
@@ -115,7 +115,7 @@ The installed skill rewrites its **time lens** around its owner's working
 rhythm. Load that lens with the shared protocol, use it during the task, and
 reconcile it at a meaningful checkpoint or return.
 
-Learn the unit size that finished, the closure allowance that ran short, the
+Learn the unit size that finished, the closure price that ran short, the
 reread that changed cost, and the moment another branch stopped being worth
 opening. Compress each lesson into a rule that changes a future decision.
 Replace a contradicted rule and merge a repeated lesson. The shared protocol
